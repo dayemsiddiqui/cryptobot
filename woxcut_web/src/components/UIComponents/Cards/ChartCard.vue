@@ -1,26 +1,38 @@
 <template>
   <div class="card">
-    <div class="header">
-      <slot name="title"></slot>
-      <p class="category">
-        <slot name="subTitle"></slot>
-      </p>
+    <div class="card-header" v-if="$slots.header">
+      <slot name="header"></slot>
     </div>
-    <div class="content">
+    <div class="card-content">
+      <slot name="title-content">
+        <div class="row">
+          <div class="col-xs-7">
+            <div class="numbers pull-left">
+              <slot name="title"></slot>
+            </div>
+          </div>
+          <div class="col-xs-5">
+            <div class="pull-right">
+              <slot name="title-label"></slot>
+            </div>
+          </div>
+        </div>
+      </slot>
+      <slot name="subtitle"></slot>
       <div :id="chartId" class="ct-chart"></div>
-      <div class="footer">
-        <div class="chart-legend">
-          <slot name="legend"></slot>
-        </div>
-        <hr>
-        <div class="stats">
-          <slot name="footer"></slot>
-        </div>
-        <div class="pull-right">
-        </div>
-      </div>
     </div>
 
+    <div class="card-footer">
+      <slot name="footer">
+        <hr>
+        <div class="footer-title">
+          <slot name="footer-title"></slot>
+        </div>
+        <div class="pull-right">
+          <slot name="footer-right"></slot>
+        </div>
+      </slot>
+    </div>
   </div>
 </template>
 <script>
@@ -57,7 +69,8 @@
     },
     data () {
       return {
-        chartId: 'no-id'
+        chartId: 'no-id',
+        $Chartist: null
       }
     },
     methods: {
@@ -80,13 +93,13 @@
         return Math.floor(Math.random() * (max - min + 1)) + min
       }
     },
-    mounted () {
+    async mounted () {
       this.updateChartId()
-      this.$nextTick(this.initChart)
+      const Chartist = await import('chartist')
+      this.$Chartist = Chartist
+      this.initChart()
     }
   }
-
 </script>
 <style>
-
 </style>

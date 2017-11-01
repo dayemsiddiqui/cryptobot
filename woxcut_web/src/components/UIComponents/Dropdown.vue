@@ -1,23 +1,37 @@
 <template>
-  <li class="dropdown" :class="{open:isOpen}" @click="toggleDropDown" v-click-outside="closeDropDown">
-    <a class="dropdown-toggle btn-rotate" data-toggle="dropdown" href="javascript:void(0)">
-      <slot name="title">
+  <div :is="tag" :class="[getSlideClass, {open:isOpen}]" @click="toggleDropDown" v-click-outside="closeDropDown">
+    <slot name="title">
+      <a class="dropdown-toggle btn-rotate" data-toggle="dropdown" href="javascript:void(0)">
         <i :class="icon"></i>
         <p class="notification">{{title}}
           <b class="caret"></b>
         </p>
-      </slot>
-    </a>
+      </a>
+    </slot>
     <ul class="dropdown-menu">
       <slot></slot>
     </ul>
-  </li>
+  </div>
 </template>
 <script>
   export default{
+    name: 'drop-down',
     props: {
       title: String,
-      icon: String
+      icon: String,
+      slide: {
+        type: String,
+        default: 'down'
+      },
+      tag: {
+        type: String,
+        default: 'div'
+      }
+    },
+    computed: {
+      getSlideClass () {
+        return this.slide === 'down' ? 'dropdown' : 'dropup'
+      }
     },
     data () {
       return {

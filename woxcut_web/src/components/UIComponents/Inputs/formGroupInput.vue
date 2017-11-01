@@ -3,19 +3,23 @@
     <label v-if="label">
       {{label}}
     </label>
-    <input class="form-control border-input"
-           v-bind="$attrs"
-           :value="value"
-           @input="$emit('input', $event.target.value)"
-           v-on="$listeners">
+    <input class="form-control border-input" v-bind="$props" :value="value"
+           @input="$emit('input',$event.target.value)">
   </div>
 </template>
 <script>
   export default {
-    inheritAttrs: false,
+    name: 'fg-input',
     props: {
-      value: [String, Number],
-      label: String
+      type: {
+        type: String,
+        default: 'text'
+      },
+      label: String,
+      name: String,
+      disabled: Boolean,
+      placeholder: String,
+      value: [String, Number]
     }
   }
 

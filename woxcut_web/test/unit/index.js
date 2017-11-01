@@ -1,6 +1,9 @@
-import Vue from 'vue'
+// Polyfill fn.bind() for PhantomJS
+/* eslint-disable no-extend-native */
+Function.prototype.bind = require('function-bind')
 
-Vue.config.productionTip = false
+const helpersContext = require.context('./helpers', true)
+helpersContext.keys().forEach(helpersContext)
 
 // require all test files (files that ends with .spec.js)
 const testsContext = require.context('./specs', true, /\.spec$/)
@@ -11,3 +14,5 @@ testsContext.keys().forEach(testsContext)
 // you want coverage for.
 const srcContext = require.context('../../src', true, /^\.\/(?!main\.js$).+\.(js|vue)$/i)
 srcContext.keys().forEach(srcContext)
+
+require('es6-promise/auto')

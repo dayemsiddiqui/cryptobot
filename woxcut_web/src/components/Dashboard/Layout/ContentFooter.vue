@@ -4,7 +4,19 @@
       <nav class="pull-left">
         <ul>
           <li>
-            <router-link :to="{path:'/'}">Home</router-link>
+            <a href="http://www.creative-tim.com">
+              Creative Tim
+            </a>
+          </li>
+          <li>
+            <a href="http://blog.creative-tim.com">
+              Blog
+            </a>
+          </li>
+          <li>
+            <a href="http://www.creative-tim.com/license">
+              Licenses
+            </a>
           </li>
         </ul>
       </nav>

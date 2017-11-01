@@ -1,20 +1,18 @@
 <template>
   <div class="card">
-    <div class="content">
+    <div class="card-content">
       <div class="row">
-        <div class="col-xs-5">
+        <div class="col-xs-12">
           <slot name="header"></slot>
-        </div>
-        <div class="col-xs-7">
           <slot name="content"></slot>
         </div>
       </div>
-      <div class="footer">
-        <hr/>
-        <slot name="footer"></slot>
-      </div>
     </div>
-  
+    <div class="card-footer">
+      <hr/>
+      <slot name="footer"></slot>
+    </div>
+
   </div>
 </template>
 <script>
@@ -23,6 +21,9 @@
   }
 
 </script>
-<style>
-  
+<style scoped>
+  .card-content{
+    min-height: 80px
+  }
 </style>
+

@@ -1,28 +1,34 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueNotify from 'vue-notifyjs'
+import VeeValidate from 'vee-validate'
+import lang from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale'
+import App from './App.vue'
 
 // Plugins
-import GlobalComponents from './globalComponents'
+import GlobalComponents from './gloablComponents'
 import GlobalDirectives from './globalDirectives'
-import Notifications from './components/UIComponents/NotificationPlugin'
 import SideBar from './components/UIComponents/SidebarPlugin'
-import App from './App'
 
 // router setup
 import routes from './routes/routes'
 
 // library imports
-import Chartist from 'chartist'
-import 'bootstrap/dist/css/bootstrap.css'
+
 import './assets/sass/paper-dashboard.scss'
+import './assets/sass/demo.scss'
 import 'es6-promise/auto'
 
+import sidebarLinks from './sidebarLinks'
 // plugin setup
 Vue.use(VueRouter)
-Vue.use(GlobalComponents)
 Vue.use(GlobalDirectives)
-Vue.use(Notifications)
-Vue.use(SideBar)
+Vue.use(GlobalComponents)
+Vue.use(VueNotify)
+Vue.use(SideBar, {sidebarLinks: sidebarLinks})
+Vue.use(VeeValidate)
+locale.use(lang)
 
 // configure router
 const router = new VueRouter({
@@ -30,19 +36,9 @@ const router = new VueRouter({
   linkActiveClass: 'active'
 })
 
-// global library setup
-Object.defineProperty(Vue.prototype, '$Chartist', {
-  get () {
-    return this.$root.Chartist
-  }
-})
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   render: h => h(App),
-  router,
-  data: {
-    Chartist: Chartist
-  }
+  router
 })

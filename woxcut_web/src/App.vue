@@ -1,38 +1,38 @@
 <template>
   <div :class="{'nav-open': $sidebar.showSidebar}">
-    <router-view></router-view>
-    <!--This sidebar appears only for screens smaller than 992px-->
-    <side-bar type="navbar" :sidebar-links="$sidebar.sidebarLinks">
-      <ul class="nav navbar-nav">
-        <li>
-          <a class="dropdown-toggle" data-toggle="dropdown">
-            <i class="ti-panel"></i>
-            <p>Stats</p>
-          </a>
-        </li>
-        <drop-down title="5 Notifications" icon="ti-bell">
+    <notifications transition-name="notification-list" transition-mode="out-in">
 
-          <li><a>Notification 1</a></li>
-          <li><a>Notification 2</a></li>
-          <li><a>Notification 3</a></li>
-          <li><a>Notification 4</a></li>
-          <li><a>Another notification</a></li>
-
-        </drop-down>
-        <li>
-          <a>
-            <i class="ti-settings"></i>
-            <p>Settings</p>
-          </a>
-        </li>
-        <li class="divider"></li>
-      </ul>
-    </side-bar>
+    </notifications>
+    <transition name="fade"
+                mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
+  // Loading some plugin css asynchronously
+  import('sweetalert2/dist/sweetalert2.css')
+  import('vue-notifyjs/themes/default.css')
   export default {}
 </script>
+<style lang="scss">
+  .notifications {
+    .notification-list-move {
+      transition: transform 0.3s, opacity 0.4s;
+    }
+    .notification-list-item {
+      display: inline-block;
+      margin-right: 10px;
 
-<style lang="scss"></style>
+    }
+    .notification-list-enter-active, .notification-list-leave-active {
+      transition: opacity 0.4s;
+    }
+    .notification-list-enter, .notification-list-leave-to /* .list-leave-active for <2.1.8 */
+    {
+      opacity: 0;
+    }
+  }
+
+</style>
