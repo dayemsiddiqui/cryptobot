@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <!--Stats cards-->
+    <!--Bot cards-->
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6" v-for="bot in botCards">
         <bot-card>
@@ -49,8 +49,8 @@
               <div class="row">
                 <div class="col-sm-12">
                   <br>
-                  <p>Last 24 Hours: <b v-if="bot.profits.last24hours<0">{{bot.profits.last24hours}}</b><br>
-                  Last 7 Days: <b>{{bot.profits.last7days}}</b></p>
+                  <p>Last 24 Hours: <b v-bind:class="bot.profits.last24hours<0?'red':'green'">{{bot.profits.last24hours}}%</b><br>
+                  Last 7 Days: <b v-bind:class="bot.profits.last7days<0?'red':'green'">{{bot.profits.last7days}}%</b></p>
                 </div>
               </div>
             </div>
@@ -121,7 +121,7 @@
             uptime: "1507050618", // convert this into appropriate time interval client side,
             profits: {
               last24hours: "-10", // calculate this dynamically,
-              last7days: "13" // calculate this dynamically as well
+              last7days: "-58" // calculate this dynamically as well
             }
           },
             {
@@ -136,8 +136,8 @@
             exchange: "GDAX",
             uptime: "1507050618", // convert this into appropriate time interval client side,
             profits: {
-              last24hours: "-10", // calculate this dynamically,
-              last7days: "13" // calculate this dynamically as well
+              last24hours: "2", // calculate this dynamically,
+              last7days: "67" // calculate this dynamically as well
             }
           }
         ]
