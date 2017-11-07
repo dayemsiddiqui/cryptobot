@@ -1,4 +1,5 @@
 <template>
+  <!-- <div v-bind:class="{'card': enableCard}"> -->
   <div class="card">
     <div class="card-content">
       <div class="row">
@@ -97,6 +98,7 @@
     },
     data () {
       return {
+        enableCard: false,
         exchange: {
           selected: '',
           exchanges: [
@@ -116,6 +118,9 @@
           ]
         }
       }
+    },
+    methods: {
+
     }
   }
 
