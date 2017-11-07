@@ -5,6 +5,7 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 import Overview from 'src/components/Dashboard/Views/Dashboard/Overview.vue'
 import Exchange from 'src/components/Dashboard/Views/Dashboard/Exchange.vue'
 import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/StrategyCreation.vue'
+import StrategyList from 'src/components/Dashboard/Views/Dashboard/StrategyList.vue'
 import Stats from 'src/components/Dashboard/Views/Dashboard/Stats.vue'
 
 // Pages
@@ -223,6 +224,11 @@ let woxcut = {
         path: 'strategies',
         name: 'Strategies',
         component: StrategyCreation
+      },
+      {
+        path: 'strategylist',
+        name: 'Strategy List',
+        component: StrategyList
       },
       {
         path: 'buysell',
