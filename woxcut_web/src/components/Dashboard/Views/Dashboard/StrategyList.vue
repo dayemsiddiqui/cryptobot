@@ -45,59 +45,59 @@
 
 <script>
 
-  export default {
-    components: {
-    },
-    data () {
-      return {
-        strategies: [
-        {
-          name: CCI,
-          type: Free
-        },
-        {
-          name: DEMA,
-          type: Free
-        },
-        {
-          name: MACD,
-          type: Free
-        },
-        {
-          name: PPO,
-          type: Free
-        },
-        {
-          name: RSI,
-          type: Free
-        },
-        {
-          name: StochRSI,
-          type: Free
-        },
-        {
-          name: TSI,
-          type: Free
-        },
-        {
-          name: UO,
-          type: Free
-        },
-        ]
-      }
-    },
-    methods: {
-      handleLike (index, row) {
-        alert(`Your clicked on Like button`)
+export default {
+  components: {
+  },
+  data () {
+    return {
+      strategies: [
+      {
+        name: CCI,
+        type: Free
       },
-      handleEdit (index, row) {
-        alert(`Your want to edit ${row.name}`)
+      {
+        name: DEMA,
+        type: Free
       },
-      handleDelete (index, row) {
-        alert(`Your want to delete ${row.name}`)
-      }
+      {
+        name: MACD,
+        type: Free
+      },
+      {
+        name: PPO,
+        type: Free
+      },
+      {
+        name: RSI,
+        type: Free
+      },
+      {
+        name: StochRSI,
+        type: Free
+      },
+      {
+        name: TSI,
+        type: Free
+      },
+      {
+        name: UO,
+        type: Free
+      },
+    ]
+  }
+},
+  methods: {
+    handleLike (index, row) {
+      alert(`Your clicked on Like button`)
+    },
+    handleEdit (index, row) {
+      alert(`Your want to edit ${row.name}`)
+    },
+    handleDelete (index, row) {
+      alert(`Your want to delete ${row.name}`)
     }
   }
+}
 
 </script>
 
