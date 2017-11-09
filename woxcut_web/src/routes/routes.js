@@ -4,6 +4,7 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 // Dashboard pages
 import Overview from 'src/components/Dashboard/Views/Dashboard/Overview.vue'
 import Exchange from 'src/components/Dashboard/Views/Dashboard/Exchange.vue'
+import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/StrategyCreation.vue'
 import Bot from 'src/components/Dashboard/Views/Dashboard/Bot.vue'
 import Stats from 'src/components/Dashboard/Views/Dashboard/Stats.vue'
 
@@ -206,7 +207,7 @@ let woxcut = {
       },
       {
         path: 'transactions',
-        name: 'transactions',
+          name: 'transactions',
         component: Overview
       },
       {
@@ -221,8 +222,8 @@ let woxcut = {
       },
       {
         path: 'strategies',
-        name: 'strategies',
-        component: Overview
+        name: 'Strategies',
+        component: StrategyCreation
       },
       {
         path: 'buysell',
