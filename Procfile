@@ -1,1 +1,1 @@
-web: npm run build --prefix woxcut_web
+web: cd woxcut_web && npm run build
