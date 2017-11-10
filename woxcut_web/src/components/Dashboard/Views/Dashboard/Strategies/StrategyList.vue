@@ -81,19 +81,22 @@
           type: 'Free'
         }, {
           name: 'PPO',
-          type: 'Free'
+          type: 'Premium'
         }, {
           name: 'RSI',
-          type: 'Free'
+          type: 'Premium'
         }, {
           name: 'StochRSI',
-          type: 'Free'
+          type: 'Premium'
         }, {
           name: 'TSI',
-          type: 'Free'
+          type: 'Purchased'
         }, {
           name: 'UO',
-          type: 'Free'
+          type: 'Purchased'
+        }, {
+          name: 'XYZ',
+          type: 'Purchased'
         }]
       }
     },
@@ -103,18 +106,17 @@
         val ? this.isSelected = true : this.isSelected = false;
         this.selectedStrategy = val;
       },
-      tableRowClassName({row, rowIndex}) {
+      tableRowClassName(row, rowIndex) {
         
-        /* KINDLY FIX THIS - SHOULD'NT LOG UNDEFINED */
-        console.log(row);
+        console.log(row.type);
 
-        // if (row.type === 'purchased') {
-        //   return 'purchased';
-        // } else if (row.type === 'premium') {
-        //   return 'premium';
-        // } else {
-        //   return 'free';
-        // }
+        if (row.type === 'Purchased') {
+          return 'purchased';
+        } else if (row.type === 'Premium') {
+          return 'premium';
+        } else {
+          return 'free';
+        }
       }
     }
   }

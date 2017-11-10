@@ -4,9 +4,12 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 // Dashboard pages
 import Overview from 'src/components/Dashboard/Views/Dashboard/Overview.vue'
 import Exchange from 'src/components/Dashboard/Views/Dashboard/Exchange.vue'
+import Stats from 'src/components/Dashboard/Views/Dashboard/Stats.vue'
+
+// Strategies
+import Parent from 'src/components/Dashboard/Views/Dashboard/Strategies/Parent.vue'
 import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/Strategies/StrategyCreation.vue'
 import StrategyList from 'src/components/Dashboard/Views/Dashboard/Strategies/StrategyList.vue'
-import Stats from 'src/components/Dashboard/Views/Dashboard/Stats.vue'
 
 // Pages
 import User from 'src/components/Dashboard/Views/Pages/UserProfile.vue'
@@ -220,32 +223,33 @@ let woxcut = {
         name: 'bots',
         component: Overview
       },
+      {
+        path: 'strategies',
+        name: 'Strategies',
+        component: Parent,
+        children: [
+          {
+            path: 'strategylist',
+            name: 'Strategy List',
+            component: StrategyList
+          },
+          {
+            path: 'strategycreation',
+            name: 'Strategy Creation',
+            component: StrategyCreation
+          }
+        ]
+      },
       // {
-        // path: 'strategies',
-        // name: 'Strategies',
-        // children: [
-        //   {
-        //     path: 'strategylist',
-        //     name: 'Strategy List',
-        //     component: StrategyList
-        //   },
-        //   {
-        //     path: 'strategycreation',
-        //     name: 'Strategy Creation',
-        //     component: StrategyCreation
-        //   }
-        // ]
+      //   path: 'strategycreation',
+      //   name: 'Strategy Creation',
+      //   component: StrategyCreation
       // },
-      {
-        path: 'strategycreation',
-        name: 'Strategy Creation',
-        component: StrategyCreation
-      },
-      {
-        path: 'strategylist',
-        name: 'Strategy List',
-        component: StrategyList
-      },
+      // {
+      //   path: 'strategylist',
+      //   name: 'Strategy List',
+      //   component: StrategyList
+      // },
       {
         path: 'buysell',
         name: 'Buy and Sell',
