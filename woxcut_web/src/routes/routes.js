@@ -4,8 +4,8 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 // Dashboard pages
 import Overview from 'src/components/Dashboard/Views/Dashboard/Overview.vue'
 import Exchange from 'src/components/Dashboard/Views/Dashboard/Exchange.vue'
-import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/StrategyCreation.vue'
-import StrategyList from 'src/components/Dashboard/Views/Dashboard/StrategyList.vue'
+import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/Strategies/StrategyCreation.vue'
+import StrategyList from 'src/components/Dashboard/Views/Dashboard/Strategies/StrategyList.vue'
 import Stats from 'src/components/Dashboard/Views/Dashboard/Stats.vue'
 
 // Pages
@@ -207,7 +207,7 @@ let woxcut = {
       },
       {
         path: 'transactions',
-          name: 'transactions',
+        name: 'transactions',
         component: Overview
       },
       {
@@ -220,9 +220,25 @@ let woxcut = {
         name: 'bots',
         component: Overview
       },
+      // {
+        // path: 'strategies',
+        // name: 'Strategies',
+        // children: [
+        //   {
+        //     path: 'strategylist',
+        //     name: 'Strategy List',
+        //     component: StrategyList
+        //   },
+        //   {
+        //     path: 'strategycreation',
+        //     name: 'Strategy Creation',
+        //     component: StrategyCreation
+        //   }
+        // ]
+      // },
       {
-        path: 'strategies',
-        name: 'Strategies',
+        path: 'strategycreation',
+        name: 'Strategy Creation',
         component: StrategyCreation
       },
       {

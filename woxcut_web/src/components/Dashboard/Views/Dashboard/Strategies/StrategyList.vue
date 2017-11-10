@@ -8,6 +8,7 @@
         class="table table-no-bordered table-hover"
         :data="strategyList"
         highlight-current-row
+        :row-class-name="tableRowClassName" 
         @current-change="handleCurrentChange">
 
         <el-table-column type="index">
@@ -54,6 +55,7 @@
   import Vue from 'vue'
   import 'element-ui/lib/theme-default/index.css'
   import {Row, Col, Table, TableColumn} from 'element-ui'
+
   Vue.use(Row)
   Vue.use(Col)
   Vue.use(Table)
@@ -100,7 +102,19 @@
       handleCurrentChange(val) {
         val ? this.isSelected = true : this.isSelected = false;
         this.selectedStrategy = val;
-        console.log(this.selectedStrategy);
+      },
+      tableRowClassName({row, rowIndex}) {
+        
+        /* KINDLY FIX THIS - SHOULD'NT LOG UNDEFINED */
+        console.log(row);
+
+        // if (row.type === 'purchased') {
+        //   return 'purchased';
+        // } else if (row.type === 'premium') {
+        //   return 'premium';
+        // } else {
+        //   return 'free';
+        // }
       }
     }
   }
@@ -108,5 +122,20 @@
 </script>
 
 <style scoped>
+
+  @import url("//unpkg.com/element-ui@2.0.4/lib/theme-chalk/index.css");
+
+  /* oldlace */
+  .el-table .free {
+    background: #fdf5e6;
+  }
+   /* green */
+  .el-table .premium {
+    background: #f0f9eb;
+  }
+  /* yellow */
+  .el-table .purchased {
+    background: #e6e600;
+  }
 
 </style>
