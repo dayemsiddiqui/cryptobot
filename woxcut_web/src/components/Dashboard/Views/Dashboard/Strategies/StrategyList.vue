@@ -108,7 +108,7 @@
       },
       tableRowClassName(row, rowIndex) {
         
-        console.log(row.type);
+        // console.log(row.type);
 
         if (row.type === 'Purchased') {
           return 'purchased';
@@ -123,21 +123,26 @@
 
 </script>
 
-<style scoped>
+<style>
 
   @import url("//unpkg.com/element-ui@2.0.4/lib/theme-chalk/index.css");
 
   /* oldlace */
   .el-table .free {
-    background: #fdf5e6;
+    background: #f0f9eb;
   }
    /* green */
   .el-table .premium {
-    background: #f0f9eb;
+    background: #fdf5e6;
+
   }
-  /* yellow */
+  /* black */
   .el-table .purchased {
-    background: #e6e600;
+    background: #e3e3e3;
+  }
+  /*  cyan for selected row */
+  .el-table .current-row {
+    background: #18c4b2;
   }
 
 </style>
