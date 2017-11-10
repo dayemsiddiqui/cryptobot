@@ -1,1 +1,1 @@
-web: npm start --prefix woxcut_web
+web: npm run dev --prefix woxcut_web
