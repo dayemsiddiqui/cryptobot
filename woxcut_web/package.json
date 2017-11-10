@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "cross-env node build/dev-server.js",
     "build": "cross-env node build/build.js",
-    "heroku": "node node_modules/cross-env/dist/bin/cross-env.js node build/build.js",
+    "heroku": "node node_modules/cross-env/bin/cross-env.js node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "unit:watch": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --watch",
     "e2e": "node test/e2e/runner.js",
