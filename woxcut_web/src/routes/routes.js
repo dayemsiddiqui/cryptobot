@@ -8,7 +8,6 @@ import Stats from 'src/components/Dashboard/Views/Dashboard/Stats.vue'
 
 // Strategies
 import Parent from 'src/components/Dashboard/Views/Dashboard/Strategies/Parent.vue'
-import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/Strategies/StrategyCreation.vue'
 import StrategyList from 'src/components/Dashboard/Views/Dashboard/Strategies/StrategyList.vue'
 
 // Pages
@@ -232,11 +231,6 @@ let woxcut = {
             path: 'strategylist',
             name: 'Strategy List',
             component: StrategyList
-          },
-          {
-            path: 'strategycreation',
-            name: 'Strategy Creation',
-            component: StrategyCreation
           }
         ]
       },

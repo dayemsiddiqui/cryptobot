@@ -140,9 +140,9 @@
   .el-table .purchased {
     background: #e3e3e3;
   }
-  /*  cyan for selected row */
+  /* for selected row */
   .el-table .current-row {
-    background: #18c4b2;
+    background: none;
   }
 
 </style>
