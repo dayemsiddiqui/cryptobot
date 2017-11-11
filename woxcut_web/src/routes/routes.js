@@ -4,16 +4,13 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 // Dashboard pages
 import Overview from 'src/components/Dashboard/Views/Dashboard/Overview.vue'
 import Exchange from 'src/components/Dashboard/Views/Dashboard/Exchange.vue'
-<<<<<<< HEAD
-import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/StrategyCreation.vue'
 import Bot from 'src/components/Dashboard/Views/Dashboard/Bot.vue'
-=======
->>>>>>> strategy-list
 import Stats from 'src/components/Dashboard/Views/Dashboard/Stats.vue'
 
 // Strategies
 import Parent from 'src/components/Dashboard/Views/Dashboard/Strategies/Parent.vue'
 import StrategyList from 'src/components/Dashboard/Views/Dashboard/Strategies/StrategyList.vue'
+import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/StrategyCreation.vue'
 
 // Pages
 import User from 'src/components/Dashboard/Views/Pages/UserProfile.vue'
