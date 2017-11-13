@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <!--Bot cards-->
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6" v-for="bot in botCards">
@@ -59,6 +58,11 @@
             <em>uptime: {{bot.uptime}}</em>
           </div> -->
         </bot-card>
+      </div>
+      <div class="col-lg-6">
+        <div class="btn big-add-button">
+          <i class="ti-plus"></i>
+        </div>
       </div>
     </div>
   </div>
