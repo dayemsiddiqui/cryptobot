@@ -4,27 +4,25 @@
       <nav class="pull-left">
         <ul>
           <li>
-            <a href="http://www.creative-tim.com">
-              Creative Tim
+            <a href="http://localhost:8000">
+              Woxcut
             </a>
           </li>
-          <li>
-            <a href="http://blog.creative-tim.com">
-              Blog
-            </a>
-          </li>
+
+          <!--
           <li>
             <a href="http://www.creative-tim.com/license">
               Licenses
             </a>
           </li>
+          -->
         </ul>
       </nav>
       <div class="copyright pull-right">
         &copy; Coded with
         <i class="fa fa-heart heart"></i> by
-        <a href="https://github.com/cristijora" target="_blank">Cristi Jora</a>.
-        Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank">Creative Tim</a>.
+        <a href="#" target="_blank">MADS</a>.
+        Designed by <a href="#" target="_blank">SDAM</a>.
       </div>
     </div>
   </footer>
