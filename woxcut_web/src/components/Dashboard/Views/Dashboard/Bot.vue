@@ -19,7 +19,8 @@
                           <span v-on:click="bot.name.edit=true" v-show="bot.hover"><i class="ti-pencil"></i></span></p>
                         </div>
                         <div  v-show = "bot.name.edit==true">
-                          Name: 
+                          <label>Name: </label>
+                          <!-- <span style="font-size: 16px">Name: </span> -->
                           <input
                               v-model = "bot.name.data"
                               v-on:blur="bot.name.edit=false; $emit('update')"
@@ -39,10 +40,10 @@
             <div class="col-lg-5 col-sm-5 text-right">
               <div class="row">
                 <div class="col-sm-12">
-                  <button class="btn btn-icon"><i class="ti-search"></i></button>
+                  <button class="btn btn-icon btn-info"><i class="ti-search"></i></button>
+                  <button class="btn btn-icon btn-instagram"><i class="ti-pencil"></i></button>
                   <button class="btn btn-icon"><i class="ti-control-pause"></i></button>
-                  <button class="btn btn-icon"><i class="ti-pencil"></i></button>
-                  <button class="btn btn-icon"><i class="ti-close"></i></button>
+                  <button class="btn btn-icon btn-google"><i class="ti-close"></i></button>
                 </div>
               </div>
               <div class="row">
