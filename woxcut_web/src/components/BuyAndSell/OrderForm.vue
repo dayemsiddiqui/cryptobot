@@ -6,7 +6,7 @@
       </div>
       <div class="col-md-offset-1">
       <el-select
-        class="select-info "
+        class="select-info select-danger"
         size="large"
         placeholder="Exchange"
         v-model="model.exchange">
@@ -18,7 +18,7 @@
         </el-option>
       </el-select>
       <el-select
-        class="select-info"
+        class="select-info col-md-offset-1"
         size="large"
         placeholder="First Currency"
         v-model="model.c1List">
@@ -41,6 +41,9 @@
           :value="item.value">
         </el-option>
       </el-select>
+      <div>
+      Last  | High | Low | 24 Hour Volume | Weighted Average
+      </div>
       </div>
       <vue-tabs class="card-content row" direction="vertical" v-model="currentTab">
         <v-tab title="Buy">
