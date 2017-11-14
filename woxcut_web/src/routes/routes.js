@@ -4,10 +4,14 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 // Dashboard pages
 import Overview from 'src/components/Dashboard/Views/Dashboard/Overview.vue'
 import Exchange from 'src/components/Dashboard/Views/Dashboard/Exchange.vue'
-import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/StrategyCreation.vue'
 import Bot from 'src/components/Dashboard/Views/Dashboard/Bot.vue'
 import Stats from 'src/components/Dashboard/Views/Dashboard/Stats.vue'
 import OrderForm from 'src/components/BuyAndSell/OrderForm.vue'
+
+// Strategies
+import Parent from 'src/components/Dashboard/Views/Dashboard/Strategies/Parent.vue'
+import StrategyList from 'src/components/Dashboard/Views/Dashboard/Strategies/StrategyList.vue'
+import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/StrategyCreation.vue'
 
 // Pages
 import User from 'src/components/Dashboard/Views/Pages/UserProfile.vue'
@@ -208,7 +212,7 @@ let woxcut = {
       },
       {
         path: 'transactions',
-          name: 'transactions',
+        name: 'transactions',
         component: Overview
       },
       {
@@ -224,8 +228,25 @@ let woxcut = {
       {
         path: 'strategies',
         name: 'Strategies',
-        component: StrategyCreation
+        component: Parent,
+        children: [
+          {
+            path: 'strategylist',
+            name: 'Strategy List',
+            component: StrategyList
+          }
+        ]
       },
+      // {
+      //   path: 'strategycreation',
+      //   name: 'Strategy Creation',
+      //   component: StrategyCreation
+      // },
+      // {
+      //   path: 'strategylist',
+      //   name: 'Strategy List',
+      //   component: StrategyList
+      // },
       {
         path: 'buysell',
         name: 'Buy and Sell',
