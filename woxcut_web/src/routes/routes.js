@@ -6,6 +6,7 @@ import Overview from 'src/components/Dashboard/Views/Dashboard/Overview.vue'
 import Exchange from 'src/components/Dashboard/Views/Dashboard/Exchange.vue'
 import Bot from 'src/components/Dashboard/Views/Dashboard/Bot.vue'
 import Stats from 'src/components/Dashboard/Views/Dashboard/Stats.vue'
+import OrderForm from 'src/components/BuyAndSell/OrderForm.vue'
 
 // Strategies
 import Parent from 'src/components/Dashboard/Views/Dashboard/Strategies/Parent.vue'
@@ -249,7 +250,7 @@ let woxcut = {
       {
         path: 'buysell',
         name: 'Buy and Sell',
-        component: Overview
+        component: OrderForm
       },
       {
         path: 'livemarket',
