@@ -4,7 +4,8 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 // Dashboard pages
 import Overview from 'src/components/Dashboard/Views/Dashboard/Overview.vue'
 import Exchange from 'src/components/Dashboard/Views/Dashboard/Exchange.vue'
-import Bot from 'src/components/Dashboard/Views/Dashboard/Bot.vue'
+import Bot from 'src/components/Dashboard/Views/Dashboard/Bot/Bot.vue'
+import BotDetail from 'src/components/Dashboard/Views/Dashboard/Bot/BotDetail.vue'
 import Stats from 'src/components/Dashboard/Views/Dashboard/Stats.vue'
 import OrderForm from 'src/components/BuyAndSell/OrderForm.vue'
 
@@ -221,13 +222,19 @@ let woxcut = {
         component: Exchange
       },
       {
-        path: 'bots',
+        path: 'bots', // refactor this
         name: 'Bots',
-        component: Bot
+        component: Bot // rethink the user-friendly routing mechanism for strategy as well
+      },
+      {
+        path: 'bot/view/:id',
+        name: 'Bot Detail',
+        component: BotDetail
       },
       {
         path: 'strategies',
         name: 'Strategies',
+        redirect: 'strategies/strategylist',
         component: Parent,
         children: [
           {

@@ -17,7 +17,7 @@
           {{ title }}
       </a>
       -->
-      <a class="logo-normal text-center" href="https://localhost:8000">
+      <a class="logo-normal text-center" href="http://localhost:8000">
         <img :src="logo" alt="">
       </a>
 
