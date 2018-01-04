@@ -2,7 +2,11 @@
     <div>
         <!--Bot cards-->
         <div class="col-md-6">
-            <div :class="strategy.type=='Premium'?'premium-tint card':'card'" v-for="strategy in strategies">
+            <div
+              :class="strategy.type=='Premium'?'premium-tint card':'card'"
+              v-for="strategy in strategies"
+              v-on:click="handleCurrentStrategy(strategy)"
+            >
                 <div class="card-content">
                     <div class="row">
                         <div class="col-xs-12">
@@ -54,36 +58,30 @@
             </div> -->
         </div>
 
-        <div class="col-md-6">
-          <div class="card">
+        <div
+          class="col-md-6"
+          v-show="isSelected"
+          >
+           <div class="card">
             <div class="card-content">
               <div class="row">
                 <div class="col-md-12">
                 <br>
-                  <h4 class="title">Panda Bear</h4>
+                  <h4 class="title">{{ strategy_detail.name }}</h4>
                   <p>
-                    <el-tag type="success">v29.8</el-tag>
-                    <el-tag type="info">Open-Source</el-tag>
-                    <el-tag type="success"><i class="fa fa-user"></i> smat26</el-tag>
-                    <el-tag :key="strategies[1].type" :type="strategies[1].type=='Premium'?'success':'primary'">
-                        <b>{{strategies[1].type}}</b>
+                    <el-tag type="success">{{ strategy_detail.version }}</el-tag>
+                    <!-- <el-tag type="info">Open-Source</el-tag> -->
+                    <el-tag type="success"><i class="fa fa-user"></i> {{ strategy_detail.owner_user }}</el-tag>
+                    <el-tag :key="strategy_detail.type" :type="strategy_detail.type=='Premium'?'success':'primary'">
+                        <b>{{strategy_detail.type}}</b>
                     </el-tag>
-                    <em class="text-muted">Updated 3 days ago</em>
+                    <em class="text-muted">Updated {{ strategy_detail.last_updated }}</em>
                   </p>
                   <hr>
                   <h5><b>Introduction</b></h5>
-
-                  <p>Most people want their bot to be as simple to configure, as possible. This bot is the complete opposite: it has so many configurable parameters, one can go crazy, analyzing them all (and more to come in future versions).</p>
-
-                  <p>It is called "constructor", as there is no predefined behavior for this bot: almost any indicator-based strategy can be configured here. This is probably the most versatile script here and with proper configuration can emulate many other bots. Due to the comprehensive (and expanding) set of parameters, this is also probably the most hard to configure bot here. Your luck may vary, so make sure to test your settings.</p>
-                  <h5><b>Main Features</b></h5>
-
-                  <p>Almost any indicator-based strategy can be implemented. Full list of features can be seen in the comments below, so this is a simplified list. Many features are unique to this bot. If you see a feature that is not implemented, please write a suggestion in the forum.</p>
-                  <ul>
-                      <li>Many oscillators: Stochastic, RSI, MFI, Laguerre-based LRSI/LMFI, Fisher Transform. Signal trigger based on early or late crossing of the configured threshold line or, alternatively, based on crossing with its MA.</li>
-                      <li>Stochastic and Inverse Fisher Transform can be used to normalize oscillators (for example, to get StochRSI and similar strategies). Both input and result for oscillators can be smoothed with Moving Averages.</li>
-                      <li>Trading can be made just with crossing and/or oscillator signals, or they can combine signals for less false trades and better responsiveness (more combination algorithms to come).</li>
-                  </ul>
+                  <p v-for="intro in strategy_detail.introduction">
+                    {{ intro }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -91,7 +89,7 @@
               <hr>
               <div class="row">
                 <div class="col-md-8">
-                  <p><el-tag :key="exchange" v-for="exchange in strategies[1].exchanges" v-if="exchange.support==1" type="info">
+                  <p><el-tag :key="exchange" v-for="exchange in strategy_detail.exchanges" v-if="exchange.support==1" type="info">
                     {{ exchange.name }}
                   </el-tag>
                 </p>
@@ -116,11 +114,51 @@ export default {
         StrategyCard
     },
 
+
+    methods: {
+        progressBarStatus: function(val) {
+          if (val <= 3) {
+            return 'exception'
+          } else if (val > 3 && val < 6) {
+            return ''
+          } else {
+            return 'success'
+          }
+        },
+
+        handleCurrentStrategy(strategy) {
+          this.isSelected = true;
+          this.strategy_detail = {
+              name: strategy.name,
+              version: strategy.version,
+              owner_user: strategy.owner_user,
+              last_updated: strategy.last_updated,
+              introduction: strategy.introduction,
+              type: strategy.type,
+              exchanges: strategy.exchanges
+            }
+        },
+    },
+
     data() {
         return {
+            isSelected: false,
+            strategy_detail: {
+              name: '',
+              version: '',
+              owner_user: '',
+              last_updated: '',
+              introduction: '',
+              type: '',
+              exchanges: ''
+            },
             strategies: [{
-                name: 'Golden Dragon : The Altcoin and Bitcoin Bot',
+                name: ' 🐲 Golden Dragon : The Altcoin and Bitcoin Bot',
                 type: 'Premium',
+                version: 'v5.8',
+                owner_user: 'spokzers',
+                introduction: ["The Golden Dragon chooses wisely! This Alt-coin and Bitcoin trading bot automatically trades the \"best\" settings for you. No more guesswork. Unlike other bots, which run the same settings, this clever beast chooses the appropriate timing. It analyzes every tick. It places trades chunk by chunk based on the number of orders you specify.", "311,220.17% in BTC/USD backtest. (Over three hundred thousand percent.)", "It traded one thousand dollars to three million dollars (1000 USD to 3,097,747.02 USD) in backtesting."],
+                last_updated: '3 days ago',
                 exchanges: [{
                     name: "Poloniex",
                     support: 1,
@@ -167,8 +205,12 @@ export default {
                 },
                 popularity: 9.8
             }, {
-                name: 'Panda Bear',
+                name: '🐼 Trading Panda',
                 type: 'Free',
+                version: 'v1.48',
+                owner_user: 'codingpanda213',
+                introduction: ["The bot tries to trade often and quickly and make a little gains with each trade. It's not trying to make you rich over night but aims for consistent results in most conditions.", "It does so by buying in a local low and setting a sell order right after, this means that the bot is never selling at a loss and you pay on most exchanges less/no fees as a maker.", "Additional each bot is slightly randomised to make sure two bots won't interfere with each other "],
+                last_updated: '9 hours ago',
                 exchanges: [{
                     name: "Poloniex",
                     support: 1,
@@ -215,104 +257,13 @@ export default {
                 },
                 popularity: 5.8
             }, {
-                name: 'Golden Dragon : The Altcoin and Bitcoin Bot',
-                type: 'Premium',
-                exchanges: [{
-                    name: "Poloniex",
-                    support: 1,
-                }, {
-                    name: "Bitstamp",
-                    support: 1,
-                }, {
-                    name: "GDAX",
-                    support: 1,
-                }, {
-                    name: "Huobi",
-                    support: 0,
-                }, {
-                    name: "OkCoin.cn",
-                    support: 0,
-                }, {
-                    name: "WEX.NZ",
-                    support: 1,
-                }, {
-                    name: "CEX.IO",
-                    support: 0,
-                }, {
-                    name: "Bitfinex",
-                    support: 0,
-                }, {
-                    name: "Kraken",
-                    support: 0,
-                }, {
-                    name: "Bittrex",
-                    support: 0,
-                }, {
-                    name: "Binance",
-                    support: 0,
-                }, {
-                    name: "Quoine",
-                    support: 0,
-                }, {
-                    name: "Cryptsy",
-                    support: 0
-                }],
-                price: {
-                    amount: 0.005,
-                    currency: "btc"
-                },
-                popularity: 7.2
-            }, {
-                name: 'Golden Dragon : The Altcoin and Bitcoin Bot',
-                type: 'Premium',
-                exchanges: [{
-                    name: "Poloniex",
-                    support: 1,
-                }, {
-                    name: "Bitstamp",
-                    support: 1,
-                }, {
-                    name: "GDAX",
-                    support: 1,
-                }, {
-                    name: "Huobi",
-                    support: 0,
-                }, {
-                    name: "OkCoin.cn",
-                    support: 0,
-                }, {
-                    name: "WEX.NZ",
-                    support: 1,
-                }, {
-                    name: "CEX.IO",
-                    support: 0,
-                }, {
-                    name: "Bitfinex",
-                    support: 0,
-                }, {
-                    name: "Kraken",
-                    support: 0,
-                }, {
-                    name: "Bittrex",
-                    support: 0,
-                }, {
-                    name: "Binance",
-                    support: 0,
-                }, {
-                    name: "Quoine",
-                    support: 0,
-                }, {
-                    name: "Cryptsy",
-                    support: 0
-                }],
-                price: {
-                    amount: 0.005,
-                    currency: "btc"
-                },
-                popularity: 9
-            }, {
-                name: 'Ultimate Moving Average Xing (Open-Source)',
+                name: ' 🐭 Ultimate Moving Average Xing (Open-Source)',
                 type: 'Free',
+                version: 'v1.0',
+                owner_user: 'Ferretz',
+                introduction: ["Free, (newly) open-source and donation-based customizable (Types and Ratios) MA Crossing bot with the following extra features:", "  1. Many Moving Averages to chose from for defining your own rules", "  2. Different threshold if the move is profitable (based on the last operation)", "  3. Buy at market price or at defined limit price (% of market price)", "  4. MA Delta and thresholds are rendered on graph for easy finetuning of the MA parameters (Type, Short, Long, Profitable threshold, Unprofitable threshold) to get the desired behaviour for a specific market", "It will perform only 1 BUY or SELL operation at the time, wait until conditions are met to perform the opposite operation and wait again until the next good moment (or if the situation is getting too bad)."],
+                last_updated: '2 Months ago',
+
                 exchanges: [{
                     name: "Poloniex",
                     support: 1
@@ -357,36 +308,6 @@ export default {
             }]
         }
     },
-
-    methods: {
-        progressBarStatus: function(val) {
-          if (val <= 3) {
-            return 'exception'
-          } else if (val > 3 && val < 6) {
-            return ''
-          } else {
-            return 'success'
-          }
-        },
-
-        handleCurrentChange(val) {
-            val ? this.isSelected = true : this.isSelected = false;
-            this.selectedStrategy = val;
-        },
-
-        tableRowClassName(row, rowIndex) {
-
-            // console.log(row.type);
-
-            if (row.type === 'Purchased') {
-                return 'purchased';
-            } else if (row.type === 'Premium') {
-                return 'premium';
-            } else {
-                return 'free';
-            }
-        }
-    }
 }
 </script>
 <style>
