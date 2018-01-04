@@ -22,8 +22,8 @@
 
 </script>
 <style scoped>
-  .card-content{
+/*  .card-content{
     min-height: 80px
-  }
+  }*/
 </style>
 

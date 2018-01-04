@@ -11,7 +11,7 @@ import OrderForm from 'src/components/BuyAndSell/OrderForm.vue'
 
 // Strategies
 import Parent from 'src/components/Dashboard/Views/Dashboard/Strategies/Parent.vue'
-import StrategyList from 'src/components/Dashboard/Views/Dashboard/Strategies/StrategyList.vue'
+import Strategies from 'src/components/Dashboard/Views/Dashboard/Strategies/Strategies.vue'
 import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/StrategyCreation.vue'
 
 // Pages
@@ -234,13 +234,13 @@ let woxcut = {
       {
         path: 'strategies',
         name: 'Strategies',
-        redirect: 'strategies/strategylist',
+        redirect: 'strategies/strategies',
         component: Parent,
         children: [
           {
-            path: 'strategylist',
+            path: 'strategies',
             name: 'Strategy List',
-            component: StrategyList
+            component: Strategies
           }
         ]
       },

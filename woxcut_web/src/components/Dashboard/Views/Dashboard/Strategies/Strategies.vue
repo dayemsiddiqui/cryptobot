@@ -1,221 +1,421 @@
 <template>
-  <div>
-    <!--Bot cards-->
-    <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-6" v-for="strategy in strategyList">
-        <strategy-card>
-          <div slot="content">
-            <div class="col-lg-7 col-sm-7 text-left">
-              <div class="row">
-                <div class="row">
-                  <div class="pull-left">
-                    <div class="col-sm-12">
-                      <div v-on:mouseenter="bot.hover= !bot.hover" v-on:mouseleave="bot.hover= !bot.hover">
-                        <div v-show="bot.name.edit==false">
-                          <p>Name: <b>{{bot.name.data}}</b>
-                          <span v-on:click="bot.name.edit=true" v-show="bot.hover"><i class="ti-pencil"></i></span></p>
+    <div>
+        <!--Bot cards-->
+        <div class="col-md-6">
+            <div :class="strategy.type=='Premium'?'premium-tint card':'card'" v-for="strategy in strategies">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <!-- <div class="col-lg-6 col-md-6 col-sm-6"> -->
+                                <div class="">
+                                    <!-- <strategy-card> -->
+                                    <div slot="content">
+                                        <div class="col-md-2">
+                                            <div class="strategy-type">
+                                                <el-tag :key="strategy.type" :type="strategy.type=='Premium'?'success':'primary'">
+                                                    <b>{{strategy.type}}</b>
+                                                </el-tag>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p>
+                                                <b>{{ strategy.name }}</b>
+                                            </p>
+                                            <el-tag :key="exchange" v-for="exchange in strategy.exchanges" v-if="exchange.support==1" type="info">
+                                                {{ exchange.name }}
+                                            </el-tag>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="text-center">
+                                                {{ strategy.popularity }} / 10
+                                            </div>
+                                            <el-progress :show-text="false" :stroke-width="18" :percentage="strategy.popularity*10" :status="progressBarStatus(strategy.popularity)"></el-progress>
+                                            <p class="text-center text">Popularity</p>
+                                        </div>
+                                    </div>
+                                    <div slot="footer">
+                                    </div>
+                                    <!-- </strategy-card> -->
+                                </div>
+                                <div class="col-lg-6">
+                                </div>
+                            </div>
                         </div>
-                        <div  v-show = "bot.name.edit==true">
-                          <label>Name: </label>
-                          <!-- <span style="font-size: 16px">Name: </span> -->
-                          <input
-                              v-model = "bot.name.data"
-                              v-on:blur="bot.name.edit=false; $emit('update')"
-                              @keyup.enter = "bot.name.edit=false; $emit('update')"
-                          >
-                        </div>
-                      </div>
-
-                      <p>Strategy: <b>{{bot.strategy}}</b></p>
-                      <p>Exchange: <b>{{bot.exchange}}</b></p>
-                      <p>Status: <b>{{bot.status}}</b></p>
                     </div>
-                  </div>
+                    <!-- <div class="card-footer">
+                      <hr/>
+                      <slot name="footer"></slot>
+                    </div> -->
+                </div>
+            </div>
+            <!-- <div class="btn big-add-button">
+                <i class="ti-plus"></i>
+            </div> -->
+        </div>
+
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-content">
+              <div class="row">
+                <div class="col-md-12">
+                <br>
+                  <h4 class="title">Panda Bear</h4>
+                  <p>
+                    <el-tag type="success">v29.8</el-tag>
+                    <el-tag type="info">Open-Source</el-tag>
+                    <el-tag type="success"><i class="fa fa-user"></i> smat26</el-tag>
+                    <el-tag :key="strategies[1].type" :type="strategies[1].type=='Premium'?'success':'primary'">
+                        <b>{{strategies[1].type}}</b>
+                    </el-tag>
+                    <em class="text-muted">Updated 3 days ago</em>
+                  </p>
+                  <hr>
+                  <h5><b>Introduction</b></h5>
+
+                  <p>Most people want their bot to be as simple to configure, as possible. This bot is the complete opposite: it has so many configurable parameters, one can go crazy, analyzing them all (and more to come in future versions).</p>
+
+                  <p>It is called "constructor", as there is no predefined behavior for this bot: almost any indicator-based strategy can be configured here. This is probably the most versatile script here and with proper configuration can emulate many other bots. Due to the comprehensive (and expanding) set of parameters, this is also probably the most hard to configure bot here. Your luck may vary, so make sure to test your settings.</p>
+                  <h5><b>Main Features</b></h5>
+
+                  <p>Almost any indicator-based strategy can be implemented. Full list of features can be seen in the comments below, so this is a simplified list. Many features are unique to this bot. If you see a feature that is not implemented, please write a suggestion in the forum.</p>
+                  <ul>
+                      <li>Many oscillators: Stochastic, RSI, MFI, Laguerre-based LRSI/LMFI, Fisher Transform. Signal trigger based on early or late crossing of the configured threshold line or, alternatively, based on crossing with its MA.</li>
+                      <li>Stochastic and Inverse Fisher Transform can be used to normalize oscillators (for example, to get StochRSI and similar strategies). Both input and result for oscillators can be smoothed with Moving Averages.</li>
+                      <li>Trading can be made just with crossing and/or oscillator signals, or they can combine signals for less false trades and better responsiveness (more combination algorithms to come).</li>
+                  </ul>
                 </div>
               </div>
             </div>
-            <div class="col-lg-5 col-sm-5 text-right">
+            <div class="card-footer">
+              <hr>
               <div class="row">
-                <div class="col-sm-12">
-                  <button class="btn btn-icon btn-info"><i class="ti-search"></i></button>
-                  <router-link :to="{name: 'Bot Detail', params: {'id': bot.id}}" class="btn btn-icon btn-instagram"><i class="ti-pencil"></i></router-link>
-                  <button class="btn btn-icon"><i class="ti-control-pause"></i></button>
-                  <button class="btn btn-icon btn-google"><i class="ti-close"></i></button>
+                <div class="col-md-8">
+                  <p><el-tag :key="exchange" v-for="exchange in strategies[1].exchanges" v-if="exchange.support==1" type="info">
+                    {{ exchange.name }}
+                  </el-tag>
+                </p>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <br>
-                  <p>Last 24 Hours: <b v-bind:class="bot.profits.last24hours<0?'red':'green'">{{bot.profits.last24hours}}%</b><br>
-                  Last 7 Days: <b v-bind:class="bot.profits.last7days<0?'red':'green'">{{bot.profits.last7days}}%</b></p>
+                <div class="col-md-4 text-right">
+                  <button class="btn btn-primary">More Info</button>
                 </div>
               </div>
             </div>
           </div>
-          <!-- <div class="text-right" slot="footer">
-            <em>uptime: {{bot.uptime}}</em>
-          </div> -->
-        </bot-card>
-      </div>
-      <div class="col-lg-6">
-        <div class="btn big-add-button">
-          <i class="ti-plus"></i>
         </div>
-      </div>
     </div>
-  </div>
 </template>
-
-<!--
-    * This is mois's stuff, commenting it to experiment with
-    * my own strategy list design.
-
-
-<template>
-
-  <el-row :gutter="40">
-
-    <el-col :span="12">
-
-      <el-table 
-        class="table table-no-bordered table-hover"
-        :data="strategyList"
-        highlight-current-row
-        :row-class-name="tableRowClassName" 
-        @current-change="handleCurrentChange">
-
-        <el-table-column type="index">
-        </el-table-column>
-        
-        <el-table-column prop="name"
-                         label="Strategy">
-        </el-table-column>
-
-        <el-table-column prop="type"
-                         label="Type">
-        </el-table-column>
-
-      </el-table>
-
-    </el-col>
-
-
-    <el-col :span="12">
-
-      <div v-bind:class="isSelected ? 'card' : ''">
-       <el-row>
-        <div class="card-header text-center">
-          <h1 class="card-title">
-            {{ selectedStrategy.name }}
-          </h1>
-        </div>
-
-        <div class="card-content text-center">
-          {{ selectedStrategy.type }}
-        </div>
-
-       </el-row>
-      </div>
-
-    </el-col>
-
-  </el-row>
-
-</template>
--->
 <script>
+import StrategyCard from 'components/UIComponents/Cards/StrategyCard.vue'
 
-  import Vue from 'vue'
-  import 'element-ui/lib/theme-default/index.css'
-  import {Row, Col, Table, TableColumn} from 'element-ui'
+// TODO: to implement a moving arrow for strategy
+// list (check sidebar moving arrow for example)
 
-  Vue.use(Row)
-  Vue.use(Col)
-  Vue.use(Table)
-  Vue.use(TableColumn)
+export default {
+    components: {
+        StrategyCard
+    },
 
-
-  export default {
-    data () {
-      return {
-        isSelected: false,
-        selectedStrategy: {
-          name: '',
-          type: ''
-        },
-        strategies: [{
-          name: 'CCI',
-          type: 'Free'
-        }, {
-          name: 'DEMA',
-          type: 'Free'
-        }, {
-          name: 'MACD',
-          type: 'Free'
-        }, {
-          name: 'PPO',
-          type: 'Premium'
-        }, {
-          name: 'RSI',
-          type: 'Premium'
-        }, {
-          name: 'StochRSI',
-          type: 'Premium'
-        }, {
-          name: 'TSI',
-          type: 'Purchased'
-        }, {
-          name: 'UO',
-          type: 'Purchased'
-        }, {
-          name: 'XYZ',
-          type: 'Purchased'
-        }]
-      }
+    data() {
+        return {
+            strategies: [{
+                name: 'Golden Dragon : The Altcoin and Bitcoin Bot',
+                type: 'Premium',
+                exchanges: [{
+                    name: "Poloniex",
+                    support: 1,
+                }, {
+                    name: "Bitstamp",
+                    support: 1,
+                }, {
+                    name: "GDAX",
+                    support: 1,
+                }, {
+                    name: "Huobi",
+                    support: 0,
+                }, {
+                    name: "OkCoin.cn",
+                    support: 0,
+                }, {
+                    name: "WEX.NZ",
+                    support: 1,
+                }, {
+                    name: "CEX.IO",
+                    support: 0,
+                }, {
+                    name: "Bitfinex",
+                    support: 0,
+                }, {
+                    name: "Kraken",
+                    support: 0,
+                }, {
+                    name: "Bittrex",
+                    support: 0,
+                }, {
+                    name: "Binance",
+                    support: 0,
+                }, {
+                    name: "Quoine",
+                    support: 0,
+                }, {
+                    name: "Cryptsy",
+                    support: 0
+                }],
+                price: {
+                    amount: 0.005,
+                    currency: "btc"
+                },
+                popularity: 9.8
+            }, {
+                name: 'Panda Bear',
+                type: 'Free',
+                exchanges: [{
+                    name: "Poloniex",
+                    support: 1,
+                }, {
+                    name: "Bitstamp",
+                    support: 1,
+                }, {
+                    name: "GDAX",
+                    support: 1,
+                }, {
+                    name: "Huobi",
+                    support: 0,
+                }, {
+                    name: "OkCoin.cn",
+                    support: 1,
+                }, {
+                    name: "WEX.NZ",
+                    support: 0,
+                }, {
+                    name: "CEX.IO",
+                    support: 0,
+                }, {
+                    name: "Bitfinex",
+                    support: 0,
+                }, {
+                    name: "Kraken",
+                    support: 0,
+                }, {
+                    name: "Bittrex",
+                    support: 0,
+                }, {
+                    name: "Binance",
+                    support: 0,
+                }, {
+                    name: "Quoine",
+                    support: 0,
+                }, {
+                    name: "Cryptsy",
+                    support: 1
+                }],
+                price: {
+                    amount: 0.005,
+                    currency: "btc"
+                },
+                popularity: 5.8
+            }, {
+                name: 'Golden Dragon : The Altcoin and Bitcoin Bot',
+                type: 'Premium',
+                exchanges: [{
+                    name: "Poloniex",
+                    support: 1,
+                }, {
+                    name: "Bitstamp",
+                    support: 1,
+                }, {
+                    name: "GDAX",
+                    support: 1,
+                }, {
+                    name: "Huobi",
+                    support: 0,
+                }, {
+                    name: "OkCoin.cn",
+                    support: 0,
+                }, {
+                    name: "WEX.NZ",
+                    support: 1,
+                }, {
+                    name: "CEX.IO",
+                    support: 0,
+                }, {
+                    name: "Bitfinex",
+                    support: 0,
+                }, {
+                    name: "Kraken",
+                    support: 0,
+                }, {
+                    name: "Bittrex",
+                    support: 0,
+                }, {
+                    name: "Binance",
+                    support: 0,
+                }, {
+                    name: "Quoine",
+                    support: 0,
+                }, {
+                    name: "Cryptsy",
+                    support: 0
+                }],
+                price: {
+                    amount: 0.005,
+                    currency: "btc"
+                },
+                popularity: 7.2
+            }, {
+                name: 'Golden Dragon : The Altcoin and Bitcoin Bot',
+                type: 'Premium',
+                exchanges: [{
+                    name: "Poloniex",
+                    support: 1,
+                }, {
+                    name: "Bitstamp",
+                    support: 1,
+                }, {
+                    name: "GDAX",
+                    support: 1,
+                }, {
+                    name: "Huobi",
+                    support: 0,
+                }, {
+                    name: "OkCoin.cn",
+                    support: 0,
+                }, {
+                    name: "WEX.NZ",
+                    support: 1,
+                }, {
+                    name: "CEX.IO",
+                    support: 0,
+                }, {
+                    name: "Bitfinex",
+                    support: 0,
+                }, {
+                    name: "Kraken",
+                    support: 0,
+                }, {
+                    name: "Bittrex",
+                    support: 0,
+                }, {
+                    name: "Binance",
+                    support: 0,
+                }, {
+                    name: "Quoine",
+                    support: 0,
+                }, {
+                    name: "Cryptsy",
+                    support: 0
+                }],
+                price: {
+                    amount: 0.005,
+                    currency: "btc"
+                },
+                popularity: 9
+            }, {
+                name: 'Ultimate Moving Average Xing (Open-Source)',
+                type: 'Free',
+                exchanges: [{
+                    name: "Poloniex",
+                    support: 1
+                }, {
+                    name: "Bitstamp",
+                    support: 0
+                }, {
+                    name: "GDAX",
+                    support: 1
+                }, {
+                    name: "Huobi",
+                    support: 0
+                }, {
+                    name: "OkCoin",
+                    support: 0
+                }, {
+                    name: "WEX",
+                    support: 0
+                }, {
+                    name: "CEX",
+                    support: 0
+                }, {
+                    name: "Bitfinex",
+                    support: 1
+                }, {
+                    name: "Kraken",
+                    support: 0
+                }, {
+                    name: "Bittrex",
+                    support: 0
+                }, {
+                    name: "Binance",
+                    support: 0
+                }, {
+                    name: "Quoine",
+                    support: 0
+                }, {
+                    name: "Cryptsy",
+                    support: 0
+                }],
+                popularity: 3.0
+            }]
+        }
     },
 
     methods: {
-      handleCurrentChange(val) {
-        val ? this.isSelected = true : this.isSelected = false;
-        this.selectedStrategy = val;
-      },
-      tableRowClassName(row, rowIndex) {
-        
-        // console.log(row.type);
+        progressBarStatus: function(val) {
+          if (val <= 3) {
+            return 'exception'
+          } else if (val > 3 && val < 6) {
+            return ''
+          } else {
+            return 'success'
+          }
+        },
 
-        if (row.type === 'Purchased') {
-          return 'purchased';
-        } else if (row.type === 'Premium') {
-          return 'premium';
-        } else {
-          return 'free';
+        handleCurrentChange(val) {
+            val ? this.isSelected = true : this.isSelected = false;
+            this.selectedStrategy = val;
+        },
+
+        tableRowClassName(row, rowIndex) {
+
+            // console.log(row.type);
+
+            if (row.type === 'Purchased') {
+                return 'purchased';
+            } else if (row.type === 'Premium') {
+                return 'premium';
+            } else {
+                return 'free';
+            }
         }
-      }
     }
-  }
-
+}
 </script>
-
 <style>
+@import url("//unpkg.com/element-ui@2.0.4/lib/theme-chalk/index.css");
 
-  @import url("//unpkg.com/element-ui@2.0.4/lib/theme-chalk/index.css");
+/* oldlace */
 
-  /* oldlace */
-  .el-table .free {
+.el-table .free {
     background: #f0f9eb;
-  }
-   /* green */
-  .el-table .premium {
+}
+
+
+/* green */
+
+.el-table .premium {
     background: #fdf5e6;
+}
 
-  }
-  /* black */
-  .el-table .purchased {
+
+/* black */
+
+.el-table .purchased {
     background: #e3e3e3;
-  }
-  /* for selected row */
-  .el-table .current-row {
-    background: none;
-  }
+}
 
+
+/* for selected row */
+
+.el-table .current-row {
+    background: none;
+}
 </style>
