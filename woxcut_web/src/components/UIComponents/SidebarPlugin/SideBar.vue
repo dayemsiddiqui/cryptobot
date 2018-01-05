@@ -17,7 +17,7 @@
           {{ title }}
       </a>
       -->
-      <a class="logo-normal text-center" href="https://localhost:8000">
+      <a class="logo-normal text-center" href="http://localhost:8000">
         <img :src="logo" alt="">
       </a>
 
@@ -69,11 +69,13 @@
 
         </li>
       </ul>
+      <moving-arrow :move-y="arrowMovePx"></moving-arrow>
     </div>
   </div>
 </template>
 <script>
   import CollapseTransition from 'element-ui/lib/transitions/collapse-transition'
+  import MovingArrow from './MovingArrow'
   export default {
     components: {
       [CollapseTransition.name]: CollapseTransition

@@ -4,13 +4,14 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 // Dashboard pages
 import Overview from 'src/components/Dashboard/Views/Dashboard/Overview.vue'
 import Exchange from 'src/components/Dashboard/Views/Dashboard/Exchange.vue'
-import Bot from 'src/components/Dashboard/Views/Dashboard/Bot.vue'
+import Bot from 'src/components/Dashboard/Views/Dashboard/Bot/Bot.vue'
+import BotDetail from 'src/components/Dashboard/Views/Dashboard/Bot/BotDetail.vue'
 import Stats from 'src/components/Dashboard/Views/Dashboard/Stats.vue'
 import OrderForm from 'src/components/BuyAndSell/OrderForm.vue'
 
 // Strategies
 import Parent from 'src/components/Dashboard/Views/Dashboard/Strategies/Parent.vue'
-import StrategyList from 'src/components/Dashboard/Views/Dashboard/Strategies/StrategyList.vue'
+import Strategies from 'src/components/Dashboard/Views/Dashboard/Strategies/Strategies.vue'
 import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/StrategyCreation.vue'
 
 // Pages
@@ -221,19 +222,25 @@ let woxcut = {
         component: Exchange
       },
       {
-        path: 'bots',
+        path: 'bots', // refactor this
         name: 'Bots',
-        component: Bot
+        component: Bot // rethink the user-friendly routing mechanism for strategy as well
+      },
+      {
+        path: 'bot/view/:id',
+        name: 'Bot Detail',
+        component: BotDetail
       },
       {
         path: 'strategies',
         name: 'Strategies',
+        redirect: 'strategies/strategies',
         component: Parent,
         children: [
           {
-            path: 'strategylist',
+            path: 'strategies',
             name: 'Strategy List',
-            component: StrategyList
+            component: Strategies
           }
         ]
       },

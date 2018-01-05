@@ -2,6 +2,11 @@ import fgInput from './components/UIComponents/Inputs/formGroupInput.vue'
 import DropDown from './components/UIComponents/Dropdown.vue'
 import Checkbox from './components/UIComponents/Inputs/Checkbox.vue'
 import Radio from './components/UIComponents/Inputs/Radio.vue'
+
+// element-ui components
+import Tag from 'element-ui/lib/tag'
+import Progress from 'element-ui/lib/progress'
+
 /**
  * You can register global components here and use them as a plugin in your main Vue instance
  * Ideally, only small components that are re-used many times across your application should be registered here.
@@ -14,6 +19,10 @@ const GlobalComponents = {
     Vue.component(DropDown.name, DropDown)
     Vue.component(Checkbox.name, Checkbox)
     Vue.component(Radio.name, Radio)
+    
+    // register element-ui components
+    Vue.component(Tag.name, Tag)
+    Vue.component(Progress.name, Progress)
   }
 }
 

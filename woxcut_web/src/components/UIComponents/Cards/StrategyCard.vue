@@ -8,22 +8,22 @@
         </div>
       </div>
     </div>
-    <div class="card-footer">
+    <!-- <div class="card-footer">
       <hr/>
       <slot name="footer"></slot>
-    </div>
+    </div> -->
 
   </div>
 </template>
 <script>
   export default {
-    name: 'bot-card'
+    name: 'strategy-card'
   }
 
 </script>
 <style scoped>
-  .card-content{
+/*  .card-content{
     min-height: 80px
-  }
+  }*/
 </style>
 

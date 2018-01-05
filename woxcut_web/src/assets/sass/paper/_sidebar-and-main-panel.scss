@@ -292,6 +292,17 @@
   }
   &[data-background-color="green"] {
     @include sidebar-background-color($green-background-color, $white-color);
+    .info{
+        a{
+          color: $white-color;
+        }
+      }
+
+      .user{
+        .photo{
+          border-color: rgba($white-color, 0.3);
+        }
+      }
   }
   &[data-background-color="purple"] {
     @include sidebar-background-color($purple-background-color, $white-color);
@@ -321,21 +332,21 @@
   &[data-background-color="brown"],
   &[data-background-color="darkblue"],
   &[data-background-color="black"]{
-      &[data-active-color="danger"]{
-        @include sidebar-active-color( lighten($danger-color, 10%) );
-      }
+    &[data-active-color="danger"]{
+      @include sidebar-active-color( lighten($danger-color, 10%) );
+    }
 
-      .info{
-        a{
-          color: $white-color;
-        }
+    .info{
+      a{
+        color: $white-color;
       }
+    }
 
-      .user{
-        .photo{
-          border-color: rgba($white-color, 0.3);
-        }
+    .user{
+      .photo{
+        border-color: rgba($white-color, 0.3);
       }
+    }
 
   }
   &[data-active-color="primary"]{
