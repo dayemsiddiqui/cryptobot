@@ -19,105 +19,105 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-8 col-sm-12">
+        <!-- <div class="col-lg-8 col-sm-12"> -->
+        <div class="col-lg-4">
           <div class="card">
             <div class="card-header">
-              <h4 class="card-title">Global Sales by Top Locations</h4>
-              <p class="category">All products that were shipped</p>
+              <h4 class="card-title">Top Performing Bots</h4>
+              <!-- <p class="category">All products that were shipped</p> -->
             </div>
             <div class="card-content">
               <div class="row">
-                <div class="col-md-7">
-                  <world-map></world-map>
-                </div>
-                <div class="col-md-5">
+                <!-- <div class="col-md-7"> -->
+                  <!-- <world-map></world-map> -->
+                <!-- </div> -->
+                <div class="col-md-12">
                   <div class="table-responsive">
                     <table class="table">
                       <tbody>
                       <tr>
                         <td>
-                          <div class="flag">
+                          <!-- <div class="flag">
                             <img src="static/img/flags/US.png">
-                          </div>
+                          </div> -->
                         </td>
-                        <td>USA</td>
+                        <td>Stipmunk68</td>
                         <td class="text-right">
-                          2.920
+                          <span class="green">+2.920</span>
                         </td>
                         <td class="text-right">
-                          53.23%
+                          <span class="red">-53.23%</span>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="flag">
+                          <!-- <div class="flag">
                             <img src="static/img/flags/DE.png">
-                          </div>
+                          </div> -->
                         </td>
-                        <td>Germany</td>
+                        <td>bot123-Hfscn7</td>
                         <td class="text-right">
-                          1.300
+                          <span class="green">+1.300</span>
                         </td>
                         <td class="text-right">
-                          20.43%
+                          <span class="green">20.43%</span>
+                        </td>
+                      </tr><tr>
+                        <td>
+                          <!-- <div class="flag">
+                            <img src="static/img/flags/DE.png">
+                          </div> -->
+                        </td>
+                        <td>Crupyds-Yqwn65</td>
+                        <td class="text-right">
+                          <span class="red">-0.9</span>
+                        </td>
+                        <td class="text-right">
+                          <span class="red">-22.98%</span>
+                        </td>
+                      </tr><tr>
+                        <td>
+                          <!-- <div class="flag">
+                            <img src="static/img/flags/DE.png">
+                          </div> -->
+                        </td>
+                        <td>RadioMonkey21</td>
+                        <td class="text-right">
+                          <span class="green">+1.300</span>
+                        </td>
+                        <td class="text-right">
+                          <span class="green">20.43%</span>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="flag">
-                            <img src="static/img/flags/AU.png">
-                          </div>
+                          <!-- <div class="flag">
+                            <img src="static/img/flags/DE.png">
+                          </div> -->
                         </td>
-                        <td>Australia</td>
+                        <td>Uii2d20</td>
                         <td class="text-right">
-                          760
+                          <span class="green">+8.300</span>
                         </td>
                         <td class="text-right">
-                          10.35%
+                          <span class="green">+89.43%</span>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="flag">
-                            <img src="static/img/flags/GB.png">
-                          </div>
+                          <!-- <div class="flag">
+                            <img src="static/img/flags/DE.png">
+                          </div> -->
                         </td>
-                        <td>United Kingdom</td>
+                        <td>khBvWjaqcePiE6</td>
                         <td class="text-right">
-                          690
+                          <span class="green">+8.300</span>
                         </td>
                         <td class="text-right">
-                          7.87%
+                          <span class="green">+89.43%</span>
                         </td>
                       </tr>
-                      <tr>
-                        <td>
-                          <div class="flag">
-                            <img src="static/img/flags/RO.png">
-                          </div>
-                        </td>
-                        <td>Romania</td>
-                        <td class="text-right">
-                          600
-                        </td>
-                        <td class="text-right">
-                          5.94%
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="flag">
-                            <img src="static/img/flags/BR.png">
-                          </div>
-                        </td>
-                        <td>Brasil</td>
-                        <td class="text-right">
-                          550
-                        </td>
-                        <td class="text-right">
-                          4.34%
-                        </td>
-                      </tr>
+                      
                       </tbody>
                     </table>
                   </div>
@@ -145,39 +145,6 @@
         </div>
     </div>
 
-    <div class="row">
-      <div class="col-lg-3 col-sm-6">
-        <circle-chart-card :percentage="70"
-                           title="Dashboard"
-                           description="Monthly sales target"
-                           color="blue">
-        </circle-chart-card>
-      </div>
-
-      <div class="col-lg-3 col-sm-6">
-        <circle-chart-card :percentage="34"
-                           title="Orders"
-                           description="Completed"
-                           color="green">
-        </circle-chart-card>
-      </div>
-
-      <div class="col-lg-3 col-sm-6">
-        <circle-chart-card :percentage="62"
-                           title="New Visitors"
-                           description="Out of total number"
-                           color="orange">
-        </circle-chart-card>
-      </div>
-
-      <div class="col-lg-3 col-sm-6">
-        <circle-chart-card :percentage="10"
-                           title="Subscriptions"
-                           description="Monthly newsletter"
-                           color="brown">
-        </circle-chart-card>
-      </div>
-    </div>
 
   </div>
 </template>
@@ -208,9 +175,9 @@
         statsCards: [
           {
             type: 'warning',
-            icon: 'ti-server',
-            title: 'Capacity',
-            value: '105GB',
+            icon: 'fa fa-btc',
+            title: 'Current Coins',
+            value: '105 BTC',
             footerText: 'Updated now',
             footerIcon: 'ti-reload'
           },
@@ -232,9 +199,9 @@
           },
           {
             type: 'info',
-            icon: 'ti-twitter-alt',
-            title: 'Followers',
-            value: '+45',
+            icon: '',
+            title: 'No. Of Bots',
+            value: '8',
             footerText: 'Updated now',
             footerIcon: 'ti-reload'
           }
