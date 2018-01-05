@@ -61,7 +61,10 @@
         </bot-card>
       </div>
       <div class="col-lg-6">
-        <div class="btn big-add-button">
+        <div 
+          class="btn big-add-button"
+          v-on:click="addBot"
+          >
           <i class="ti-plus"></i>
         </div>
       </div>
@@ -150,6 +153,29 @@
             }
           }
         ]
+      }
+    },
+
+    methods: {
+      addBot() {
+        let tempBot = {
+            id: Math.random(),
+            hover: false,
+            name: {
+              data: "Some new Bot",
+              edit: false
+            },
+            image: "bitcrime.png",
+            status: "Running",
+            strategy: "DEMA",
+            exchange: "GDAX",
+            uptime: "1507050618", // convert this into appropriate time interval client side,
+            profits: {
+              last24hours: "-10", // calculate this dynamically,
+              last7days: "13" // calculate this dynamically as well
+            }
+          }
+        this.botCards.push(tempBot)
       }
     }
   }

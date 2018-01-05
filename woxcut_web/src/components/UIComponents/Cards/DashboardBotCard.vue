@@ -8,16 +8,16 @@
         </div>
       </div>
     </div>
-    <!-- <div class="card-footer">
+    <div class="card-footer">
       <hr/>
       <slot name="footer"></slot>
-    </div> -->
+    </div>
 
   </div>
 </template>
 <script>
   export default {
-    name: 'bot-card'
+    name: 'dashboard-bot-card'
   }
 
 </script>
