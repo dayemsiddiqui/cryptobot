@@ -3,6 +3,7 @@ import DashboardLayout from '../components/Dashboard/Layout/DashboardLayout.vue'
 import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 // Dashboard pages
 import Overview from 'src/components/Dashboard/Views/Dashboard/Overview.vue'
+import Transaction from 'src/components/Dashboard/Views/Dashboard/Transaction.vue'
 import Exchange from 'src/components/Dashboard/Views/Dashboard/Exchange.vue'
 import Bot from 'src/components/Dashboard/Views/Dashboard/Bot/Bot.vue'
 import BotDetail from 'src/components/Dashboard/Views/Dashboard/Bot/BotDetail.vue'
@@ -208,13 +209,13 @@ let woxcut = {
     children: [
       {
         path: 'overview',
-        name: 'overview',
+        name: 'Dashboard',
         component: Overview
       },
       {
         path: 'transactions',
-        name: 'transactions',
-        component: Overview
+        name: 'Transactions',
+        component: Transaction
       },
       {
         path: 'exchanges',
@@ -261,7 +262,7 @@ let woxcut = {
       },
       {
         path: 'livemarket',
-        name: 'livemarket',
+        name: 'Live Market',
         component: Overview
       }
     ]

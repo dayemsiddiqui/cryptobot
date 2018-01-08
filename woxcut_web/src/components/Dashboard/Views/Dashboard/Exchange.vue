@@ -51,7 +51,16 @@
             value: 'Status: Connected',
             footerText: 'Updated now',
             footerIcon: 'ti-reload'
-          }
+          },
+          {
+            type: 'warning',
+            icon: 'ti-server',
+            title: 'Kraken',
+            logo: 'Bitstamp',
+            value: 'Status: Not Connected',
+            footerText: 'Updated now',
+            footerIcon: 'ti-reload'
+          },
         ]
       }
     }
