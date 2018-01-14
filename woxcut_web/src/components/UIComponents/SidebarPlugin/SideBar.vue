@@ -75,7 +75,7 @@
 </template>
 <script>
   import CollapseTransition from 'element-ui/lib/transitions/collapse-transition'
-  import MovingArrow from './MovingArrow'
+  // import MovingArrow from './MovingArrow'
   export default {
     components: {
       [CollapseTransition.name]: CollapseTransition

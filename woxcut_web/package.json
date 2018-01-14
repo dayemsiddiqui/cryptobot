@@ -5,7 +5,7 @@
   "author": "somerandomguys",
   "private": true,
   "scripts": {
-    "dev": "cross-env node build/dev-server.js",
+    "dev": "cross-env ENABLE_ESLINT=true node build/dev-server.js",
     "build": "cross-env node build/build.js",
     "postinstall": "npm run build && mkdir ../static && mv dist/index.html ../index.html && mv dist/static/* ../static",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",

@@ -88,68 +88,68 @@
             id: 21,
             hover: false,
             name: {
-              data: "B1tZ-Cr1M3",
+              data: 'B1tZ-Cr1M3',
               edit: false
             },
-            image: "bitcrime.png",
-            status: "Running",
-            strategy: "DEMA",
-            exchange: "GDAX",
-            uptime: "1507050618", // convert this into appropriate time interval client side,
+            image: 'bitcrime.png',
+            status: 'Running',
+            strategy: 'DEMA',
+            exchange: 'GDAX',
+            uptime: '1507050618', // convert this into appropriate time interval client side,
             profits: {
-              last24hours: "-10", // calculate this dynamically,
-              last7days: "13" // calculate this dynamically as well
+              last24hours: '-10', // calculate this dynamically,
+              last7days: '13' // calculate this dynamically as well
             }
           },
           {
             id: 20,
             hover: false,
             name: {
-              data: "B1tZ-Cr1M3",
+              data: 'B1tZ-Cr1M3',
               edit: false
             },
-            image: "002-robot-2.png",
-            status: "Running",
-            strategy: "DEMA",
-            exchange: "GDAX",
-            uptime: "1507050618", // convert this into appropriate time interval client side,
+            image: '002-robot-2.png',
+            status: 'Running',
+            strategy: 'DEMA',
+            exchange: 'GDAX',
+            uptime: '1507050618', // convert this into appropriate time interval client side,
             profits: {
-              last24hours: "-10", // calculate this dynamically,
-              last7days: "13" // calculate this dynamically as well
+              last24hours: '-10', // calculate this dynamically,
+              last7days: '13' // calculate this dynamically as well
             }
           },
           {
             id: 17,
             hover: false,
             name: {
-              data: "B1tZ-Cr1M3",
+              data: 'B1tZ-Cr1M3',
               edit: false
             },
-            image: "001-robot.png",
-            status: "Running",
-            strategy: "DEMA",
-            exchange: "GDAX",
-            uptime: "1507050618", // convert this into appropriate time interval client side,
+            image: '001-robot.png',
+            status: 'Running',
+            strategy: 'DEMA',
+            exchange: 'GDAX',
+            uptime: '1507050618', // convert this into appropriate time interval client side,
             profits: {
-              last24hours: "-10", // calculate this dynamically,
-              last7days: "-58" // calculate this dynamically as well
+              last24hours: '-10', // calculate this dynamically,
+              last7days: '-58' // calculate this dynamically as well
             }
           },
           {
             id: 43,
             hover: false,
             name: {
-              data: "B1tZ-Cr1M3",
+              data: 'B1tZ-Cr1M3',
               edit: false
             },
-            image: "003-robot-1.png",
-            status: "Running",
-            strategy: "DEMA",
-            exchange: "GDAX",
-            uptime: "1507050618", // convert this into appropriate time interval client side,
+            image: '003-robot-1.png',
+            status: 'Running',
+            strategy: 'DEMA',
+            exchange: 'GDAX',
+            uptime: '1507050618', // convert this into appropriate time interval client side,
             profits: {
-              last24hours: "2", // calculate this dynamically,
-              last7days: "67" // calculate this dynamically as well
+              last24hours: '2', // calculate this dynamically,
+              last7days: '67' // calculate this dynamically as well
             }
           }
         ]
@@ -157,24 +157,24 @@
     },
 
     methods: {
-      addBot() {
+      addBot () {
         let tempBot = {
-            id: Math.random(),
-            hover: false,
-            name: {
-              data: "Some new Bot",
-              edit: false
-            },
-            image: "bitcrime.png",
-            status: "Running",
-            strategy: "DEMA",
-            exchange: "GDAX",
-            uptime: "1507050618", // convert this into appropriate time interval client side,
-            profits: {
-              last24hours: "-10", // calculate this dynamically,
-              last7days: "13" // calculate this dynamically as well
-            }
+          id: Math.random(),
+          hover: false,
+          name: {
+            data: 'Some new Bot',
+            edit: false
+          },
+          image: 'bitcrime.png',
+          status: 'Running',
+          strategy: 'DEMA',
+          exchange: 'GDAX',
+          uptime: '1507050618', // convert this into appropriate time interval client side,
+          profits: {
+            last24hours: '-10', // calculate this dynamically,
+            last7days: '13' // calculate this dynamically as well
           }
+        }
         this.botCards.push(tempBot)
       }
     }

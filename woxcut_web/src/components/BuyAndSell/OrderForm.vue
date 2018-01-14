@@ -6,7 +6,7 @@
         <h4 class="card-title">Manual Buy/Sell</h4>
         <p class="category">Allows you to manually make a Buy and Sell Order apart from your running bot</p>
       </div>
-      
+
       <hr>
 
       <div class="card-content">
@@ -25,7 +25,7 @@
                   :label="item.label"
                   :value="item.value">
                 </el-option>
-              </el-select>     
+              </el-select>
           </el-col>
 
           <el-col :span="6">
@@ -73,7 +73,7 @@
             </div>
           </el-col>
         </el-row>
-            
+
         <hr>
 
 
@@ -81,12 +81,12 @@
 
           <el-col :span="12">
 
-            <vue-tabs 
+            <vue-tabs
               :activeTabColor = "currentTabColor"
               type="tabs"
-              @tab-change="handleTabChange" 
-              class="card-content row" 
-              direction="vertical" 
+              @tab-change="handleTabChange"
+              class="card-content row"
+              direction="vertical"
               v-model="currentTab">
 
               <v-tab title="Buy" icon="ti-import">
@@ -104,7 +104,7 @@
                                  v-validate="modelValidations.buyC1"
                                  v-model="model.buyC1"
                                  class="form-control">
-                        <span class="input-group-addon">฿</span>   
+                        <span class="input-group-addon">฿</span>
                       </div>
 
                       <small class="text-danger" v-show="buyC1.invalid">
@@ -137,7 +137,7 @@
                                    v-model="model.sellC1"
                                    class="form-control">
                           <span class="input-group-addon">฿</span>
-                              
+
                         </div>
                         <small class="text-danger" v-show="sellC1.invalid">
                           {{ getError('sellC1') }}
@@ -181,17 +181,17 @@
 
   export default {
     computed: {
-        ...mapFields(['buyC1','buyC2','sellC1','sellC2','c1List','c2List'])
-      },
+      ...mapFields(['buyC1', 'buyC2', 'sellC1', 'sellC2', 'c1List', 'c2List'])
+    },
     created () {
       // runs after component is created
     },
-    data() {
+    data () {
       return {
         tabTitles: ['Buy', 'Sell'],
         currentTab: 'Buy',
         currentTabColor: '',
-        model:{
+        model: {
 
           buyC1: '',
           buyC2: '',
@@ -218,7 +218,6 @@
             label: 'LTC'
           }],
 
-
           exchanges: [{
             value: 'Kraken',
             label: 'Kraken'
@@ -236,8 +235,8 @@
             label: 'Coinbase'
           }]
         },
-        modelValidations:{
-          buyC1 :{
+        modelValidations: {
+          buyC1: {
             required: true
           },
           buyC2: {
@@ -265,9 +264,8 @@
       handleTabChange (tabIndex, newTab, oldTab) {
         // console.log(tabIndex, newTab.title, oldTab.title)
         this.currentTab = newTab.title
-        if (this.currentTab == 'Buy') this.currentTabColor = '#AAE9BD'
-        if (this.currentTab == 'Sell') this.currentTabColor = '#F38F72'
-        
+        if (this.currentTab === 'Buy') this.currentTabColor = '#AAE9BD'
+        if (this.currentTab === 'Sell') this.currentTabColor = '#F38F72'
       }
     }
   }

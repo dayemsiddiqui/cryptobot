@@ -19,7 +19,7 @@ const GlobalComponents = {
     Vue.component(DropDown.name, DropDown)
     Vue.component(Checkbox.name, Checkbox)
     Vue.component(Radio.name, Radio)
-    
+
     // register element-ui components
     Vue.component(Tag.name, Tag)
     Vue.component(Progress.name, Progress)

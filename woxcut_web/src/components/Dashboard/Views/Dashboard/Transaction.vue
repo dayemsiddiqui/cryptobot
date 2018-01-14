@@ -34,7 +34,6 @@
 </template>
 <script>
 
-
   export default {
     components: {
     },
@@ -48,14 +47,14 @@
         {name: 'Kraken', type: 'Sell', amount: '$540', status: 'pending'},
         {name: 'Coinbase', type: 'Buy', amount: '$56', status: 'cancelled'},
         {name: 'Bitfinex', type: 'Sell', amount: '$78', status: 'completed'},
-        {name: 'Bittrex', type: 'Buy', amount: '$976', status: 'cancelled'},
-        ],
+        {name: 'Bittrex', type: 'Buy', amount: '$976', status: 'cancelled'}
+        ]
       }
     },
 
     methods: {
-      handleDelete(index, row){
-        console.log("Index and Props", index, row)
+      handleDelete (index, row) {
+        console.log('Index and Props', index, row)
         this.tableData = this.tableData.filter((value, arrInd) => arrInd !== index)
         this.$notify({
           component: {
@@ -65,8 +64,6 @@
           verticalAlign: 'bottom', // top | bottom
           type: 'danger'  // info | success | warning | danger
         })
-
-
       }
     }
   }

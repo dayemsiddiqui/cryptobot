@@ -13,7 +13,7 @@ import OrderForm from 'src/components/BuyAndSell/OrderForm.vue'
 // Strategies
 import Parent from 'src/components/Dashboard/Views/Dashboard/Strategies/Parent.vue'
 import Strategies from 'src/components/Dashboard/Views/Dashboard/Strategies/Strategies.vue'
-import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/StrategyCreation.vue'
+// import StrategyCreation from 'src/components/Dashboard/Views/Dashboard/StrategyCreation.vue'
 
 // Pages
 import User from 'src/components/Dashboard/Views/Pages/UserProfile.vue'
@@ -204,47 +204,47 @@ let lockPage = {
 }
 
 let woxcut = {
-    path: '/woxcut',
-    component: DashboardLayout,
-    children: [
-      {
-        path: 'overview',
-        name: 'Dashboard',
-        component: Overview
-      },
-      {
-        path: 'transactions',
-        name: 'Transactions',
-        component: Transaction
-      },
-      {
-        path: 'exchanges',
-        name: 'Exchanges',
-        component: Exchange
-      },
-      {
-        path: 'bots', // refactor this
-        name: 'Bots',
-        component: Bot // rethink the user-friendly routing mechanism for strategy as well
-      },
-      {
-        path: 'bot/view/:id',
-        name: 'Bot Detail',
-        component: BotDetail
-      },
-      {
-        path: 'strategies',
-        name: 'Strategies',
-        redirect: 'strategies/strategies',
-        component: Parent,
-        children: [
-          {
-            path: 'strategies',
-            name: 'Strategy List',
-            component: Strategies
-          }
-        ]
-      },
+  path: '/woxcut',
+  component: DashboardLayout,
+  children: [
+    {
+      path: 'overview',
+      name: 'Dashboard',
+      component: Overview
+    },
+    {
+      path: 'transactions',
+      name: 'Transactions',
+      component: Transaction
+    },
+    {
+      path: 'exchanges',
+      name: 'Exchanges',
+      component: Exchange
+    },
+    {
+      path: 'bots', // refactor this
+      name: 'Bots',
+      component: Bot // rethink the user-friendly routing mechanism for strategy as well
+    },
+    {
+      path: 'bot/view/:id',
+      name: 'Bot Detail',
+      component: BotDetail
+    },
+    {
+      path: 'strategies',
+      name: 'Strategies',
+      redirect: 'strategies/strategies',
+      component: Parent,
+      children: [
+        {
+          path: 'strategies',
+          name: 'Strategy List',
+          component: Strategies
+        }
+      ]
+    },
       // {
       //   path: 'strategycreation',
       //   name: 'Strategy Creation',
@@ -255,18 +255,18 @@ let woxcut = {
       //   name: 'Strategy List',
       //   component: StrategyList
       // },
-      {
-        path: 'buysell',
-        name: 'Buy and Sell',
-        component: OrderForm
-      },
-      {
-        path: 'livemarket',
-        name: 'Live Market',
-        component: Overview
-      }
-    ]
-  }
+    {
+      path: 'buysell',
+      name: 'Buy and Sell',
+      component: OrderForm
+    },
+    {
+      path: 'livemarket',
+      name: 'Live Market',
+      component: Overview
+    }
+  ]
+}
 
 const routes = [
   {

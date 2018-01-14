@@ -20,7 +20,8 @@ import './assets/sass/paper-dashboard.scss'
 import './assets/sass/demo.scss'
 import 'es6-promise/auto'
 
-import sidebarLinks from './sidebarLinks'
+// import sidebarLinks from './sidebarLinks' // use this to restore original routes
+import sidebarLinks from './sidebarLinksWoxcut'
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(GlobalDirectives)

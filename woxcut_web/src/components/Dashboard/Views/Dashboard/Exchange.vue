@@ -60,7 +60,7 @@
             value: 'Status: Not Connected',
             footerText: 'Updated now',
             footerIcon: 'ti-reload'
-          },
+          }
         ]
       }
     }
