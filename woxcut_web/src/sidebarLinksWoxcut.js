@@ -33,5 +33,10 @@ export default [
     name: 'Buy and Sell',
     icon: 'ti-money',
     path: '/woxcut/buysell'
+  },
+  {
+    name: 'Marketplace',
+    icon: 'ti-money',
+    path: '/woxcut/market'
   }
 ]

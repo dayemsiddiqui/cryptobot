@@ -110,7 +110,7 @@
     "npm": ">= 3.0.0"
   },
   "lint-staged": {
-    "src/": [
+    "src/**/*": [
       "eslint --fix",
       "git add"
     ]
