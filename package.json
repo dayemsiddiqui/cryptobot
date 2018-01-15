@@ -2,6 +2,17 @@
   "name": "foobar-app",
   "version": "0.1.0",
   "scripts": {
-    "postinstall": "npm install --prefix woxcut_web"
+    "postinstall": "npm install --prefix woxcut_web",
+    "lint-staged": "lint-staged"
+  },
+  "pre-commit": {
+    "woxcut_web/src/**/*": [
+      "woxcut_web/node_modules/eslint/bin/eslint.js --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "lint-staged": "^6.0.0",
+    "pre-commit": "^1.2.2"
   }
 }
