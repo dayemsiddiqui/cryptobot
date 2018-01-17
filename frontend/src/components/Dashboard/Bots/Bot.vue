@@ -2,7 +2,7 @@
   <div>
     <!--Bot cards-->
     <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-6" v-for="bot in botCards">
+      <div class="col-lg-6 col-md-6 col-sm-6" v-for="bot in bots">
         <bot-card>
           <div slot="content">
             <div class="col-lg-7 col-sm-7 text-left">
@@ -73,6 +73,7 @@
 </template>
 <script>
   import BotCard from 'components/UIComponents/Cards/BotCard.vue'
+  import BotsService from 'src/services/BotsService'
 
   export default {
     components: {
@@ -83,80 +84,18 @@
      */
     data () {
       return {
-        botCards: [
-          {
-            id: 21,
-            hover: false,
-            name: {
-              data: 'B1tZ-Cr1M3',
-              edit: false
-            },
-            image: 'bitcrime.png',
-            status: 'Running',
-            strategy: 'DEMA',
-            exchange: 'GDAX',
-            uptime: '1507050618', // convert this into appropriate time interval client side,
-            profits: {
-              last24hours: '-10', // calculate this dynamically,
-              last7days: '13' // calculate this dynamically as well
-            }
-          },
-          {
-            id: 20,
-            hover: false,
-            name: {
-              data: 'B1tZ-Cr1M3',
-              edit: false
-            },
-            image: '002-robot-2.png',
-            status: 'Running',
-            strategy: 'DEMA',
-            exchange: 'GDAX',
-            uptime: '1507050618', // convert this into appropriate time interval client side,
-            profits: {
-              last24hours: '-10', // calculate this dynamically,
-              last7days: '13' // calculate this dynamically as well
-            }
-          },
-          {
-            id: 17,
-            hover: false,
-            name: {
-              data: 'B1tZ-Cr1M3',
-              edit: false
-            },
-            image: '001-robot.png',
-            status: 'Running',
-            strategy: 'DEMA',
-            exchange: 'GDAX',
-            uptime: '1507050618', // convert this into appropriate time interval client side,
-            profits: {
-              last24hours: '-10', // calculate this dynamically,
-              last7days: '-58' // calculate this dynamically as well
-            }
-          },
-          {
-            id: 43,
-            hover: false,
-            name: {
-              data: 'B1tZ-Cr1M3',
-              edit: false
-            },
-            image: '003-robot-1.png',
-            status: 'Running',
-            strategy: 'DEMA',
-            exchange: 'GDAX',
-            uptime: '1507050618', // convert this into appropriate time interval client side,
-            profits: {
-              last24hours: '2', // calculate this dynamically,
-              last7days: '67' // calculate this dynamically as well
-            }
-          }
-        ]
+        bots: []
       }
+    },
+    mounted () {
+      this.getBots()
     },
 
     methods: {
+      async getBots () {
+        const response = await BotsService.fetchBots()
+        this.bots = response.data
+      },
       addBot () {
         let tempBot = {
           id: Math.random(),
@@ -175,7 +114,7 @@
             last7days: '13' // calculate this dynamically as well
           }
         }
-        this.botCards.push(tempBot)
+        this.bots.push(tempBot)
       }
     }
   }

@@ -69,13 +69,13 @@
 
         </li>
       </ul>
-      <moving-arrow :move-y="arrowMovePx"></moving-arrow>
+      <!-- <moving-arrow :move-y="arrowMovePx"></moving-arrow> -->
     </div>
   </div>
 </template>
 <script>
   import CollapseTransition from 'element-ui/lib/transitions/collapse-transition'
-  // import MovingArrow from './MovingArrow'
+
   export default {
     components: {
       [CollapseTransition.name]: CollapseTransition
