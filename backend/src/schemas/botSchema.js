@@ -1,5 +1,4 @@
 import { Schema } from 'mongoose'
-import bcrypt from 'bcrypt-nodejs'
 
 const botSchema = new Schema({
   id: Number,

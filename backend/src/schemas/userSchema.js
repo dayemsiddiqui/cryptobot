@@ -2,11 +2,11 @@ import { Schema } from 'mongoose'
 import bcrypt from 'bcrypt-nodejs'
 
 const userSchema = new Schema({
-  username: { type: String, minlength: [8, 'Username must be longer than 7 character']},
-  password: { type: String, minlength: [8, 'Password must be longer than 7 character']},
+  username: { type: String, minlength: [8, 'Username must be longer than 7 character'] },
+  password: { type: String, minlength: [8, 'Password must be longer than 7 character'] }
 })
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
   let user = this
   let saltRounds = 5
 
@@ -16,7 +16,7 @@ userSchema.pre('save', function(next) {
     if (err) return next(err)
     bcrypt.hash(user.password, salt, null, (err, hash) => {
       if (err) return next(err)
-      user.password = hash;
+      user.password = hash
       next()
     })
   })

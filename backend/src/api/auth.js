@@ -7,37 +7,35 @@ import config from '../config'
 
 const auth = Router()
 
-auth.get('/test', passport.authenticate('jwt') , (req, res) => {
+auth.get('/test', passport.authenticate('jwt'), (req, res) => {
   res.status(200).json({ message: 'Hello sweetie', auth: req.isAuthenticated() })
 })
 
-
 auth.post('/login', (req, res) => {
-	if (!req.body.username || !req.body.password) {
-		return res.status(400).json({ message: 'Missing required fields' })
-	}
-	User.findOne({ username: req.body.username })
-	.then(user => {
-		if(!user) return res.status(400).json({ message: 'No user' })
-		bcrypt.compare(req.body.password, user.password, (err, result) => {
-			if(result) {
-				const token = jwt.sign({id: req.body.username},  config.jwtSecret)
-				return res.status(200).json({ message: 'ok', token })
-			}
-			else {
-				return res.status(400).json({ message: 'Bad password' })
-			}
-		})
-	})
-	.catch((err) => {
-		return res.status(400).json(err)
-	})
+  if (!req.body.username || !req.body.password) {
+    return res.status(400).json({ message: 'Missing required fields' })
+  }
+  User.findOne({ username: req.body.username })
+  .then(user => {
+    if (!user) return res.status(400).json({ message: 'No user' })
+    bcrypt.compare(req.body.password, user.password, (err, result) => { // eslint-disable-line handle-callback-err
+      if (result) {
+        const token = jwt.sign({id: req.body.username}, config.jwtSecret)
+        return res.status(200).json({ message: 'ok', token })
+      } else {
+        return res.status(400).json({ message: 'Bad password' })
+      }
+    })
+  })
+  .catch((err) => {
+    return res.status(400).json(err)
+  })
 })
 
 auth.post('/register', (req, res) => {
-	if (!req.body.username || !req.body.password) {
-		return res.status(400).json({ message: 'Missing required fields' })
-	}
+  if (!req.body.username || !req.body.password) {
+    return res.status(400).json({ message: 'Missing required fields' })
+  }
 
   findUser(req.body.username)
   .then(() => {
@@ -57,17 +55,17 @@ auth.post('/register', (req, res) => {
 
 auth.get('/isLogged', (req, res) => {
   jwt.verify(req.headers['authorization'], config.jwtSecret, (err, decoded) => {
-    if(err) return res.status(401).json({ message: 'Not logged', isLogged: false })
-    else return res.status(200).json({ message: 'Logged' , isLogged: true })
+    if (err) return res.status(401).json({ message: 'Not logged', isLogged: false })
+    else return res.status(200).json({ message: 'Logged', isLogged: true })
   })
 })
 
 let findUser = (username) => {
   return User.findOne({ username })
-	.then(user => {
-		if(user) throw new Error('User already exists')
-	})
-	.catch((err) => {
+  .then(user => {
+    if (user) throw new Error('User already exists')
+  })
+  .catch((err) => {
     throw new Error(err.message)
   })
 }

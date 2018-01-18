@@ -3,31 +3,28 @@ import chaiHttp from 'chai-http'
 import server from '../../index'
 import User from '../../models/userModel'
 
-let should = chai.should()
+let should = chai.should() // eslint-disable-line no-unused-vars
 
 chai.use(chaiHttp)
 
 describe('Auth', () => {
-
   beforeEach((done) => {
     User.remove({}).then(() => {
       done()
-    }).catch(err => {
+    }).catch(err => { // eslint-disable-line handle-callback-err
       done()
     })
   })
 
-
   describe('/POST register', () => {
-
     it('it should not register user without username', done => {
       let user = {
-          password: 'password'
-        }
+        password: 'password'
+      }
       chai.request(server)
       .post('/api/auth/register')
       .send(user)
-      .end((err, res) => {
+      .end((err, res) => { // eslint-disable-line handle-callback-err
         res.should.have.status(400)
         res.body.should.have.property('message')
         done()
@@ -36,12 +33,12 @@ describe('Auth', () => {
 
     it('it should not register user without password', done => {
       let user = {
-          username: 'username'
-        }
+        username: 'username'
+      }
       chai.request(server)
       .post('/api/auth/register')
       .send(user)
-      .end((err, res) => {
+      .end((err, res) => { // eslint-disable-line handle-callback-err
         res.should.have.status(400)
         res.body.should.have.property('message')
         done()
@@ -56,7 +53,7 @@ describe('Auth', () => {
       chai.request(server)
       .post('/api/auth/register')
       .send(user)
-      .end((err, res) => {
+      .end((err, res) => { // eslint-disable-line handle-callback-err
         res.should.have.status(400)
         res.body.should.have.property('message')
         done()
@@ -71,7 +68,7 @@ describe('Auth', () => {
       chai.request(server)
       .post('/api/auth/register')
       .send(user)
-      .end((err, res) => {
+      .end((err, res) => { // eslint-disable-line handle-callback-err
         res.should.have.status(400)
         res.body.should.have.property('message')
         done()
@@ -91,7 +88,7 @@ describe('Auth', () => {
       chai.request(server)
       .post('/api/auth/login')
       .send(userData)
-      .end((err, res) => {
+      .end((err, res) => { // eslint-disable-line handle-callback-err
         res.should.have.status(200)
         res.body.should.have.property('token')
         done()
@@ -114,7 +111,7 @@ describe('Auth', () => {
       chai.request(server)
       .post('/api/auth/login')
       .send(wrongUserData)
-      .end((err, res) => {
+      .end((err, res) => { // eslint-disable-line handle-callback-err
         res.should.have.status(400)
         res.body.should.have.property('message')
         done()
@@ -130,7 +127,7 @@ describe('Auth', () => {
       chai.request(server)
       .post('/api/auth/login')
       .send(userData)
-      .end((err, res) => {
+      .end((err, res) => { // eslint-disable-line handle-callback-err
         res.should.have.status(400)
         res.body.should.have.property('message')
         res.body.message.should.be.eql('No user')
@@ -146,14 +143,13 @@ describe('Auth', () => {
       chai.request(server)
       .post('/api/auth/login')
       .send(userData)
-      .end((err, res) => {
+      .end((err, res) => { // eslint-disable-line handle-callback-err
         res.should.have.status(400)
         res.body.should.have.property('message')
         res.body.message.should.be.eql('Missing required fields')
         done()
       })
     })
-
 
     it('it should not login without password', done => {
       const userData = {
@@ -163,7 +159,7 @@ describe('Auth', () => {
       chai.request(server)
       .post('/api/auth/login')
       .send(userData)
-      .end((err, res) => {
+      .end((err, res) => { // eslint-disable-line handle-callback-err
         res.should.have.status(400)
         res.body.should.have.property('message')
         res.body.message.should.be.eql('Missing required fields')
