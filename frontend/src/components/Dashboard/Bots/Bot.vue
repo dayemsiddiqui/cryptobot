@@ -2,7 +2,8 @@
   <div>
     <!--Bot cards-->
     <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-6" v-for="bot in bots">
+      <div class="col-lg-12" v-show="loading"><loading></loading></div>
+      <div class="col-lg-6 col-md-6 col-sm-6" v-for="bot in bots" v-show="!loading">
         <bot-card>
           <div slot="content">
             <div class="col-lg-7 col-sm-7 text-left">
@@ -61,9 +62,10 @@
         </bot-card>
       </div>
       <div class="col-lg-6">
-        <div 
+        <div
           class="btn big-add-button"
           v-on:click="addBot"
+          v-show="!loading"
           >
           <i class="ti-plus"></i>
         </div>
@@ -74,16 +76,19 @@
 <script>
   import BotCard from 'components/UIComponents/Cards/BotCard.vue'
   import BotsService from 'src/services/BotsService'
+  import Loading from 'src/components/GeneralViews/Layout/LoadingMainPanel.vue'
 
   export default {
     components: {
-      BotCard
+      BotCard,
+      Loading
     },
     /**
      * Chart data used to render Exchange, charts. Should be replaced with server data
      */
     data () {
       return {
+        loading: true,
         bots: []
       }
     },
@@ -94,6 +99,7 @@
     methods: {
       async getBots () {
         const response = await BotsService.fetchBots()
+        this.loading = false
         this.bots = response.data
       },
       addBot () {
