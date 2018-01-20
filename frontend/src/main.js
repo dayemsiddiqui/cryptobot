@@ -12,7 +12,7 @@ import GlobalDirectives from './globalDirectives'
 import SideBar from './components/UIComponents/SidebarPlugin'
 
 // router setup
-// import routes from './routes/routes'
+// import routes from './routes/routes' // use this to restore original routes
 import routes from './routes/routes_u'
 
 // library imports
