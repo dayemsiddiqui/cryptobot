@@ -20,7 +20,8 @@ binance.options({
 } */
 
 // returns an array of candlesticks
-export const get5minuteCandleSticks = (startTime, endTime, symbol, callback) => {
+export const get5minuteCandleSticks = async (startTime, endTime, symbol, callback) => {
+// export const get5minuteCandleSticks = (startTime, endTime, symbol, callback) => {
   let timestampDifference = Math.abs(endTime - startTime)
   // 2500 minutes
   const INCREMENT = 150000000
