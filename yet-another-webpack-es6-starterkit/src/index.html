@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WoxCut - Trading Studio</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/d3-node-editor@0.6.6/build/d3-node-editor.css" rel="stylesheet"></link>
+  <link href="styles/style.css" rel="stylesheet"></link>
+</head>
+<body>
+
+<!-- <h1>yet another webpadayeafasck starterkit!!11!</h1> -->
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://www.greenw.com/wp-content/uploads/2016/08/w_logo_negativo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="28" height="28"><b>oxCut</b>
+    </a>
+
+    <button class="button navbar-burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <p class="control">
+            <a class="button is-warning" id="setting" href="#">
+              <span>Settings</span>
+            </a>
+          </p>
+          <p class="control">
+            <a class="button is-danger" id="report" href="#">
+              <span>View Report</span>
+            </a>
+          </p>
+          <p class="control">
+            <a class="button is-primary" id="execute" href="#">
+              <span>Execute</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="insight" style=" height: 1000px;">
+	<nav class="level" style="background: whitesmoke; padding-top: 25px; padding-bottom: 25px;">
+		  <div class="level-item has-text-centered">
+		    <div>
+		      <p class="heading">Current Capital</p>
+		      <p class="title" id="currentCapital">$3,456</p>
+		    </div>
+		  </div>
+		  <div class="level-item has-text-centered">
+		    <div>
+		      <p class="heading">Bitcoins</p>
+		      <p class="title" id="bitcoins">123</p>
+		    </div>
+		  </div>
+		  <div class="level-item has-text-centered">
+		    <div>
+		      <p class="heading">Initial Capital</p>
+		      <p class="title" id="initialCapital">$3,456</p>
+		    </div>
+		  </div>
+		  <div class="level-item has-text-centered">
+		    <div>
+		      <p class="control">
+            		<a class="button is-primary" id="review" href="#">
+              			<span>Review</span>
+            		</a>
+          	  </p>
+		    </div>
+		  </div>
+	</nav>
+
+	<div class="columns" style="padding-left: 50px; height: 100vh;">
+	  <div class="column is-one-third">
+	  	<div class="card" style="height: 70%; overflow: scroll;" >
+		  <div class="card-content" id="notificationCenter">
+		   
+		  </div>
+		</div>
+	  </div>
+	  <div class="column">
+	  	<div class="columns">
+	  		<div class="column">
+	  			<div id="container" style="height: 400px; margin: 0 auto"></div>		
+	  		</div>
+	  		<div class="column">
+	  			<div id="containerBalance" style="height: 400px; margin: 0 auto"></div>
+	  		</div>
+	  	</div>
+	  	<div class="columns">
+	  		<div id="containerCapital" style="height: 400px; margin: 0 auto"></div>
+	  	</div>
+	  	
+	  </div>
+	</div>
+	
+</div>
+
+<div id="studio">
+	<div class="modal" id="settingModal">
+	  <div class="modal-background"></div>
+	  <div class="modal-card">
+	    <header class="modal-card-head">
+	      <p class="modal-card-title">Settings</p>
+	    </header>
+	    <section class="modal-card-body">
+				<div class="field">
+				  <label class="label">Account Balance (USD)</label>
+				  <div class="control">
+				    <input class="input" id="balance" type="number" placeholder="Starting Balance (USD)" value="10000">
+				  </div>
+				</div>
+
+				<div class="field">
+				  <label class="label">Bitcoins</label>
+				  <div class="control has-icons-left has-icons-right">
+				    <input class="input is-success" id="coins" type="number" placeholder="No. of coins" value="0">
+				  </div>
+				</div>
+	    </section>
+	    <footer class="modal-card-foot">
+	      <button class="button is-success" id="settingConfirm">Confirm</button>
+	      <button class="button" id="settingCancel">Cancel</button>
+	    </footer>
+	  </div>
+	</div>
+
+
+	<div id="d3ne" class="node-editor" style="background: whitesmoke; height: 1000px;"></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/alight@0.14.0/alight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@4.10.2/build/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-node-editor@0.6.6/build/d3-node-editor.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+</body>
+</html>

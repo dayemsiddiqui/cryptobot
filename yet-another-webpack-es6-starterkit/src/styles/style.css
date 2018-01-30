@@ -1,0 +1,19 @@
+.socket.m_number{
+    background: red;
+}
+
+.socket.m_pricearray{
+    background: green;
+}
+
+.socket.candlestick{
+    background: green;
+}
+
+.socket.m_indicator{
+    background: brown;
+}
+
+.socket.m_boolean{
+    background: purple;
+}
