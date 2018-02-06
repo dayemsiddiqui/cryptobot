@@ -9,6 +9,7 @@
     "start": "node dist",
     "prestart": "npm run -s build",
     "lint": "eslint src --fix",
+    "precommit": "lint-staged",
     "test": "set NODE_ENV=test&& mocha src --recursive --timeout 10000 --compilers js:babel-register --require babel-polyfill"
   },
   "license": "MIT",
@@ -45,6 +46,7 @@
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "lint-staged": "^6.1.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.9.2"
   },
@@ -61,5 +63,11 @@
       "node": true,
       "mocha": true
     }
+  },
+  "lint-staged": {
+    "src/**/*": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

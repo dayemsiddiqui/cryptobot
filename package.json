@@ -2,21 +2,6 @@
   "name": "foobar-app",
   "version": "0.1.0",
   "scripts": {
-    "postinstall": "npm install --prefix frontend",
-    "precommit": "lint-staged"
-  },
-  "devDependencies": {
-    "husky": "^0.14.3",
-    "lint-staged": "^6.1.0"
-  },
-  "lint-staged": {
-    "frontend/src/**/*": [
-      "eslint --fix",
-      "git add"
-    ],
-    "backend/src/**/*": [
-      "eslint --fix",
-      "git add"
-    ]
+    "postinstall": "npm install --prefix frontend"
   }
 }
