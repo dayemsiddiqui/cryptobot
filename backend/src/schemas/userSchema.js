@@ -9,15 +9,6 @@ const userSchema = new Schema({
     user_defined: [{ type: Schema.Types.ObjectId, ref: 'strategy' }], // todo: add defaults
     purchased: [{ type: Schema.Types.ObjectId, ref: 'strategy' }] //
   },
-  bots: [
-    {
-      name: String,
-      strategy_id: { type: Schema.Types.ObjectId, ref: 'strategy' }, // fk
-      exchange_id: { type: Schema.Types.ObjectId, ref: 'exchange' }, // fk
-      currency: String,
-      image: {type: String, default: 'bitcrime.png'} // randomize this
-    } // todo: bot types: {arbitrage, marginal} //check hasbot for reference
-  ],
   exchanges: [{
     exchange_id: { type: Schema.Types.ObjectId, ref: 'exchange' }, // fk
     api: {
@@ -38,8 +29,8 @@ userSchema.pre('save', function (next) {
     if (err) return next(err)
     bcrypt.hash(user.password, salt, null, (err, hash) => {
       if (err) return next(err)
-      user.password = hash
-      next()
+user.password = hash
+      next();
     })
   })
 })
