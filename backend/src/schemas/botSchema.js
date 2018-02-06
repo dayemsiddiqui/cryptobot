@@ -5,12 +5,12 @@ const botSchema = new Schema({
   currency: String,
   strategy_id: { type: Schema.Types.ObjectId, ref: 'strategy' }, // fk
   exchange_id: { type: Schema.Types.ObjectId, ref: 'exchange' }, // fk
-  image: {type: String, default: 'bitcrime.png'} // randomize this
-  transactions :[{
-    date : Date,
+  image: {type: String, default: 'bitcrime.png'}, // randomize this
+  transactions: [{
+    date: Date,
     currency: String,
-    amount : Number,
-    fee : Number,
+    amount: Number,
+    fee: Number,
     balance: Number
   }]
 })
