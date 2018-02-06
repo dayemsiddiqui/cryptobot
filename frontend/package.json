@@ -114,10 +114,6 @@
     "src/**/*": [
       "eslint --fix",
       "git add"
-    ],
-    "../backend/src/**/*": [
-      "eslint --fix",
-      "git add"
     ]
   }
 }
