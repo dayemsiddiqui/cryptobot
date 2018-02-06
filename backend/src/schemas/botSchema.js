@@ -1,21 +1,18 @@
 import { Schema } from 'mongoose'
 
 const botSchema = new Schema({
-  id: Number,
-  hover: Boolean,
-  name: {
-    data: String,
-    edit: Boolean
-  },
-  image: String,
-  status: String,
-  strategy: String,
-  exchange: String,
-  uptime: Number, // convert this into appropriate time interval client side,
-  profits: {
-    last24hours: Number, // calculate this dynamically,
-    last7days: Number // calculate this dynamically as well
-  }
+  name: String,
+  currency: String,
+  strategy_id: { type: Schema.Types.ObjectId, ref: 'strategy' }, // fk
+  exchange_id: { type: Schema.Types.ObjectId, ref: 'exchange' }, // fk
+  image: {type: String, default: 'bitcrime.png'} // randomize this
+  transactions :[{
+    date : Date,
+    currency: String,
+    amount : Number,
+    fee : Number,
+    balance: Number
+  }]
 })
 
 export default botSchema
