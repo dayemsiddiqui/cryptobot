@@ -1,7 +1,7 @@
 import { Schema } from 'mongoose'
 
 const botSchema = new Schema({
-  user: { type: Schema.Types.ObjectId, ref: 'user' },
+  user_id: { type: Schema.Types.ObjectId, ref: 'user' },
   name: String,
   currency: String,
   strategy_id: { type: Schema.Types.ObjectId, ref: 'strategy' }, // fk
