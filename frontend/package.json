@@ -17,6 +17,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "chartist": "^0.10.1",
+    "cryptowatch-embed": "^0.3.2",
     "easy-pie-chart": "^2.1.7",
     "element-ui": "^1.4.2",
     "es6-promise": "^4.1.1",

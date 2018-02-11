@@ -15,9 +15,9 @@ export default [
     path: '/bots'
   },
   {
-    name: 'Live Market',
+    name: 'Live Charts',
     icon: 'ti-stats-up',
-    path: '/livemarket'
+    path: '/live'
   },
   {
     name: 'Exchanges',
