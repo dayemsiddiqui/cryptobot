@@ -35,8 +35,8 @@ export default [
     path: '/orderbook'
   },
   {
-    name: 'Marketplace',
+    name: 'Strategy Editor',
     icon: 'ti-money',
-    path: '/market'
+    path: '/editor'
   }
 ]

@@ -6,6 +6,7 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 
 // Overview
 import Overview from 'src/components/Dashboard/Overview.vue'
+import NodeEditor from 'src/components/Dashboard/NodeEditor/NodeEditor.vue'
 
 // Transactions
 import Transaction from 'src/components/Dashboard/Transactions/Transaction.vue'
@@ -85,6 +86,11 @@ let woxcut = {
       path: 'livemarket',
       name: 'Live Market',
       component: Overview
+    },
+    {
+      path: 'editor',
+      name: 'Strategy Editor',
+      component: NodeEditor
     }
   ]
 }

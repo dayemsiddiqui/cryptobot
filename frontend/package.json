@@ -5,7 +5,7 @@
   "author": "somerandomguys",
   "private": true,
   "scripts": {
-    "dev": "cross-env ENABLE_ESLINT=true node build/dev-server.js",
+    "dev": "cross-env ENABLE_ESLINT=false node build/dev-server.js",
     "build": "cross-env node build/build.js",
     "postinstall": "npm run build && mkdir ../static && mv dist/index.html ../index.html && mv dist/static/* ../static",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
@@ -17,6 +17,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "chartist": "^0.10.1",
+    "d3-node-editor": "^0.6.8",
     "easy-pie-chart": "^2.1.7",
     "element-ui": "^1.4.2",
     "es6-promise": "^4.1.1",
