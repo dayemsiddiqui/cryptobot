@@ -21,7 +21,6 @@
     "express": "^4.13.3",
     "jsonwebtoken": "^7.3.0",
     "lodash": "^4.17.4",
-    "moment": "^2.20.1",
     "mongoose": "^5.x.x",
     "morgan": "^1.8.0",
     "node-binance-api": "^0.4.5",
