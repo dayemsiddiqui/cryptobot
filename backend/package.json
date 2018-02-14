@@ -26,7 +26,8 @@
     "node-binance-api": "^0.4.5",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
-    "resource-router-middleware": "^0.6.0"
+    "resource-router-middleware": "^0.6.0",
+    "joi": "^13.1.2"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
