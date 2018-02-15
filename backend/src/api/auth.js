@@ -1,10 +1,11 @@
 import { Router } from 'express'
 import authController from '../controllers/auth.js'
 import passport from 'passport'
+import jwtStrategy from '../passport.js'
 
 const auth = Router()
 
-auth.get('/test', passport.authenticate('jwt'), authController.test)
+auth.get('/test', passport.authenticate('jwt', { session: false }), authController.test)
 
 auth.post('/login', authController.login)
 
