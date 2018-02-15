@@ -20,14 +20,15 @@
     "cors": "^2.7.1",
     "dotenv": "^4.0.0",
     "express": "^4.13.3",
+    "joi": "^13.1.2",
     "jsonwebtoken": "^7.3.0",
     "mongoose": "^5.x.x",
     "morgan": "^1.8.0",
     "node-binance-api": "^0.4.5",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
-    "resource-router-middleware": "^0.6.0",
-    "joi": "^13.1.2"
+    "passport-local": "^1.0.0",
+    "resource-router-middleware": "^0.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
