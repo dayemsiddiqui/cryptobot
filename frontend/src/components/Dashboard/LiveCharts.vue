@@ -39,6 +39,12 @@
     height: 100vh;
   }
 
+  body {
+    height: 100%;
+    padding:0px;
+    margin: 0px;
+  }
+
   .topbar {
     top: 0;
     background-color: #165a54;
