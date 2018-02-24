@@ -45,8 +45,10 @@ const router = new VueRouter({
 
 // Global guard
 router.beforeEach((to, from, next) => {
-  if (store.getters.isUserLoggedIn === false) {
-    next('/login')
+  if (to.meta.requiresAuth) {
+    if (store.getters.isUserLoggedIn === false) {
+      next({name: 'Login'})
+    }
   } else {
     next()
   }
@@ -55,7 +57,7 @@ router.beforeEach((to, from, next) => {
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  router,
   store, // same as store: store
-  render: h => h(App),
-  router
+  render: h => h(App)
 })

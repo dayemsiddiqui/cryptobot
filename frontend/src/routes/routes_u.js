@@ -52,17 +52,20 @@ let woxcut = {
     {
       path: 'overview',
       name: 'Dashboard',
-      component: Overview
+      component: Overview,
+      meta: { requiresAuth: true }
     },
     {
       path: 'transactions',
       name: 'Transactions',
-      component: Transaction
+      component: Transaction,
+      meta: { requiresAuth: true }
     },
     {
       path: 'exchanges',
       name: 'Exchanges',
-      component: Exchange
+      component: Exchange,
+      meta: { requiresAuth: true }
     },
     {
       path: 'bots', // refactor this
@@ -72,7 +75,8 @@ let woxcut = {
         {
           path: 'view/:id',
           name: 'Bot Detail',
-          component: BotDetail
+          component: BotDetail,
+          meta: { requiresAuth: true }
         }
       ]
     },
@@ -84,7 +88,8 @@ let woxcut = {
         {
           path: 'create',
           name: 'Create Strategy',
-          component: Strategy
+          component: Strategy,
+          meta: { requiresAuth: true }
           // component: StrategyCreate
         }
       ]
@@ -92,17 +97,20 @@ let woxcut = {
     {
       path: 'market',
       name: 'Market',
-      component: Market
+      component: Market,
+      meta: { requiresAuth: true }
     },
     {
       path: 'orderbook',
       name: 'Order Book',
-      component: OrderForm
+      component: OrderForm,
+      meta: { requiresAuth: true }
     },
     {
       path: 'livemarket',
       name: 'Live Market',
-      component: Overview
+      component: Overview,
+      meta: { requiresAuth: true }
     }
   ]
 }

@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <router-link class="navbar-brand" to="/admin">Paper Dashboard PRO</router-link>
+          <router-link class="navbar-brand" to="/admin">Woxcut</router-link>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -20,7 +20,7 @@
               </router-link>
             </li>
             <li>
-              <router-link to="/admin/overview">
+              <router-link to="/overview">
                 Dashboard
               </router-link>
             </li>
@@ -70,10 +70,10 @@
         <footer class="footer footer-transparent">
           <div class="container">
             <div class="copyright">
-              &copy; Coded with
-              <i class="fa fa-heart heart"></i> by
-              <a href="https://github.com/cristijora" target="_blank">Cristi Jora</a>.
-              Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank">Creative Tim</a>.
+              &copy; All rights reserved
+<!--               <i class="fa fa-heart heart"></i> by
+<a href="https://github.com/cristijora" target="_blank">Cristi Jora</a>.
+Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank">Creative Tim</a>. -->
             </div>
           </div>
         </footer>

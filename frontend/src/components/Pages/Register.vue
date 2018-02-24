@@ -31,7 +31,7 @@
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
                 <div class="header-text">
-                  <h2>Paper Dashboard PRO</h2>
+                  <h2>Woxcut</h2>
                   <h4>Register for free and experience the dashboard today.</h4>
                   <hr>
                 </div>
@@ -107,10 +107,10 @@
         <footer class="footer footer-transparent">
           <div class="container">
             <div class="copyright text-center">
-              &copy; Coded with
-              <i class="fa fa-heart heart"></i> by
-              <a href="https://github.com/cristijora" target="_blank">Cristi Jora</a>.
-              Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank">Creative Tim</a>.
+              &copy; All rights reserved
+<!--               <i class="fa fa-heart heart"></i> by
+<a href="https://github.com/cristijora" target="_blank">Cristi Jora</a>.
+Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank">Creative Tim</a>. -->
             </div>
           </div>
         </footer>
