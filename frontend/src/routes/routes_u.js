@@ -28,12 +28,21 @@ import Market from 'src/components/Dashboard/Market/Market.vue'
 import OrderForm from 'src/components/Dashboard/OrderBook/OrderForm.vue'
 
 // Register page
-import RegisterForm from 'src/components/Pages/Register.vue'
+import Register from 'src/components/Pages/Register.vue'
 
-let register = {
+// Login page
+import Login from 'src/components/Pages/Login.vue'
+
+let registerPage = {
   path: '/register',
   name: 'Register',
-  component: RegisterForm
+  component: Register
+}
+
+let loginPage = {
+  path: '/login',
+  name: 'Login',
+  component: Login
 }
 
 let woxcut = {
@@ -100,7 +109,8 @@ let woxcut = {
 
 const routes = [
   woxcut,
-  register,
+  loginPage,
+  registerPage,
   {path: '*', component: NotFound}
 ]
 

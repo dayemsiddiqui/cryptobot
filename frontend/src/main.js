@@ -26,6 +26,7 @@ import 'es6-promise/auto'
 
 // import sidebarLinks from './sidebarLinks' // use this to restore original routes
 import sidebarLinks from './sidebarLinksWoxcut'
+
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(GlobalDirectives)
@@ -40,6 +41,15 @@ const router = new VueRouter({
   mode: 'history',
   routes, // short for routes: routes
   linkActiveClass: 'active'
+})
+
+// Global guard
+router.beforeEach((to, from, next) => {
+  if (store.getters.isUserLoggedIn === false) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 /* eslint-disable no-new */
