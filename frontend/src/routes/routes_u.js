@@ -28,10 +28,10 @@ import Market from 'src/components/Dashboard/Market/Market.vue'
 import OrderForm from 'src/components/Dashboard/OrderBook/OrderForm.vue'
 
 // Register page
-import Register from 'src/components/Pages/Register.vue'
+import Register from 'src/components/Pages/RegisterPage.vue'
 
 // Login page
-import Login from 'src/components/Pages/Login.vue'
+import Login from 'src/components/Pages/LoginPage.vue'
 
 let registerPage = {
   path: '/register',
@@ -48,6 +48,7 @@ let loginPage = {
 let woxcut = {
   path: '/',
   component: Layout,
+  meta: { requiresAuth: true },
   children: [
     {
       path: 'overview',
@@ -71,6 +72,7 @@ let woxcut = {
       path: 'bots', // refactor this
       name: 'Bots',
       component: Bot, // rethink the user-friendly routing mechanism for strategy as well
+      meta: { requiresAuth: true },
       children: [
         {
           path: 'view/:id',
@@ -84,6 +86,7 @@ let woxcut = {
       path: 'strategies',
       name: 'Strategies',
       component: Strategy,
+      meta: { requiresAuth: true },
       children: [
         {
           path: 'create',

@@ -8,9 +8,17 @@ const getters = {
   }
 }
 
-const mutations = {}
+const mutations = {
+  setToken: (state, token) => {
+    state.token = token
+  }
+}
 
-const actions = {}
+const actions = {
+  setToken: ({commit}, token) => {
+    commit('setToken', token)
+  }
+}
 
 export default {
   state,

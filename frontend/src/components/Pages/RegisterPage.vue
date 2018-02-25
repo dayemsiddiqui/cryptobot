@@ -72,33 +72,7 @@
                 </div>
               </div>
               <div class="col-md-4">
-                <form method="#" action="#">
-                  <div class="card card-plain">
-                    <div class="content">
-                      <div class="form-group">
-                        <input type="email" placeholder="Your First Name" class="form-control">
-                      </div>
-                      <div class="form-group">
-                        <input type="email" placeholder="Your Last Name" class="form-control">
-                      </div>
-                      <div class="form-group">
-                        <input type="email" placeholder="Company" class="form-control">
-                      </div>
-                      <div class="form-group">
-                        <input type="email" placeholder="Enter email" class="form-control">
-                      </div>
-                      <div class="form-group">
-                        <input type="password" placeholder="Password" class="form-control">
-                      </div>
-                      <div class="form-group">
-                        <input type="password" placeholder="Password Confirmation" class="form-control">
-                      </div>
-                    </div>
-                    <div class="footer text-center">
-                      <button type="button" class="btn btn-fill btn-danger btn-wd">Create Free Account</button>
-                    </div>
-                  </div>
-                </form>
+                <registerForm></registerForm>
               </div>
             </div>
           </div>
@@ -120,7 +94,11 @@ Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank
 </template>
 
 <script>
+  import RegisterForm from './RegisterForm.vue'
   export default {
+    components: {
+      'registerForm': RegisterForm
+    },
     data () {}
 
   }

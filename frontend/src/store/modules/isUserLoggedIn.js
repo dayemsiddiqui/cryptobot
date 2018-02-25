@@ -8,9 +8,17 @@ const getters = {
   }
 }
 
-const mutations = {}
+const mutations = {
+  setIsUserLoggedIn: (state, isUserLoggedIn) => {
+    state.isUserLoggedIn = isUserLoggedIn
+  }
+}
 
-const actions = {}
+const actions = {
+  setIsUserLoggedIn: ({commit}, isUserLoggedIn) => {
+    commit('setIsUserLoggedIn', isUserLoggedIn)
+  }
+}
 
 export default {
   state,

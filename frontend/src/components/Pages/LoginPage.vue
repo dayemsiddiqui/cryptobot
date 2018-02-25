@@ -37,7 +37,8 @@
           <div class="container">
             <div class="row">
               <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                <form method="#" action="#">
+                <loginForm></loginForm>
+<!--                 <form method="#" action="#">
                   <div class="card" data-background="color" data-color="blue">
                     <div class="card-header">
                       <h3 class="card-title">Login</h3>
@@ -61,7 +62,7 @@
                       </div>
                     </div>
                   </div>
-                </form>
+                </form> -->
               </div>
             </div>
           </div>
@@ -82,8 +83,14 @@ Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank
     </div>
   </div>
 </template>
+
 <script>
+  import LoginForm from './LoginForm.vue'
   export default {
+
+    components: {
+      'loginForm': LoginForm
+    },
     methods: {
       toggleNavbar () {
         document.body.classList.toggle('nav-open')
@@ -98,5 +105,6 @@ Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank
     }
   }
 </script>
+
 <style>
 </style>

@@ -68,6 +68,31 @@ module.exports = {
 	    if (err) return res.status(401).json({ message: 'Not logged', isLogged: false })
 	    else return res.status(200).json({ message: 'Logged', isLogged: true })
 	  })
+	},
+
+	// Helper route for frontend validation
+	validateUser: (req, res) => {
+		let username = req.body.username
+		User.findOne({ username })
+	  .then(user => {
+	    if (user) {
+		    res.status(200).json({
+	    		valid: false,
+	    		message: "Username is already taken."
+		    })
+	    } else {
+		    res.status(200).json({
+	    		valid: true,
+	    		message: "Username doesn't exist."
+		    })
+	    }
+	  })
+	  .catch((err) => {
+	    res.status(200).json({
+    		valid: true,
+    		message: err.message
+	    })
+	  })
 	}
 
 }

@@ -13,4 +13,7 @@ auth.post('/register', authController.register)
 
 auth.get('/isLogged', authController.isLogged)
 
+// Helper route for frontend validation
+auth.post('/validateuser', authController.validateUser)
+
 export default auth
