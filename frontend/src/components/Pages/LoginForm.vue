@@ -48,7 +48,9 @@
 
   export default {
     created () {
-      // this.$store.commit('resetUserInstance') // samk fix this
+      this.$store.commit('setIsUserLoggedIn', false)
+      this.$store.commit('setUser', null)
+      this.$store.commit('setToken', null)
     },
     computed: {
       ...mapFields(['username', 'password'])
