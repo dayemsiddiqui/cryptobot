@@ -7,15 +7,18 @@
         </h4>
       </div>
       <div class="card-content">
+        <small class="text-danger" v-show="isInvalidCredential">
+            Invalid Credentials
+        </small>
         <div class="form-group">
-          <label>Email address</label>
-          <input type="email"
-                 name="email"
-                 v-validate="modelValidations.email"
-                 v-model="model.email"
+          <label>Username</label>
+          <input type="text"
+                 name="username"
+                 v-validate="modelValidations.username"
+                 v-model="model.username"
                  class="form-control">
-          <small class="text-danger" v-show="email.invalid">
-            {{ getError('email') }}
+          <small class="text-danger" v-show="username.invalid">
+            {{ getError('username') }}
           </small>
         </div>
         <div class="form-group">
@@ -32,7 +35,7 @@
 
       </div>
       <div class="card-footer text-center">
-        <button type="submit" @click.prevent="validate" class="btn btn-fill btn-info btn-wd">Login</button>
+        <button type="submit" :disabled="errors.any()" @click.prevent="validate" class="btn btn-fill btn-info btn-wd">Login</button>
       </div>
     </form>
 
@@ -40,26 +43,30 @@
 </template>
 
 <script>
-  import {mapFields} from 'vee-validate'
+  import { mapFields } from 'vee-validate'
+  import api from 'src/services/api'
 
   export default {
+    created () {
+      // this.$store.commit('resetUserInstance') // samk fix this
+    },
     computed: {
-      ...mapFields(['email', 'password'])
+      ...mapFields(['username', 'password'])
     },
     data () {
       return {
+        isInvalidCredential: false,
         model: {
-          email: '',
+          username: '',
           password: ''
         },
         modelValidations: {
-          email: {
-            required: true,
-            email: true
-          },
-          password: {
+          username: {
             required: true,
             min: 5
+          },
+          password: {
+            required: true
           }
         }
       }
@@ -69,8 +76,30 @@
         return this.errors.first(fieldName)
       },
       validate () {
-        this.$validator.validateAll().then(isValid => {
-          this.$emit('on-submit', this.registerForm, isValid)
+        this.$validator.validateAll()
+        .then(isValid => {
+          if (isValid) this.submit()
+          // this.$emit('on-submit', this.registerForm, isValid)
+        })
+      },
+      submit () {
+        var self = this
+        api.post('/auth/login', {
+          username: this.model.username,
+          password: this.model.password
+        })
+        .then(function (response) {
+          if (response.data.token) { // recieved user and token
+            self.$store.commit('setIsUserLoggedIn', true)
+            self.$store.commit('setUser', response.data.user)
+            self.$store.commit('setToken', response.data.token)
+            self.$router.push('/overview')
+          } else {
+            self.isInvalidCredential = true
+          }
+        })
+        .catch(function (error) {
+          console.log(error)
         })
       }
     }

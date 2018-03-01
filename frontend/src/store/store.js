@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // Common
-// import * as actions from './actions'
-// import * as mutations from './mutations'
+import actions from './actions'
+import mutations from './mutations'
 // import * as getters from './getters'
 
 // Module states
@@ -15,8 +15,8 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   // getters,
-  // mutations,
-  // actions,
+  mutations,
+  actions,
   modules: {
     token,
     user,

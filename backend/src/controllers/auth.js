@@ -27,13 +27,14 @@ module.exports = {
 	  }
 	  User.findOne({ username: req.body.username })
 	  .then(user => {
-	    if (!user) return res.status(400).json({ message: 'No user' })
+	    if (!user) return res.status(200).json({ message: 'No user' })
 	    bcrypt.compare(req.body.password, user.password, (err, result) => { // eslint-disable-line handle-callback-err
 	      if (result) {
 	        const token = jwt.sign({id: req.body.username, iss: config.issuer}, config.jwtSecret)
-	        return res.status(200).json({ message: 'ok', token })
+	        user = JSON.stringify(user)
+	        return res.status(200).json({ message: 'ok', token, user })
 	      } else {
-	        return res.status(400).json({ message: 'Bad password' })
+	        return res.status(200).json({ message: 'Bad password' })
 	      }
 	    })
 	  })

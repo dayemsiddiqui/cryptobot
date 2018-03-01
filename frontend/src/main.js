@@ -23,6 +23,7 @@ import routes from './routes/routes_u'
 import './assets/sass/paper-dashboard.scss'
 import './assets/sass/demo.scss'
 import 'es6-promise/auto'
+import api from './services/api'
 
 // import sidebarLinks from './sidebarLinks' // use this to restore original routes
 import sidebarLinks from './sidebarLinksWoxcut'
@@ -46,12 +47,22 @@ const router = new VueRouter({
 // Global guard
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth) {
-    if (store.getters.isUserLoggedIn === false) {
+    if (store.getters.isUserLoggedIn === true) {
+      api.get('/auth/islogged', {
+        headers: {'authorization': store.getters.getToken ? store.getters.getToken : 'None'}
+      })
+      .then(function (response) {
+        if (response) next()
+      })
+      .catch(function (error) {
+        next({name: 'Login'})
+        console.log(error)
+      })
+    } else {
       next({name: 'Login'})
     }
-  } else {
-    next()
   }
+  next()
 })
 
 /* eslint-disable no-new */

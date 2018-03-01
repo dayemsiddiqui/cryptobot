@@ -53,6 +53,16 @@
   import { Validator, mapFields } from 'vee-validate'
   import api from 'src/services/api'
 
+  const dict = {
+    custom: {
+      password: {
+        regex: 'Requires atleast 6 characters, one uppercase letter, one lowercase letter and one number' // messages can be strings as well.
+      }
+    }
+  }
+
+  Validator.localize('en', dict)
+
   export default {
     created () {
       const isUserUnique = (username) => {
@@ -86,12 +96,12 @@
         modelValidations: {
           username: {
             required: true,
-            min: 6,
+            min: 5,
             unique: true
           },
           password: {
             required: true,
-            min: 5
+            regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/ // atleast 6 characters, one uppercase letter, one lowercase letter and one number
           },
           confirmPassword: {
             required: true,
@@ -118,7 +128,7 @@
           password: this.model.password
         })
         .then(function (response) {
-          self.$router.push('/login')
+          if (response) self.$router.push('/login')
           // console.log(response)
         })
         .catch(function (error) {
