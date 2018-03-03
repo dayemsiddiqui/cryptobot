@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+import * as Cookies from 'js-cookie'
 
 // Common
 import actions from './actions'
 import mutations from './mutations'
-// import * as getters from './getters'
+import getters from './getters'
 
 // Module states
 import token from './modules/token'
@@ -14,12 +16,22 @@ import isUserLoggedIn from './modules/isUserLoggedIn'
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
-  // getters,
+  plugins: [
+    createPersistedState({
+      // storage: window.sessionStorage
+      storage: {
+        getItem: key => Cookies.get(key),
+        setItem: (key, value) => Cookies.set(key, value, { expires: 3 }),
+        removeItem: key => Cookies.remove(key)
+      }
+    })
+  ],
+  getters,
   mutations,
   actions,
   modules: {
-    token,
+    isUserLoggedIn,
     user,
-    isUserLoggedIn
+    token
   }
 })
