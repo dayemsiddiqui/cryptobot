@@ -2,8 +2,8 @@
   <div class="card">
     <form>
       <div class="card-header">
-        <h4 class="card-title">
-          Login Form
+        <h4 class="card-title text-center">
+          Login
         </h4>
       </div>
       <div class="card-content">
@@ -47,10 +47,8 @@
   import api from 'src/services/api'
 
   export default {
-    created () {
-      this.$store.commit('setIsUserLoggedIn', false)
-      this.$store.commit('setUser', null)
-      this.$store.commit('setToken', null)
+    beforeCreate () {
+      this.$store.dispatch('resetUserStates')
     },
     computed: {
       ...mapFields(['username', 'password'])
@@ -91,7 +89,7 @@
           password: this.model.password
         })
         .then(function (response) {
-          if (response.data.token) { // recieved user and token
+          if (response.data.token && response.data.user) { // recieved user and token
             self.$store.commit('setIsUserLoggedIn', true)
             self.$store.commit('setUser', response.data.user)
             self.$store.commit('setToken', response.data.token)

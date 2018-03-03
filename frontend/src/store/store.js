@@ -18,10 +18,9 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   plugins: [
     createPersistedState({
-      // storage: window.sessionStorage
       storage: {
         getItem: key => Cookies.get(key),
-        setItem: (key, value) => Cookies.set(key, value, { expires: 3 }),
+        setItem: (key, value) => Cookies.set(key, value, { expires: 3 }), // use 'secure: true' over https
         removeItem: key => Cookies.remove(key)
       }
     })

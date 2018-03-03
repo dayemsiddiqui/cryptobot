@@ -31,7 +31,8 @@ module.exports = {
 	    bcrypt.compare(req.body.password, user.password, (err, result) => { // eslint-disable-line handle-callback-err
 	      if (result) {
 	        const token = jwt.sign({id: req.body.username, iss: config.issuer}, config.jwtSecret)
-	        user = JSON.stringify(user)
+	        user = JSON.parse(JSON.stringify(user))
+	        delete user.password
 	        return res.status(200).json({ message: 'ok', token, user })
 	      } else {
 	        return res.status(200).json({ message: 'Bad password' })
@@ -66,7 +67,6 @@ module.exports = {
 
 	isLogged: (req, res) => {
 	  jwt.verify(req.headers['authorization'], config.jwtSecret, (err, decoded) => {
-	  	console.log(req.headers['authorization'])
 	    if (err) return res.status(401).json({ message: 'Not logged', isLogged: false })
 	    else return res.status(200).json({ message: 'Logged', isLogged: true })
 	  })
