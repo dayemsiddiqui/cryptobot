@@ -66,6 +66,7 @@ module.exports = {
 
 	isLogged: (req, res) => {
 	  jwt.verify(req.headers['authorization'], config.jwtSecret, (err, decoded) => {
+	  	console.log(req.headers['authorization'])
 	    if (err) return res.status(401).json({ message: 'Not logged', isLogged: false })
 	    else return res.status(200).json({ message: 'Logged', isLogged: true })
 	  })
