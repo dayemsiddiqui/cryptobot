@@ -32,6 +32,12 @@
                 <span class="sidebar-normal">Settings</span>
               </a>
             </li>
+            <li>
+                <router-link to="/login" class="sidebar-normal">
+                  <span class="sidebar-mini">L</span>
+                  <span class="sidebar-normal">Logout</span>
+                </router-link>
+            </li>
           </ul>
         </el-collapse-transition>
       </div>
