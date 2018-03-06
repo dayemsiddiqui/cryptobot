@@ -3,7 +3,6 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
-import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt'
 
 import initializeDb from './db'
 import middleware from './middleware'
@@ -35,11 +34,6 @@ app.use(bodyParser.json({
 
 app.use(passport.initialize({ session: false }))
 
-const jwtOptions = {
-  secretOrKey: config.jwtSecret,
-  jwtFromRequest: ExtractJwt.fromHeader('authorization')
-}
-
 passport.serializeUser(function (user, done) {
   done(null, user.username)
 })
@@ -51,14 +45,6 @@ passport.deserializeUser(function (username, done) {
   })
   .catch(done)
 })
-
-passport.use('jwt', new JwtStrategy(jwtOptions, (jwtPayload, done) => {
-  User.findOne({ username: jwtPayload.id })
-  .then(user => {
-    if (user) return done(null, user)
-    else return done(null, false)
-  })
-}))
 
 // connect to db
 initializeDb(db => {

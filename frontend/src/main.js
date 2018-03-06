@@ -6,6 +6,9 @@ import lang from 'element-ui/lib/locale/lang/en'
 import locale from 'element-ui/lib/locale'
 import App from './App.vue'
 
+// Vuex store
+import { store } from './store/store'
+
 // Plugins
 import GlobalComponents from './gloablComponents'
 import GlobalDirectives from './globalDirectives'
@@ -20,9 +23,11 @@ import routes from './routes/routes_u'
 import './assets/sass/paper-dashboard.scss'
 import './assets/sass/demo.scss'
 import 'es6-promise/auto'
+import api from './services/api'
 
 // import sidebarLinks from './sidebarLinks' // use this to restore original routes
 import sidebarLinks from './sidebarLinksWoxcut'
+
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(GlobalDirectives)
@@ -34,13 +39,37 @@ locale.use(lang)
 
 // configure router
 const router = new VueRouter({
+  mode: 'history',
   routes, // short for routes: routes
   linkActiveClass: 'active'
+})
+
+// Global guard
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    if (store.getters.isUserLoggedIn === true) {
+      api.get('/auth/islogged', {
+        headers: {'authorization': store.getters.getToken ? store.getters.getToken : 'None'}
+      })
+      .then(function (response) {
+        if (response) next()
+      })
+      .catch(function (error) {
+        next({name: 'Login'})
+        console.log(error)
+      })
+    } else {
+      next({name: 'Login'})
+    }
+  } else {
+    next()
+  }
 })
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  render: h => h(App),
-  router
+  router,
+  store, // same as store: store
+  render: h => h(App)
 })
