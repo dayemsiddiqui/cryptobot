@@ -1,28 +1,21 @@
 <template>
   <div>
     <div class="topbar">
-      <span class="right">Back to Dashboard</span>
+      <router-link to="/overview" class="sidebar-normal">
+        <button type="button" class="btn btn-sm btn-primary btn-fill btn-move-left"><span class="btn-label"><i class="ti-angle-left"></i></span>
+                Back to Dashboard
+              </button>
+      </router-link>
     </div>
-    <iframe src="https://www.cryptowat.ch" class="iframe"></iframe>
+    <iframe src="https://www.cryptowat.ch" class="chart-iframe" frameborder="0"></iframe>
   </div>
-  <!-- <div ref="chart" id="chart-container"></div> -->
 </template>
 <script>
-  import CryptowatchEmbed from 'cryptowatch-embed'
-
   export default {
     components: {
     },
 
     mounted: () => {
-      // let chartContainer = this.$ref.chart
-      /*
-      let chart = new CryptowatchEmbed('bitfinex', 'btcusd', {
-        presetColorScheme: 'delek'
-      })
-
-      chart.mount('#chart-container')
-      */
     },
 
     data () {
@@ -35,12 +28,8 @@
 </script>
 <style>
 
-  #chart-container {
-    height: 100vh;
-  }
-
   body {
-    height: 100%;
+    width: 100%;
     padding:0px;
     margin: 0px;
   }
@@ -48,7 +37,7 @@
   .topbar {
     top: 0;
     background-color: #165a54;
-    height: 40px;
+    height: 45px;
     color: white;
     line-height: 20px;
     font-size: 20px;
@@ -58,8 +47,9 @@
     position: relative;
   }
 
-  .iframe {
-    height: 100vh;
+  .chart-iframe {
+    display: block;
+    height: calc(100vh - 45px);
     width: 100%;
   }
 
