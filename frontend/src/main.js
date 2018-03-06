@@ -41,8 +41,7 @@ locale.use(lang)
 const router = new VueRouter({
   mode: 'history',
   routes, // short for routes: routes
-  linkActiveClass: 'active',
-  mode: 'history'
+  linkActiveClass: 'active'
 })
 
 // Global guard

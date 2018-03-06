@@ -115,7 +115,6 @@ let woxcut = {
       component: OrderForm,
       meta: { requiresAuth: authSwitch }
     }
-    }
   ]
 }
 
@@ -124,7 +123,7 @@ const routes = [
   {
     path: '/live',
     name: 'Live Charts',
-    component: LiveCharts
+    component: LiveCharts,
     meta: { requiresAuth: authSwitch }
   },
 
