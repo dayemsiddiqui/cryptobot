@@ -7,6 +7,9 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 // Overview
 import Overview from 'src/components/Dashboard/Overview.vue'
 
+// LiveCharts
+import LiveCharts from 'src/components/Dashboard/LiveCharts.vue'
+
 // Transactions
 import Transaction from 'src/components/Dashboard/Transactions/Transaction.vue'
 
@@ -111,20 +114,23 @@ let woxcut = {
       name: 'Order Book',
       component: OrderForm,
       meta: { requiresAuth: authSwitch }
-    },
-    {
-      path: 'livemarket',
-      name: 'Live Market',
-      component: Overview,
-      meta: { requiresAuth: authSwitch }
+    }
     }
   ]
 }
 
 const routes = [
   woxcut,
+  {
+    path: '/live',
+    name: 'Live Charts',
+    component: LiveCharts
+    meta: { requiresAuth: authSwitch }
+  },
+
   loginPage,
   registerPage,
+
   {path: '*', component: NotFound}
 ]
 
