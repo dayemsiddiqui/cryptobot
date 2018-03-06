@@ -1,0 +1,245 @@
+Script started on Sun 25 Feb 2018 11:08:20 PM PKT
+{
+  "name": "woxcut_backend",
+  "version": "0.0.1",
+  "description": "Boilerplate for woxcut backend",
+  "main": "dist",
+  "scripts": {
+    "dev": "nodemon -w src --exec \"babel-node src\"",
+    "build": "babel src -s -D -d dist",
+    "start": "node dist",
+    "prestart": "npm run -s build",
+    "lint": "eslint src --fix",
+    "precommit": "lint-staged",
+    "test": "set NODE_ENV=test&& mocha src --recursive --timeout 10000 --compilers js:babel-register --require babel-polyfill"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.13.3",
+    "compression": "^1.5.2",
+    "cors": "^2.7.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.13.3",
+    "joi": "^13.1.2",
+    "jsonwebtoken": "^7.3.0",
+    "mongoose": "^5.x.x",
+    "morgan": "^1.8.0",
+    "node-binance-api": "^0.4.5",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "passport-local": "^1.0.0",
+    "resource-router-middleware": "^0.6.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.24.1",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-html": "^2.0.3",
+    "eslint-plugin-import": "^2.6.1",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "lint-staged": "^6.1.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.9.2"
+  },
+  "eslintConfig": {
+    "extends": "standard",
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true
+      }
+    },
+    "env": {
+      "node": true,
+      "mocha": true
+    }
+  },
+  "lint-staged": {
+    "src/**/*": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h{[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h   "name": "woxcut_backend",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h   "version": "0.0.1",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h   "description": "Boilerplate for woxcut backend",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h   "main": "dist",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h   "scripts": {[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "dev": "nodemon -w src --exec \"babel-node src\"",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "build": "babel src -s -D -d dist",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "start": "node dist",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "prestart": "npm run -s build",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "lint": "eslint src --fix",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "precommit": "lint-staged",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "test": "set NODE_ENV=test&& mocha src --recursive --timeout 10000 --compi [Kllers js:babel-register --require babel-polyfill"[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h   },[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h   "license": "MIT",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h   "dependencies": {[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "bcrypt-nodejs": "0.0.3",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "body-parser": "^1.13.3",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "compression": "^1.5.2",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "cors": "^2.7.1",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "dotenv": "^4.0.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "express": "^4.13.3",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "joi": "^13.1.2",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "jsonwebtoken": "^7.3.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "mongoose": "^5.x.x",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "morgan": "^1.8.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "node-binance-api": "^0.4.5",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "passport": "^0.3.2",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "passport-jwt": "^2.2.1",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "passport-local": "^1.0.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "resource-router-middleware": "^0.6.0"[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h   },[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h   "devDependencies": {[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "babel-cli": "^6.9.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "babel-core": "^6.9.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "babel-polyfill": "^6.23.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "babel-preset-env": "^1.4.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "babel-preset-es2015": "^6.9.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "babel-preset-stage-0": "^6.5.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "babel-register": "^6.24.1",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "chai": "^3.5.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "chai-http": "^3.0.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "eslint": "^3.19.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "eslint-config-standard": "^10.2.1",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "eslint-friendly-formatter": "^3.0.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "eslint-loader": "^1.7.1",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "eslint-plugin-html": "^2.0.3",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "eslint-plugin-import": "^2.6.1",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "eslint-plugin-node": "^4.2.2",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "eslint-plugin-promise": "^3.5.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "eslint-plugin-standard": "^3.0.1",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "lint-staged": "^6.1.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "mocha": "^3.2.0",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "nodemon": "^1.9.2"[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h   },[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h   "eslintConfig": {[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "extends": "standard",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h     "parserOptions": {[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h       "ecmaVersion": 8,[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h       "sourceType": "module",[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h       "ecmaFeatures": {[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h         "experimentalObjectRestSpread": true[?1l>[?2004l
+[0m[27m[24m[J[31m\ [00m[K[?1h=[?2004h       }[?1l>[?2004l
+]2;{ "name": "woxcut_backend",; "version": "0.0.1",; "description": ; "main": ; }]1;{zsh: command not found: name:
+zsh: command not found: version:
+zsh: command not found: description:
+zsh: command not found: main:
+zsh: command not found: scripts:
+zsh: command not found: dev:
+zsh: command not found: build:
+zsh: command not found: start:
+zsh: command not found: prestart:
+zsh: command not found: lint:
+zsh: command not found: precommit:
+zsh: command not found: test:
+zsh: command not found: },
+zsh: command not found: license:
+zsh: command not found: dependencies:
+zsh: command not found: bcrypt-nodejs:
+zsh: command not found: body-parser:
+zsh: command not found: compression:
+zsh: command not found: cors:
+zsh: command not found: dotenv:
+zsh: command not found: express:
+zsh: command not found: joi:
+zsh: command not found: jsonwebtoken:
+zsh: command not found: mongoose:
+zsh: command not found: morgan:
+zsh: command not found: node-binance-api:
+zsh: command not found: passport:
+zsh: command not found: passport-jwt:
+zsh: command not found: passport-local:
+zsh: command not found: resource-router-middleware:
+zsh: command not found: },
+zsh: command not found: devDependencies:
+zsh: command not found: babel-cli:
+zsh: command not found: babel-core:
+zsh: command not found: babel-polyfill:
+zsh: command not found: babel-preset-env:
+zsh: command not found: babel-preset-es2015:
+zsh: command not found: babel-preset-stage-0:
+zsh: command not found: babel-register:
+zsh: command not found: chai:
+zsh: command not found: chai-http:
+zsh: command not found: eslint:
+zsh: command not found: eslint-config-standard:
+zsh: command not found: eslint-friendly-formatter:
+zsh: command not found: eslint-loader:
+zsh: command not found: eslint-plugin-html:
+zsh: command not found: eslint-plugin-import:
+zsh: command not found: eslint-plugin-node:
+zsh: command not found: eslint-plugin-promise:
+zsh: command not found: eslint-plugin-standard:
+zsh: command not found: lint-staged:
+zsh: command not found: mocha:
+zsh: command not found: nodemon:
+zsh: command not found: },
+zsh: command not found: eslintConfig:
+zsh: command not found: extends:
+zsh: command not found: parserOptions:
+zsh: command not found: ecmaVersion:
+zsh: command not found: sourceType:
+zsh: command not found: ecmaFeatures:
+zsh: command not found: experimentalObjectRestSpread:
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h     },[?1l>[?2004l
+]2;},]1;},zsh: command not found: },
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h     "env": {[?1l>[?2004l
+]2;"env": {]1;"env":zsh: command not found: env:
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h       "node": true,[?1l>[?2004l
+]2;"node": true,]1;"node":zsh: command not found: node:
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h       "mocha": true[?1l>[?2004l
+]2;"mocha": true]1;"mocha":zsh: command not found: mocha:
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h     }[?1l>[?2004l
+zsh: parse error near `}'
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h   },[?1l>[?2004l
+]2;},]1;},zsh: command not found: },
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h   "lint-staged": {[?1l>[?2004l
+]2;"lint-staged": {]1;"lint-staged":zsh: command not found: lint-staged:
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h     "src/**/*": [[?1l>[?2004l
+]2;"src/**/*": []1;"src/**/*":zsh: no such file or directory: src/**/*:
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h       "eslint --fix",[?1l>[?2004l
+]2;"eslint --fix",]1;"eslintzsh: command not found: eslint --fix,
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h       "git add"[?1l>[?2004l
+]2;"git add"]1;"gitzsh: command not found: git add
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h     ][?1l>[?2004l
+]2;]]1;]zsh: command not found: ]
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h   }[?1l>[?2004l
+zsh: parse error near `}'
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h}[?1l>[?2004l
+zsh: parse error near `}'
+[1m[7m%[27m[1m[0m                                                                                ]2;ams@Precision-M4800: /media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend]1;..utBot/backend[0m[27m[24m[J[38;5;237m------------------------------------------------------------[00m
+[38;5;032m/media/ams/00C2F590C2F589E4/Projects/Node Js/WoxcutBot/backend[38;5;075m([38;5;078mauthentication[38;5;214m*[00m[38;5;075m)[00m [38;5;105m»[00m [K[58C[38;5;237mams@Precision-M4800[00m[77D[?1h=[?2004h[?2004l
+
+Script done on Sun 25 Feb 2018 11:08:22 PM PKT

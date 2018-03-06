@@ -30,34 +30,61 @@ import Market from 'src/components/Dashboard/Market/Market.vue'
 // Order Book
 import OrderForm from 'src/components/Dashboard/OrderBook/OrderForm.vue'
 
+// Register page
+import Register from 'src/components/Pages/RegisterPage.vue'
+
+// Login page
+import Login from 'src/components/Pages/LoginPage.vue'
+
+// a switch that turns on/off the authentication
+let authSwitch = false
+
+let registerPage = {
+  path: '/register',
+  name: 'Register',
+  component: Register
+}
+
+let loginPage = {
+  path: '/login',
+  name: 'Login',
+  component: Login
+}
+
 let woxcut = {
   path: '/',
   component: Layout,
+  meta: { requiresAuth: authSwitch },
   children: [
     {
       path: 'overview',
       name: 'Dashboard',
-      component: Overview
+      component: Overview,
+      meta: { requiresAuth: authSwitch }
     },
     {
       path: 'transactions',
       name: 'Transactions',
-      component: Transaction
+      component: Transaction,
+      meta: { requiresAuth: authSwitch }
     },
     {
       path: 'exchanges',
       name: 'Exchanges',
-      component: Exchange
+      component: Exchange,
+      meta: { requiresAuth: authSwitch }
     },
     {
       path: 'bots', // refactor this
       name: 'Bots',
       component: Bot, // rethink the user-friendly routing mechanism for strategy as well
+      meta: { requiresAuth: authSwitch },
       children: [
         {
           path: 'view/:id',
           name: 'Bot Detail',
-          component: BotDetail
+          component: BotDetail,
+          meta: { requiresAuth: authSwitch }
         }
       ]
     },
@@ -65,11 +92,13 @@ let woxcut = {
       path: 'strategies',
       name: 'Strategies',
       component: Strategy,
+      meta: { requiresAuth: authSwitch },
       children: [
         {
           path: 'create',
           name: 'Create Strategy',
-          component: Strategy
+          component: Strategy,
+          meta: { requiresAuth: authSwitch }
           // component: StrategyCreate
         }
       ]
@@ -77,12 +106,15 @@ let woxcut = {
     {
       path: 'market',
       name: 'Market',
-      component: Market
+      component: Market,
+      meta: { requiresAuth: authSwitch }
     },
     {
       path: 'orderbook',
       name: 'Order Book',
-      component: OrderForm
+      component: OrderForm,
+      meta: { requiresAuth: authSwitch }
+    }
     }
   ]
 }
@@ -93,7 +125,12 @@ const routes = [
     path: '/live',
     name: 'Live Charts',
     component: LiveCharts
+    meta: { requiresAuth: authSwitch }
   },
+
+  loginPage,
+  registerPage,
+
   {path: '*', component: NotFound}
 ]
 

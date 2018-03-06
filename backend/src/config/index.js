@@ -8,7 +8,8 @@ dotenv.config()
 const config = {
   port: 8080,
   bodyLimit: '100kb',
-  corsHeaders: ['Link']
+  corsHeaders: ['Link'],
+  issuer: 'Woxcut'
 }
 
 export const setupConfig = () => {
