@@ -54,6 +54,7 @@ let loginPage = {
 let woxcut = {
   path: '/',
   component: Layout,
+  redirect: 'overview',
   meta: { requiresAuth: authSwitch },
   children: [
     {

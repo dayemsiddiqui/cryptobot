@@ -2,6 +2,7 @@ import { version } from '../../package.json'
 import { Router } from 'express'
 // import facets from './facets'
 import bots from './bots'
+import exchanges from './exchanges'
 import auth from './auth'
 
 export default ({ config, db }) => {
@@ -17,6 +18,9 @@ export default ({ config, db }) => {
 
   // api routes
   api.use('/bots', bots)
+
+   // api routes
+  api.use('/exchanges', exchanges)
 
   return api
 }

@@ -44,7 +44,7 @@
 
 <script>
   import { mapFields } from 'vee-validate'
-  import api from 'src/services/api'
+  import LoginService from 'src/services/LoginService'
 
   export default {
     beforeCreate () {
@@ -84,7 +84,7 @@
       },
       submit () {
         var self = this
-        api.post('/auth/login', {
+        LoginService.login({
           username: this.model.username,
           password: this.model.password
         })

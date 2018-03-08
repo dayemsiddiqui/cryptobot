@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-let instance = axios.create({
+export default () => axios.create({
   baseURL: 'http://localhost:8080/api'
 })
-
-module.exports = instance
