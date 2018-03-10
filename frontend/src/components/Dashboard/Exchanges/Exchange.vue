@@ -13,8 +13,8 @@
             </div>
             <div class="col-sm-6">
               <div class="text-right">
-                <button class="btn btn-disabled btn-fill" disabled="">Disable</button>
-                <button class="btn btn-success btn-fill" :if="is_configured">Connect</button>
+                <!-- <button class="btn btn-disabled btn-fill" disabled="">Disable</button> -->
+                <button class="btn btn-success btn-fill" v-on:click="showSwal">Connect</button>
                 <!-- <i :class="exchange.footerIcon"></i> {{exchange.footerText}} -->
               </div>
             </div>
@@ -27,6 +27,8 @@
 <script>
   import ExchangeCard from 'components/UIComponents/Cards/ExchangeCard.vue'
   import ExchangeService from 'src/services/ExchangesService'
+
+  import swal from 'sweetalert2'
 
   export default {
     components: {
@@ -48,6 +50,43 @@
     },
 
     methods: {
+      showSwal () {
+        swal({
+          html: '<div class="form-group">' +
+              '<label>Enter your Exchange API keys</label>' +
+            '<p><input id="keypub" type="text" placeholder="Public Key" class="form-control" /></p>' +
+            '<p><input id="keysec" type="text" placeholder="Secret Key" class="form-control" /></p>' +
+            '</div>',
+          showCancelButton: true,
+          confirmButtonText: 'Connect',
+          reverseButtons: true,
+          showLoaderOnConfirm: true,
+          preConfirm: () => {
+            return new Promise((resolve) => {
+              let payload = [
+                document.getElementById('keypub').value,
+                document.getElementById('keysec').value
+              ]
+              resolve(ExchangeService.connect(payload))
+            })
+          },
+          allowOutsideClick: () => !swal.isLoading()
+        }).then((result) => {
+          console.log(result)
+          if (result.data === 'success') {
+            swal({
+              type: 'success',
+              confirmButtonText: 'OK'
+            })
+          } else {
+            swal({
+              type: 'error',
+              text: 'no connecet'
+            })
+          }
+        })
+      },
+
       async getAllExchanges () {
         const response = await ExchangeService.fetchAllExchanges()
         this.loading = false
