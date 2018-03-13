@@ -14,7 +14,7 @@
             <div class="col-sm-6">
               <div class="text-right">
                 <!-- <button class="btn btn-disabled btn-fill" disabled="">Disable</button> -->
-                <button class="btn btn-success btn-fill" v-on:click="showSwal">Connect</button>
+                <button v-show="exchange.is_configured" class="btn btn-success btn-fill" v-on:click="showSwal(exchange._id)">Connect</button>
                 <!-- <i :class="exchange.footerIcon"></i> {{exchange.footerText}} -->
               </div>
             </div>
@@ -50,12 +50,12 @@
     },
 
     methods: {
-      showSwal () {
+      showSwal (exchangeId) {
         swal({
           html: '<div class="form-group">' +
               '<label>Enter your Exchange API keys</label>' +
-            '<p><input id="keypub" type="text" placeholder="Public Key" class="form-control" /></p>' +
-            '<p><input id="keysec" type="text" placeholder="Secret Key" class="form-control" /></p>' +
+            '<p><input required id="keypub" type="text" placeholder="Public Key" class="form-control" /></p>' +
+            '<p><input required id="keysec" type="text" placeholder="Secret Key" class="form-control" /></p>' +
             '</div>',
           showCancelButton: true,
           confirmButtonText: 'Connect',
@@ -63,10 +63,11 @@
           showLoaderOnConfirm: true,
           preConfirm: () => {
             return new Promise((resolve) => {
-              let payload = [
-                document.getElementById('keypub').value,
-                document.getElementById('keysec').value
-              ]
+              let payload = {
+                publickey: document.getElementById('keypub').value,
+                secretkey: document.getElementById('keysec').value,
+                exchange_id: exchangeId
+              }
               resolve(ExchangeService.connect(payload))
             })
           },
@@ -76,12 +77,14 @@
           if (result.data === 'success') {
             swal({
               type: 'success',
-              confirmButtonText: 'OK'
+              confirmButtonText: 'OK',
+              text: 'Connection Successful'
             })
           } else {
             swal({
               type: 'error',
-              text: 'no connecet'
+              text: `Connection Failed: ${result.data.error}
+              Please check your keys and try again.`
             })
           }
         })
@@ -89,8 +92,9 @@
 
       async getAllExchanges () {
         const response = await ExchangeService.fetchAllExchanges()
-        this.loading = false
         this.exchangeCards = response.data
+        console.log(this.$store.getters.getUser.exchanges[0]) // this should not be undefined
+        this.loading = false
       }
     }
   }
