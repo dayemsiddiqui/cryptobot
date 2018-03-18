@@ -1,3 +1,4 @@
+import VueContextMenu from '@xunlei/vue-context-menu'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueNotify from 'vue-notifyjs'
@@ -31,6 +32,7 @@ Vue.use(VueNotify)
 Vue.use(SideBar, {sidebarLinks: sidebarLinks})
 Vue.use(VeeValidate)
 locale.use(lang)
+Vue.use(VueContextMenu)
 
 // configure router
 const router = new VueRouter({

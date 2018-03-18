@@ -1,14 +1,13 @@
 <template>
   <div id="drawing">
     <div class="draggable" v-for="node in nodes">
-      <p> </p>
-      
+      <h5>{{ node.title }}</h5>  
       <div v-for="con in node.output">
-        <p ><div class="socket output"></div><br></p>
+        <p ><div v-bind:id="con.id" class="socket output"></div><br></p>
       </div>     
   
-      <div v-for="aussi in node.input">
-        <p><div class="socket input"></div><br></p>   
+      <div v-for="con in node.input">
+        <p><div v-bind:id="con.id" class="socket input"></div><br></p>   
       </div>  
     </div>
   </div>
@@ -28,19 +27,55 @@
     data () {
       return {
         // lib: D3NE
+        pair: {},
+        connections: [],
       }
     },
     created() {
 
      },
      methods: {
-      joinNodes: function(){
+      joinNodes: function(elm1, elm2){
        var draw = SVG('drawing')
-       draw.line(0, 0, 500, 500).stroke({ width: 2 })
-      }
+       new LeaderLine(
+            document.getElementById(elm1),
+            document.getElementById(elm2)
+          );  
+       var pos1 = $("#"+elm1).position();
+       var pos2 = $("#"+elm2).position();
+       console.log(pos1)
+       var offsetX = 296;
+       var offsetY = 110; 
+       draw.line(pos1.left - offsetX, pos1.top - offsetY - 500, 500, 500).stroke({ width: 2 })
+      },
      },
     mounted () {
       
+      $( "#drawing" ).mousemove(function( event ) {
+        
+        // console.log(event.pageX + ", " + event.pageY);
+        
+      });
+      $( ".socket" ).click($.proxy(function( event ) {
+         console.log("Click Target", event.target);
+         if(event.target.classList.contains( "input" )){
+            //Write the logic here for storing connections
+            this.pair.input = event.target.id
+         }
+         if(event.target.classList.contains( "output" )){
+            //Write the logic here for storing connections
+            this.pair.output = event.target.id
+         }
+
+         if(this.pair.input && this.pair.output){
+          this.connections.push(this.pair);
+          this.joinNodes(this.pair.input, this.pair.output);
+          
+          this.pair = {};
+         }
+
+         console.log(this.connections, this.pair)
+      }, this));
 
       // target elements with the "draggable" class
       interact('.draggable')
@@ -99,6 +134,7 @@
   background-color: #2ecc71;
   color: white;
   padding: 25px;
+  padding-top: 1px;
   border-radius: 15px;
   overflow: visible;
 }

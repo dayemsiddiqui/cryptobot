@@ -15,6 +15,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@xunlei/vue-context-menu": "^1.0.2",
     "axios": "^0.17.1",
     "chartist": "^0.10.1",
     "d3-node-editor": "^0.6.8",
@@ -32,6 +33,7 @@
     "vee-validate": "^2.0.0-rc.14",
     "vue": "^2.3.4",
     "vue-clickaway": "^2.1.0",
+    "vue-context-menu": "^2.0.6",
     "vue-form-wizard": "^0.6.4",
     "vue-nav-tabs": "^0.5.1",
     "vue-notifyjs": "^0.1.8",
