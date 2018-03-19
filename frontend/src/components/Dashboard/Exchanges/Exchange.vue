@@ -14,7 +14,7 @@
             <div class="col-sm-6">
               <div class="text-right">
                 <!-- <button class="btn btn-disabled btn-fill" disabled="">Disable</button> -->
-                <button v-show="exchange.is_configured" class="btn btn-success btn-fill" v-on:click="showSwal(exchange._id)">Connect</button>
+                <button class="btn btn-success btn-fill" v-on:click="showSwal(exchange._id)">Connect</button>
                 <!-- <i :class="exchange.footerIcon"></i> {{exchange.footerText}} -->
               </div>
             </div>
