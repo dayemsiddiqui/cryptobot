@@ -3,8 +3,7 @@ import jwt from 'jsonwebtoken'
 import config from '../config'
 import Exchange from '../models/exchangeModel'
 import User from '../models/userModel'
-
-// import binance from 'node-binance-api'
+import Binance from 'binance-api-node'
 
 const exchange = Router()
 
@@ -20,16 +19,17 @@ exchange.get('/', (req, res) => {
 
 exchange.post('/connect', (req, res) => {
   // run checks to ensure that the key is valid
-  // binance.options({
-  //   'APIKEY': req.body.BINANCEAPIKEY,
-  //   'APISECRET': req.body.BINANCEAPISECRET,
-  //   'test': true
-  // }, (result) => {
-  //   console.log(result)
-  // })
+  // Authenticated client, can make signed calls
+  const client = Binance({
+    apiKey: req.body.publickey,
+    apiSecret: req.body.secretkey
+  })
+
+  client.accountInfo().then(info => console.log(info))
 
   /// // enter the API keys into db
   /// // user.exchanges
+
   jwt.verify(req.headers['authorization'], config.jwtSecret, (err, payload) => {
     if (err) return res.status(401).json({message: 'Invalid Token'})
     else {
