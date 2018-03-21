@@ -92,8 +92,10 @@
 
       async getAllExchanges () {
         const response = await ExchangeService.fetchAllExchanges()
-        this.exchangeCards = response.data
-        console.log(this.$store.getters.getUser.exchanges[0]) // this should not be undefined
+        // this.exchangeCards = response.data
+        let exchanges = response.data
+        console.log(exchanges)
+        // console.log(this.$store.getters.getUser.exchanges[0]) // this should not be undefined
         this.loading = false
       }
     }
