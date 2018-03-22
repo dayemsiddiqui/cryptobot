@@ -67,4 +67,8 @@ exchange.post('/connect', (req, res) => {
   // }
 })
 
+exchange.post('/disconnect', (req, res) => {
+  return res.status(200).json('success')
+})
+
 export default exchange

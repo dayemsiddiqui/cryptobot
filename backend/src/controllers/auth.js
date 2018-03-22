@@ -32,6 +32,9 @@ module.exports = {
             const token = jwt.sign({username: req.body.username, iss: config.issuer}, config.jwtSecret)
             user = JSON.parse(JSON.stringify(user))
             delete user.password
+            for (let e of user.exchanges) {
+              delete e.api
+            }
             return res.status(200).json({ message: 'ok', token, user })
           } else {
             return res.status(200).json({ message: 'Bad password' })

@@ -13,8 +13,8 @@
             </div>
             <div class="col-sm-6">
               <div class="text-right">
-                <!-- <button class="btn btn-disabled btn-fill" disabled="">Disable</button> -->
-                <button class="btn btn-success btn-fill" v-on:click="showSwal(exchange._id)">Connect</button>
+                <button v-show="exchange.is_configured" class="btn btn-danger btn-fill" v-on:click="showDisconnectSwal(exchange._id)">Disconnect</button>
+                <button v-show="!exchange.is_configured" class="btn btn-success btn-fill" v-on:click="showConnectSwal(exchange._id)">Connect</button>
                 <!-- <i :class="exchange.footerIcon"></i> {{exchange.footerText}} -->
               </div>
             </div>
@@ -50,7 +50,7 @@
     },
 
     methods: {
-      showSwal (exchangeId) {
+      showConnectSwal (exchangeId) {
         swal({
           html: '<div class="form-group">' +
               '<label>Enter your Exchange API keys</label>' +
@@ -90,11 +90,54 @@
         })
       },
 
+      showDisconnectSwal (exchangeId) {
+        swal({
+          title: 'Are you sure?',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonClass: 'btn btn-success btn-fill',
+          cancelButtonClass: 'btn btn-danger btn-fill',
+          confirmButtonText: 'Yes',
+          buttonsStyling: false,
+          preConfirm: () => {
+            return new Promise((resolve) => {
+              resolve(ExchangeService.disconnect(exchangeId))
+            })
+          }
+        }).then((result) => {
+          if (result.data === 'success') {
+            swal({
+              title: 'Disconnected!',
+              text: '',
+              type: 'success',
+              confirmButtonClass: 'btn btn-success btn-fill',
+              buttonsStyling: false
+            })
+          } else {
+            swal({
+              title: 'Disconnected!',
+              text: '',
+              type: 'success',
+              confirmButtonClass: 'btn btn-success btn-fill',
+              buttonsStyling: false
+            })
+          }
+        })
+      },
+
       async getAllExchanges () {
         const response = await ExchangeService.fetchAllExchanges()
         // this.exchangeCards = response.data
         let exchanges = response.data
         console.log(exchanges)
+        for (let exchange of exchanges) {
+          for (let uexchange of this.$store.getters.getUser.exchanges) {
+            if (uexchange.exchange_id === exchange._id) {
+              exchange.is_configured = true
+            }
+          }
+        }
+        this.exchangeCards = exchanges
         // console.log(this.$store.getters.getUser.exchanges[0]) // this should not be undefined
         this.loading = false
       }
