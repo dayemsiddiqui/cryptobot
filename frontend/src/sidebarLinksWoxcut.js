@@ -7,7 +7,16 @@ export default [
   {
     name: 'Strategies',
     icon: 'ti-wand',
-    path: '/strategies'
+    path: '/strategies',
+    collapsed: true,
+    children: [{
+      name: 'View',
+      path: '/strategies/view'
+    },
+    {
+      name: 'Create',
+      path: '/strategies/create'
+    }]
   },
   {
     name: 'Trading Bots',
