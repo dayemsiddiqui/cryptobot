@@ -22,40 +22,21 @@
     <div class="row">
       <div class="col-lg-6 col-sm-6">
         <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">
+              Current Portfolio
+              </h4>
+              <!-- <p class="category">All products that were shipped</p> -->
+            </div>
+          <vue-chartist :data="data" :options="options" type="Pie"></vue-chartist>
+        </div>
+      </div>
+        
+      <div class="col-lg-6 col-sm-6">
+        <div class="card">
           <div class="card-header">
             <h4 class="card-title">
             Current Balance
-            <div class="row">
-            <div class="col-sm-3" style="padding-right: 140px;">
-              <drop-down>
-                <button slot="title" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
-                  Show 0 Balances
-                  <b class="caret"></b>
-                </button>
-                <li><a>Action</a></li>
-              </drop-down>
-            </div>
-              
-             <div class="col-sm-2">
-               <drop-down>
-                 <button slot="title" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
-                   in BTC
-                   <b class="caret"></b>
-                 </button>
-                 <li><a>Action</a></li>
-               </drop-down>
-             </div>
-
-             <div class="col-sm-4">
-               <drop-down>
-                 <button slot="title" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
-                   30d Trend
-                   <b class="caret"></b>
-                 </button>
-                 <li><a>Action</a></li>
-               </drop-down>
-             </div>
-            </div>
             </h4>
             <!-- <p class="category">All products that were shipped</p> -->
           </div>
@@ -77,12 +58,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                          <td>LTC</td>
-                          <td>147</td>
-                          <td>147</td>
-                          <td>147</td>
-                          <td>5%</td>
+                        <tr v-for="row in balanceData">
+                          <td>{{row.currency}}</td>
+                          <td>{{row.amount}}</td>
+                          <td>{{row.value}}</td>
+                          <td>{{row.price}}</td>
+                          <td>{{row.trend}}</td>
                         </tr>
                     </tbody>
                   </table>
@@ -228,6 +209,8 @@
   import CircleChartCard from 'src/components/UIComponents/Cards/CircleChartCard.vue'
   import StatsCard from 'src/components/UIComponents/Cards/StatsCard.vue'
   import ChartCard from 'src/components/UIComponents/Cards/ChartCard.vue'
+  import VueChartist from 'v-chartist'
+
   // import Loading from 'src/components/Dashboard/Layout/LoadingMainPanel.vue'
 
   /*
@@ -242,7 +225,8 @@
     components: {
       StatsCard,
       ChartCard,
-      CircleChartCard
+      CircleChartCard,
+      'vue-chartist': VueChartist
       // WorldMap
     },
     /**
@@ -250,6 +234,18 @@
      */
     data () {
       return {
+        data: {
+          labels: ['BTC', 'LTC', 'ETH', 'USDT'],
+          series: [20, 10, 30, 40]
+        },
+        options: {
+          // donut: true,
+          donutWidth: 40,
+          donutSolid: true,
+          startAngle: 360,
+          showLabel: true,
+          fullWidth: true
+        },
         statsCards: [
           {
             type: 'warning',
@@ -309,7 +305,14 @@
               line: 'ct-line ct-green'
             }
           }
-        }
+        },
+        balanceData: [{
+          currency: 'LTC',
+          amount: 147,
+          value: 147,
+          price: 147,
+          trend: 5 + '%'
+        }]
 
       }
     }
