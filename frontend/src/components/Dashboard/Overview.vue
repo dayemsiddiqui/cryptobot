@@ -18,6 +18,82 @@
       </div>
     </div>
 
+     <!--Stats cards-->
+    <div class="row">
+      <div class="col-lg-6 col-sm-6">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">
+            Current Balance
+            <div class="row">
+            <div class="col-sm-3" style="padding-right: 140px;">
+              <drop-down>
+                <button slot="title" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
+                  Show 0 Balances
+                  <b class="caret"></b>
+                </button>
+                <li><a>Action</a></li>
+              </drop-down>
+            </div>
+              
+             <div class="col-sm-2">
+               <drop-down>
+                 <button slot="title" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
+                   in BTC
+                   <b class="caret"></b>
+                 </button>
+                 <li><a>Action</a></li>
+               </drop-down>
+             </div>
+
+             <div class="col-sm-4">
+               <drop-down>
+                 <button slot="title" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
+                   30d Trend
+                   <b class="caret"></b>
+                 </button>
+                 <li><a>Action</a></li>
+               </drop-down>
+             </div>
+            </div>
+            </h4>
+            <!-- <p class="category">All products that were shipped</p> -->
+          </div>
+          <div class="card-content">
+            <div class="row">
+              <!-- <div class="col-md-7"> -->
+                <!-- <world-map></world-map> -->
+              <!-- </div> -->
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <td><strong>Currency</strong></td>
+                        <td><strong>Amount</strong></td>
+                        <td><strong>Value in BTC</strong></td>
+                        <td><strong>Price in BTC</strong></td>
+                        <td><strong>Trend</strong></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td>LTC</td>
+                          <td>147</td>
+                          <td>147</td>
+                          <td>147</td>
+                          <td>5%</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
         <!-- <div class="col-lg-8 col-sm-12"> -->
         <div class="col-lg-4">
