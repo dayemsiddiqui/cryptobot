@@ -8,6 +8,8 @@
 <script>
   import * as D3NE from 'd3-node-editor'
 
+  import { componentCandlestick } from './Nodes/GetCandlesticks.js'
+
   let numSocket = new D3NE.Socket('number', 'Number value', 'hint')
 
   let componentNum = new D3NE.Component('Number', {
@@ -74,31 +76,36 @@
     Add: componentAdd
   })
 
-  let container, components, editor, engine, nn, n1, n2, add
+  let container, components, editor, engine, nn, n1, n2, add, candlesticksNode
 
   export default {
     mounted () {
       container = document.getElementById('nodeEditor')
-      components = [componentNum, componentAdd]
+      components = [componentNum, componentAdd, componentCandlestick]
       editor = new D3NE.NodeEditor('demo@0.1.0', container, components, menu)
 
-      nn = componentNum.newNode()
-      nn.data.num = 2
-      n1 = componentNum.builder(nn)
-      n2 = componentNum.builder(componentNum.newNode())
-      add = componentAdd.builder(componentAdd.newNode())
+      candlesticksNode = componentCandlestick.builder(componentCandlestick.newNode())
 
-      n1.position = [80, 200]
-      n2.position = [80, 400]
-      add.position = [500, 240]
+      // nn = componentNum.newNode()
+      // nn.data.num = 2
+      // n1 = componentNum.builder(nn)
+      // n2 = componentNum.builder(componentNum.newNode())
+      // add = componentAdd.builder(componentAdd.newNode())
 
-      editor.connect(n1.outputs[0], add.inputs[0])
-      editor.connect(n2.outputs[0], add.inputs[1])
+      // n1.position = [80, 200]
+      // n2.position = [80, 400]
+      // add.position = [500, 240]
+      candlesticksNode.position = [500, 240]
 
-      editor.addNode(n1)
-      editor.addNode(n2)
-      editor.addNode(add)
-      //  editor.selectNode(tnode)
+      // editor.connect(n1.outputs[0], add.inputs[0])
+      // editor.connect(n2.outputs[0], add.inputs[1])
+
+      // editor.addNode(n1)
+      // editor.addNode(n2)
+      // editor.addNode(add)
+      editor.addNode(candlesticksNode)
+      // editor.selectNode(tnode)
+
       engine = new D3NE.Engine('demo@0.1.0', components)
 
       editor.eventListener.on('change', async () => {
@@ -122,10 +129,10 @@
 <style>
   #nodeEditor{
      position: relative;
-    height: 100%
+     height: 800px;
   }
 
-  .socket.number{
+  .socket.number, .socket.output{
       background: #96b38a
   }
 </style>
