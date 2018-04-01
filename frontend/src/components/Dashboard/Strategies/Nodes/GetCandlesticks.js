@@ -9,33 +9,41 @@ let currencyInput = `
 <option value="xpr">Ripple</option>
 </select>`
 
-export const componentCandlestick = new D3NE.Component('Get Candlesticks', {
-  builder (node) {
-    let candlesticksOutput = new D3NE.Output('Out', output)
-    let currencyControl = new D3NE.Control(currencyInput, (element, control) => {
-      element.value = control.getData('currency') || 'btc'
+const componentCandlestick = (editor) => {
+  return new D3NE.Component('Get Candlesticks', {
+    builder (node) {
+      let candlesticksOutput = new D3NE.Output('Out', output)
+      let currencyControl = new D3NE.Control(currencyInput, (element, control) => {
+        element.value = control.getData('currency') || 'btc'
 
-      function update () {
-        control.putData('currency', element.value)
-      }
+        function update () {
+          control.putData('currency', element.value)
+        }
 
-      element.addEventListener('input', () => {
+        element.addEventListener('input', () => {
+          update()
+          // make sure the editor obj has a change eventlistener
+          editor.eventListener.trigger('change')
+        })
+
+        // prevent node movement when selecting text in the input field
+        element.addEventListener('mousedown', e => { e.stopPropagation() })
         update()
-        // make sure the editor obj has a change eventlistener
-        editor.eventListener.trigger('change')
       })
+      return node.addControl(currencyControl).addOutput(candlesticksOutput)
+    },
 
-      // prevent node movement when selecting text in the input field
-      element.addEventListener('mousedown', e => { e.stopPropagation() })
-      update()
-    })
-    return node.addControl(currencyControl).addOutput(candlesticksOutput)
-  },
+    worker (node, inputs, outputs) {
+      outputs[0] = node.data.currency
+    }
+  })
+}
 
-  worker (node, inputs, outputs) {
-    outputs[0] = node.data.currency
-  }
-})
+module.exports = {
+  componentCandlestick
+}
+
+// JS Reflection
 
 /* // Get the Object's methods names:
 function getMethodsNames(obj = this) {
