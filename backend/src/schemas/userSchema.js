@@ -16,7 +16,18 @@ const userSchema = new Schema({
       secret: { type: String, minlength: [32, 'API Key invalid'] } //
     },
     is_configured: Boolean
-  }]
+  }],
+  transactions:[{
+    exchange_id : { type: Schema.Types.ObjectId, ref: 'exchanges' },
+    type : String,
+    buy_currency: String,
+    sell_currency: String,
+    buy_amount: Number,
+    sell_amount: Number,
+    datetime : Date
+
+  }
+  ]
 })
 
 userSchema.pre('save', function (next) {
