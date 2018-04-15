@@ -48,13 +48,11 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth) {
     if (store.getters.isUserLoggedIn === true) {
-      api.get('/auth/islogged', {
-        headers: {'authorization': store.getters.getToken ? store.getters.getToken : 'None'}
-      })
-      .then(function (response) {
+      api.get('/auth/islogged')
+      .then(response => {
         if (response) next()
       })
-      .catch(function (error) {
+      .catch(error => {
         next({name: 'Login'})
         console.log(error)
       })

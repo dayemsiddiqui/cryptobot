@@ -1,12 +1,14 @@
 import * as D3NE from 'd3-node-editor'
 
+import api from 'src/services/api'
+
 // socket name, description, hint
 let output = new D3NE.Socket('candlesticks', 'Candlesticks', 'Outputs candlesticks in the provided range')
 let currencyInput = `
 <select>
-<option value="btc">Bitcoin</option>
-<option value="ltc">Litecoin</option>
-<option value="xpr">Ripple</option>
+<option value="BTCUSDT">Bitcoin</option>
+<option value="LTCUSDT">Litecoin</option>
+<option value="XRPUSDT">Ripple</option>
 </select>`
 
 const componentCandlestick = (editor) => {
@@ -14,7 +16,7 @@ const componentCandlestick = (editor) => {
     builder (node) {
       let candlesticksOutput = new D3NE.Output('Out', output)
       let currencyControl = new D3NE.Control(currencyInput, (element, control) => {
-        element.value = control.getData('currency') || 'btc'
+        element.value = control.getData('currency') || 'BTCUSDT'
 
         function update () {
           control.putData('currency', element.value)
@@ -34,7 +36,11 @@ const componentCandlestick = (editor) => {
     },
 
     worker (node, inputs, outputs) {
-      outputs[0] = node.data.currency
+      let [starttime, endtime, symbol] = [1499990400000, 1516460405000, node.data.currency]
+      api().get(`/binance/candles/${starttime}/${endtime}/${symbol}`)
+      .then(response => {
+        outputs[0] = response.data
+      })
     }
   })
 }
