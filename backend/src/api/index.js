@@ -3,6 +3,7 @@ import { Router } from 'express'
 // import facets from './facets'
 import bots from './bots'
 import auth from './auth'
+import binance from './binance'
 
 export default ({ config, db }) => {
   let api = Router()
@@ -17,6 +18,9 @@ export default ({ config, db }) => {
 
   // api routes
   api.use('/bots', bots)
+
+  // binance routes
+  api.use('/binance', binance)
 
   return api
 }
