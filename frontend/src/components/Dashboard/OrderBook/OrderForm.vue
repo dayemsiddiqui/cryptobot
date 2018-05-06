@@ -28,20 +28,7 @@
               </el-select>
           </el-col>
 
-          <el-col :span="6">
-            <el-select
-              class="select-info"
-              size="large"
-              placeholder="First Currency"
-              v-model="model.c1List">
-                <el-option
-                  v-for="item in model.currencies"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
-          </el-col>
+          
 
           <el-col :span="6">
             <el-select
@@ -67,7 +54,7 @@
         <hr>
 
         <el-row type="flex" justify="center">
-          <el-col :span="6">
+          <el-col :span="12">
             <div class="category">
               Last  | High | Low | 24 Hour Volume | Weighted Average
             </div>
@@ -78,8 +65,9 @@
 
 
         <el-row type="flex" justify="space-around">
-
-          <el-col :span="12">
+          
+          <el-col :span="8">
+        
 
             <vue-tabs
               :activeTabColor = "currentTabColor"
@@ -90,29 +78,77 @@
               v-model="currentTab">
 
               <v-tab title="Buy" icon="ti-import">
-
                 <form>
-
                   <div class="form-group">
-
-                    <div>
-
+                  <div class='col-md-4'>
                       <div class="input-group">
-                        <span class="input-group-addon">I want to Buy</span>
+                        <span class="input-group-addon">Buy</span>
                         <input type="number"
                                  name="buyC1"
                                  v-validate="modelValidations.buyC1"
                                  v-model="model.buyC1"
                                  class="form-control">
-                        <span class="input-group-addon">฿</span>
-                      </div>
+                        <span class="input-group-addon"><i :class="getCurrencyIcon()"></i></span>
+                        <small class="text-danger" v-show="buyC1.invalid">
+                          {{ getError('amount to buy') }}
+                        </small>
 
-                      <small class="text-danger" v-show="buyC1.invalid">
-                        {{ getError('buyC1') }}
-                      </small>
+                        </div>
+                        </div>
+                        
+                      <div class="col-md-5">
+                      <div class="input-group">
+
+                        <el-select
+                          class="select-info"
+                          size="large"
+                          placeholder="First Currency"
+                          v-model="model.c1buyList">
+                            <el-option
+                              v-for="item in model.currencies"
+                              :key="item.value"
+                              :label="item.label"
+                              :value="item.value">
+                            </el-option>
+                          </el-select>
+                      </div>
+                      </div>
                     </div>
 
-                  </div>
+                      <div class="form-group">
+                      <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon">with</span>
+                        <input type="number"
+                                 name="buyC1"
+                                 v-validate="modelValidations.buyC2"
+                                 v-model="model.buyC2"
+                                 class="form-control">
+                        <span class="input-group-addon"><i :class="getCurrencyIcon()"></i></span>
+                      </div>
+                      </div>
+                      
+
+                      <div class="col-md-5">
+                      <div class="input-group">
+                      <small class="text-danger" v-show="buyC2.invalid">
+                        {{ getError('buy with currency') }}
+                      </small>
+                      <el-select
+                        class="select-info"
+                        size="large"
+                        placeholder="First Currency"
+                        v-model="model.c2buyList">
+                          <el-option
+                            v-for="item in model.currencies"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                          </el-option>
+                        </el-select>
+                    </div>
+                    </div>
+                    </div>
 
                   <button type="submit" class="btn btn-fill btn-info">
                         BUY
@@ -125,39 +161,91 @@
               <v-tab title="Sell" icon="ti-export">
 
                 <form>
-
-                    <div class="form-group">
-
-                      <div>
-                        <div class="input-group">
-                          <span class="input-group-addon">I want to Sell</span>
-                          <input type="number"
-                                   name="sellC1"
-                                   v-validate="modelValidations.sellC1"
-                                   v-model="model.sellC1"
-                                   class="form-control">
-                          <span class="input-group-addon">฿</span>
+                  <div class="form-group">
+                  <div class='col-md-4'>
+                      <div class="input-group">
+                        <span class="input-group-addon">Sell</span>
+                        <input type="number"
+                                 name="sellC1"
+                                 v-validate="modelValidations.sellC1"
+                                 v-model="model.sellC1"
+                                 class="form-control">
+                        <span class="input-group-addon"><i :class="getCurrencyIcon()"></i></span>
+                        <small class="text-danger" v-show="sellC1.invalid">
+                          {{ getError('amount to sell') }}
+                        </small>
 
                         </div>
-                        <small class="text-danger" v-show="sellC1.invalid">
-                          {{ getError('sellC1') }}
-                        </small>
-                      </div>
+                        </div>
+                        
+                      <div class="col-md-5">
+                      <div class="input-group">
 
+                        <el-select
+                          class="select-info"
+                          size="large"
+                          placeholder="Currency to sell"
+                          v-model="model.c1sellList">
+                            <el-option
+                              v-for="item in model.currencies"
+                              :key="item.value"
+                              :label="item.label"
+                              :value="item.value">
+                            </el-option>
+                          </el-select>
+                      </div>
+                      </div>
                     </div>
 
-                    <button type="submit" class="btn btn-fill btn-info">
-                          SELL
-                    </button>
+                      <div class="form-group">
+                      <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon">for</span>
+                        <input type="number"
+                                 name="sellC2"
+                                 v-validate="modelValidations.sellC2"
+                                 v-model="model.sellC2"
+                                 class="form-control">
+                        <span class="input-group-addon"><i :class="getCurrencyIcon()"></i></span>
+                      </div>
+                      </div>
+                      
+
+                      <div class="col-md-5">
+                      <div class="input-group">
+                      <small class="text-danger" v-show="sellC2.invalid">
+                        {{ getError('sell for amount') }}
+                      </small>
+                      <el-select
+                        class="select-info"
+                        size="large"
+                        placeholder="Currency to buy"
+                        v-model="model.c2sellList">
+                          <el-option
+                            v-for="item in model.currencies"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                          </el-option>
+                        </el-select>
+                    </div>
+                    </div>
+                    </div>
+
+                  <button type="submit" class="btn btn-fill btn-info">
+                        SELL
+                  </button>
 
                 </form>
 
               </v-tab>
 
             </vue-tabs>
-
           </el-col>
 
+          <el-col :span="4">
+            <p>asdasdasd</p>
+          </el-col>
         </el-row>
 
       </div> <!-- end card-content -->
@@ -168,20 +256,11 @@
 
 
 <script>
-
-  import Vue from 'vue'
-  import {Row, Col} from 'element-ui'
-  import {VueTabs, VTab} from 'vue-nav-tabs'
   import {mapFields} from 'vee-validate'
-
-  Vue.use(Row)
-  Vue.use(Col)
-  Vue.use(VueTabs)
-  Vue.use(VTab)
 
   export default {
     computed: {
-      ...mapFields(['buyC1', 'buyC2', 'sellC1', 'sellC2', 'c1List', 'c2List'])
+      ...mapFields(['buyC1', 'buyC2', 'sellC1', 'sellC2', 'c1buyList', 'c2buyList', 'c1sellList', 'c2sellList'])
     },
     created () {
       // runs after component is created
@@ -189,7 +268,7 @@
     data () {
       return {
         tabTitles: ['Buy', 'Sell'],
-        currentTab: 'Buy',
+        currentTab: '',
         currentTabColor: '',
         model: {
 
@@ -197,8 +276,10 @@
           buyC2: '',
           sellC1: '',
           sellC2: '',
-          c1List: '',
-          c2List: '',
+          c1buyList: '',
+          c2buyList: '',
+          c1sellList: '',
+          c2sellList: '',
           exchange: '',
 
           currencies: [{
@@ -253,6 +334,9 @@
       }
     },
     methods: {
+      getCurrencyIcon () {
+        return 'fa fa-btc'
+      },
       getError (fieldName) {
         return this.errors.first(fieldName)
       },

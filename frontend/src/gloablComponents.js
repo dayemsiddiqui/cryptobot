@@ -4,7 +4,8 @@ import Checkbox from './components/UIComponents/Inputs/Checkbox.vue'
 import Radio from './components/UIComponents/Inputs/Radio.vue'
 
 // element-ui components
-import {Tag, Progress, TableColumn, Table} from 'element-ui'
+import {Tag, Progress, TableColumn, Table, Select, Option, Row, Col} from 'element-ui'
+import {VueTabs, VTab} from 'vue-nav-tabs'
 // import Progress from 'element-ui'
 // import {Table, TableColumn} from 'element-ui'
 
@@ -26,6 +27,13 @@ const GlobalComponents = {
     Vue.component(Progress.name, Progress)
     Vue.component(Table.name, Table)
     Vue.component(TableColumn.name, TableColumn)
+    Vue.component(Select.name, Select)
+    Vue.component(Option.name, Option)
+    Vue.component(Row.name, Row)
+    Vue.component(Col.name, Col)
+
+    Vue.component(VueTabs.name, VueTabs)
+    Vue.component(VTab.name, VTab)
   }
 }
 

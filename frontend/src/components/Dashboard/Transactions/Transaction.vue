@@ -2,6 +2,7 @@
   <div>
     <!--Stats cards-->
     <div class="row">
+    
       <div class="table-striped el-table--fit el-table--enable-row-hover el-table--enable-row-transition">
         <el-table :data="tableData">
           <el-table-column type="index">
