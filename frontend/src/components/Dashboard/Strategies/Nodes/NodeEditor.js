@@ -6,7 +6,7 @@ import { componentCandlestick } from './GetCandlesticks.js'
 let container, components, menu, editor, engine
 
 // Initialize nodes here
-let candlestickNodeConstrutor = componentCandlestick(editor)
+let candlestickNodeConstrutor = componentCandlestick()
 
 const nodeEditor = (selector) => {
   container = document.getElementById(selector)
@@ -25,7 +25,7 @@ const nodeEditor = (selector) => {
     await engine.process(editor.toJSON())
   })
 
-  let candlesticksNode = candlestickNodeConstrutor.builder(candlestickNodeConstrutor.newNode())
+  let candlesticksNode = candlestickNodeConstrutor.builder(candlestickNodeConstrutor.newNode(), editor)
 
   candlesticksNode.position = [500, 240]
 

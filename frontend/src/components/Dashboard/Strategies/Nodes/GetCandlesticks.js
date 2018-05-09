@@ -11,9 +11,9 @@ let currencyInput = `
 <option value="XRPUSDT">Ripple</option>
 </select>`
 
-const componentCandlestick = (editor) => {
+const componentCandlestick = () => {
   return new D3NE.Component('Get Candlesticks', {
-    builder (node) {
+    builder (node, editor) {
       let candlesticksOutput = new D3NE.Output('Out', output)
       let currencyControl = new D3NE.Control(currencyInput, (element, control) => {
         element.value = control.getData('currency') || 'BTCUSDT'
@@ -38,7 +38,8 @@ const componentCandlestick = (editor) => {
     worker (node, inputs, outputs) {
       let [starttime, endtime, symbol] = [1499990400000, 1516460405000, node.data.currency]
       api().get(`/binance/candles/${starttime}/${endtime}/${symbol}`)
-      .then(response => {
+      .then((response) => {
+        console.log(response)
         outputs[0] = response.data
       })
     }
