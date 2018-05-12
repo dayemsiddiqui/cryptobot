@@ -28,26 +28,8 @@
               </el-select>
           </el-col>
 
-          
-
-          <el-col :span="6">
-            <el-select
-              class="select-info"
-              size="large"
-              placeholder="Second Currency"
-              v-model="model.c2List">
-                <el-option
-                  v-for="item in model.currencies"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-            </el-select>
-          </el-col>
 
 
-
-          </el-col>
 
         </el-row>
 
@@ -80,7 +62,6 @@
               <v-tab title="Buy" icon="ti-import">
                 <form>
                   <div class="form-group">
-                  <div class='col-md-4'>
                       <div class="input-group">
                         <span class="input-group-addon">Buy</span>
                         <input type="number"
@@ -94,9 +75,7 @@
                         </small>
 
                         </div>
-                        </div>
                         
-                      <div class="col-md-5">
                       <div class="input-group">
 
                         <el-select
@@ -112,24 +91,21 @@
                             </el-option>
                           </el-select>
                       </div>
-                      </div>
                     </div>
 
                       <div class="form-group">
-                      <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon">with</span>
                         <input type="number"
-                                 name="buyC1"
+                                 name="buyC2"
                                  v-validate="modelValidations.buyC2"
                                  v-model="model.buyC2"
                                  class="form-control">
                         <span class="input-group-addon"><i :class="getCurrencyIcon()"></i></span>
                       </div>
-                      </div>
                       
 
-                      <div class="col-md-5">
+
                       <div class="input-group">
                       <small class="text-danger" v-show="buyC2.invalid">
                         {{ getError('buy with currency') }}
@@ -148,7 +124,6 @@
                         </el-select>
                     </div>
                     </div>
-                    </div>
 
                   <button type="submit" class="btn btn-fill btn-info">
                         BUY
@@ -162,7 +137,6 @@
 
                 <form>
                   <div class="form-group">
-                  <div class='col-md-4'>
                       <div class="input-group">
                         <span class="input-group-addon">Sell</span>
                         <input type="number"
@@ -176,9 +150,7 @@
                         </small>
 
                         </div>
-                        </div>
-                        
-                      <div class="col-md-5">
+
                       <div class="input-group">
 
                         <el-select
@@ -194,11 +166,9 @@
                             </el-option>
                           </el-select>
                       </div>
-                      </div>
                     </div>
 
                       <div class="form-group">
-                      <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon">for</span>
                         <input type="number"
@@ -208,10 +178,7 @@
                                  class="form-control">
                         <span class="input-group-addon"><i :class="getCurrencyIcon()"></i></span>
                       </div>
-                      </div>
-                      
 
-                      <div class="col-md-5">
                       <div class="input-group">
                       <small class="text-danger" v-show="sellC2.invalid">
                         {{ getError('sell for amount') }}
@@ -230,7 +197,6 @@
                         </el-select>
                     </div>
                     </div>
-                    </div>
 
                   <button type="submit" class="btn btn-fill btn-info">
                         SELL
@@ -244,7 +210,7 @@
           </el-col>
 
           <el-col :span="4">
-            <p>asdasdasd</p>
+            <p>Trading Pairs:</p>
           </el-col>
         </el-row>
 
