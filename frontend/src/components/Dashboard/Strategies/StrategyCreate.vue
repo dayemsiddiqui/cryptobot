@@ -6,16 +6,15 @@
 </template>
 
 <script>
-  import { nodeEditor } from './Nodes/NodeEditor.js'
+  // import { nodeEditor } from './Nodes/NodeEditor.js'
+  import { nodeEditors } from './NodeEditor_s/index.js'
 
   export default {
     mounted () {
-      nodeEditor('nodeEditor')
+      nodeEditors('nodeEditor')
     },
 
     computed: { },
-
-    data () { },
 
     methods: { }
   }
