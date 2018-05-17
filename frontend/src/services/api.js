@@ -1,7 +1,8 @@
 import axios from 'axios'
+// Vuex store
+import { store } from '../store/store'
 
-let instance = axios.create({
-  baseURL: 'http://localhost:8080/api'
+export default () => axios.create({
+  baseURL: 'http://localhost:8080/api',
+  headers: {'authorization': store.getters.getToken ? store.getters.getToken : 'None'}
 })
-
-module.exports = instance

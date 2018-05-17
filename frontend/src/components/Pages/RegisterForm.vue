@@ -51,7 +51,7 @@
 
 <script>
   import { Validator, mapFields } from 'vee-validate'
-  import api from 'src/services/api'
+  import RegisterService from 'src/services/RegisterService'
 
   const dict = {
     custom: {
@@ -66,7 +66,7 @@
   export default {
     created () {
       const isUserUnique = (username) => {
-        return api.post('/auth/validateuser', {
+        return RegisterService.checkIfUserUnique({
           username
         }).then((response) => {
           return {
@@ -123,7 +123,7 @@
       },
       submit () {
         var self = this
-        api.post('/auth/register', {
+        RegisterService.register({
           username: this.model.username,
           password: this.model.password
         })

@@ -12,8 +12,8 @@ const userSchema = new Schema({
   exchanges: [{
     exchange_id: { type: Schema.Types.ObjectId, ref: 'exchange' }, // fk
     api: {
-      public: { type: String, minlength: [32, 'API Key invalid'] }, // user
-      secret: { type: String, minlength: [32, 'API Key invalid'] } //
+      public: { type: String, minlength: [32, 'API Key invalid'], select: 'false' }, // user
+      secret: { type: String, minlength: [32, 'API Key invalid'], select: 'false' } //
     },
     is_configured: Boolean
   }]
