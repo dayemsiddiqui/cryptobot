@@ -100,12 +100,6 @@ let woxcut = {
           name: 'View Strategies',
           component: Strategy,
           meta: { requiresAuth: authSwitch }
-        },
-        {
-          path: 'create',
-          name: 'Create Strategy',
-          component: StrategyCreate,
-          meta: { requiresAuth: authSwitch }
         }
       ]
     },
@@ -130,6 +124,12 @@ const routes = [
     path: '/live',
     name: 'Live Charts',
     component: LiveCharts,
+    meta: { requiresAuth: authSwitch }
+  },
+  {
+    path: '/strategies/create',
+    name: 'Create Strategy',
+    component: StrategyCreate,
     meta: { requiresAuth: authSwitch }
   },
 
