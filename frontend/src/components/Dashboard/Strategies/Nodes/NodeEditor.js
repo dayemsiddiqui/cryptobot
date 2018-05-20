@@ -5,16 +5,14 @@ import { componentCandlestick } from './GetCandlesticks.js'
 
 let container, components, menu, editor, engine
 
-// Initialize nodes here
-let candlestickNodeConstrutor = componentCandlestick()
-
 const nodeEditor = (selector) => {
   container = document.getElementById(selector)
+
   // Add all nodes here
-  components = [candlestickNodeConstrutor]
+  components = [componentCandlestick]
 
   menu = new D3NE.ContextMenu({
-    GetCandlesticks: candlestickNodeConstrutor
+    GetCandlesticks: componentCandlestick
   })
 
   editor = new D3NE.NodeEditor('Strategy@0.1.0', container, components, menu)
@@ -25,16 +23,16 @@ const nodeEditor = (selector) => {
     await engine.process(editor.toJSON())
   })
 
-  let candlesticksNode = candlestickNodeConstrutor.builder(candlestickNodeConstrutor.newNode(), editor)
+  let candlesticksNode = componentCandlestick.builder(componentCandlestick.newNode(), editor)
 
   candlesticksNode.position = [500, 240]
 
   editor.addNode(candlesticksNode)
 
   editor.view.zoomAt(editor.nodes)
-  editor.eventListener.trigger('change')
+  // editor.eventListener.trigger('change')
   editor.view.resize()
-  // editor.selectNode(candlesticksNode)
+  editor.selectNode(candlesticksNode)
 
   return editor
 }
