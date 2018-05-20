@@ -30,4 +30,10 @@
   .socket.number, .socket.output{
       background: #96b38a
   }
+
+  input[type=date]::-webkit-inner-spin-button, 
+  input[type=date]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
 </style>
