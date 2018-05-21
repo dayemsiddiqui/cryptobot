@@ -8,11 +8,6 @@
         </div>
       </div>
     </div>
-    <div class="card-footer">
-      <hr/>
-      <slot name="footer"></slot>
-    </div>
-
   </div>
 </template>
 <script>
