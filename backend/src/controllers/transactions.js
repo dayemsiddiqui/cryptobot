@@ -16,8 +16,11 @@ module.exports = {
 	    else {
 	      if (!req.body.publickey || !req.body.secretkey) {
 	        return res.status(400).json({message: 'Missing Required Fields'})
-	      } else {}
+	      } else {
 
+
+	      }
+	      //Place order to binance here
 	      let transaction = {
 	        exchange_id : req.body.exchange_id,
 		    type : req.body.type,

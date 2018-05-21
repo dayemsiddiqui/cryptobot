@@ -125,7 +125,7 @@
                     </div>
                     </div>
 
-                  <button type="submit" class="btn btn-fill btn-info">
+                  <button  v-on:click="confirmTransaction('buy')" class="btn btn-fill btn-info">
                         BUY
                   </button>
 
@@ -198,7 +198,7 @@
                     </div>
                     </div>
 
-                  <button type="submit" class="btn btn-fill btn-info">
+                  <button  v-on:click="confirmTransaction('sell')" class="btn btn-fill btn-info">
                         SELL
                   </button>
 
@@ -223,6 +223,8 @@
 
 <script>
   import {mapFields} from 'vee-validate'
+  import swal from 'sweetalert2'
+  import Transactions from 'src/services/Transactions'
 
   export default {
     computed: {
@@ -316,6 +318,56 @@
         this.currentTab = newTab.title
         if (this.currentTab === 'Buy') this.currentTabColor = '#AAE9BD'
         if (this.currentTab === 'Sell') this.currentTabColor = '#F38F72'
+      },
+      confirmTransaction (action) {
+          swal({
+          html:
+            '<p>Are you sure you want to place this order?</p>',
+          showCancelButton: true,
+          confirmButtonText: 'Confirm',
+          reverseButtons: true,
+          showLoaderOnConfirm: true,
+          preConfirm: () => {
+            return new Promise((resolve) => {
+              if (action === 'buy'){
+                let payload = {
+                  buy_amount : buyC1
+                  buy_currency : c1buyList,
+                  sell_currency : c2buyList
+                  type : action
+                }
+              }
+              else if(action === 'sell'){
+                let payload = {
+                  sell_amount : sellC1,
+                  buy_currency : c1sellList,
+                  sell_currency : c2sellList,
+                  type : action
+                }
+              }
+              else {
+                console.log('Action type is: ', action)
+              }
+              resolve(Transactions.placeOrder(payload))
+            })
+          },
+          allowOutsideClick: () => !swal.isLoading()
+        }).then((result) => {
+          console.log(result)
+          if (result.data === 'success') {
+            swal({
+              type: 'success',
+              confirmButtonText: 'OK',
+              text: 'Order placed Successfully'
+            })
+          } else {
+            swal({
+              type: 'error',
+              text: `Order Failed: ${result.data.error}
+              Please verify whether you have suffcient funds.`
+            })
+          }
+        })
       }
     }
   }
