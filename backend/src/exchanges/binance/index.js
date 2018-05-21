@@ -11,11 +11,11 @@ get5minuteCandleSticks(1499990400000, 1516460405000, 'BTCUSDT').then((candlestic
 
 import binance from 'node-binance-api'
 
-binance.options({
-  'APIKEY': process.env.BINANCEAPIKEY,
-  'APISECRET': process.env.BINANCEAPISECRET,
-  'test': true
-})
+// binance.options({
+//   'APIKEY': process.env.BINANCEAPIKEY,
+//   'APISECRET': process.env.BINANCEAPISECRET,
+//   'test': true
+// })
 
 // returns an array of candlesticks
 export const get5minuteCandleSticks = (startTime, endTime, symbol) => {
