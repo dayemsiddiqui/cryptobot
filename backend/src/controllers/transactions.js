@@ -12,7 +12,10 @@ module.exports = {
 
 	trade: (req, res) => {
 		jwt.verify(req.headers['authorization'], config.jwtSecret, (err, payload) => {
-	    if (err) return res.status(401).json({message: 'Invalid Token'})
+	    if (err) {
+	    	console.log(err)
+	    	return res.status(401).json({message: 'Invalid Token'})
+	    }
 	    else {
 	      if (!req.body.publickey || !req.body.secretkey) {
 	        return res.status(400).json({message: 'Missing Required Fields'})
