@@ -3,10 +3,10 @@ import transactionController from '../controllers/transactions.js'
 
 
 
-const transaction = Router()
+const transactions = Router()
 
-transaction.post('/test-transaction', transactionController.test)
-transaction.post('/trade', transactionController.trade)
+transactions.get('/testTransaction', transactionController.test)
+transactions.post('/trade', transactionController.trade)
 
 
-export default transaction
+export default transactions
