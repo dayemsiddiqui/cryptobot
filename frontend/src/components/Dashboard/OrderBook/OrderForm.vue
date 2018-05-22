@@ -125,7 +125,7 @@
                     </div>
                     </div>
 
-                  <button  v-on:click="confirmTransaction('buy')" class="btn btn-fill btn-info">
+                  <button  type="button" v-on:click="confirmTransaction('buy')" class="btn btn-fill btn-info">
                         BUY
                   </button>
 
@@ -198,7 +198,7 @@
                     </div>
                     </div>
 
-                  <button  v-on:click="confirmTransaction('sell')" class="btn btn-fill btn-info">
+                  <button  type="button" v-on:click="confirmTransaction('sell')" class="btn btn-fill btn-info">
                         SELL
                   </button>
 
@@ -320,7 +320,7 @@
         if (this.currentTab === 'Sell') this.currentTabColor = '#F38F72'
       },
       confirmTransaction (action) {
-          swal({
+        swal({
           html:
             '<p>Are you sure you want to place this order?</p>',
           showCancelButton: true,
@@ -329,23 +329,22 @@
           showLoaderOnConfirm: true,
           preConfirm: () => {
             return new Promise((resolve) => {
-              if (action === 'buy'){
-                let payload = {
-                  buy_amount : buyC1
-                  buy_currency : c1buyList,
-                  sell_currency : c2buyList
-                  type : action
+              let payload
+              if (action === 'buy') {
+                payload = {
+                  buy_amount: this.buyC1,
+                  buy_currency: this.c1buyList,
+                  sell_currency: this.c2buyList,
+                  type: action
                 }
-              }
-              else if(action === 'sell'){
-                let payload = {
-                  sell_amount : sellC1,
-                  buy_currency : c1sellList,
-                  sell_currency : c2sellList,
-                  type : action
+              } else if (action === 'sell') {
+                payload = {
+                  sell_amount: this.sellC1,
+                  buy_currency: this.c1sellList,
+                  sell_currency: this.c2sellList,
+                  type: action
                 }
-              }
-              else {
+              } else {
                 console.log('Action type is: ', action)
               }
               resolve(Transactions.placeOrder(payload))

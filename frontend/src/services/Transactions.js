@@ -4,7 +4,7 @@ const resource = 'transactions'
 
 export default {
 
-  placeOrder(payload) {
+  placeOrder (payload) {
     return api().post(`${resource}/trade`, payload)
   }
 }
