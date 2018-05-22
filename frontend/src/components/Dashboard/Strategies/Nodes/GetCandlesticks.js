@@ -1,10 +1,12 @@
 import * as D3NE from 'd3-node-editor'
 import moment from 'moment'
 
+// import sockets
+import { candlesticks } from '../Sockets'
+
 import api from 'src/services/api'
 
 // socket name, description, hint
-let output = new D3NE.Socket('candlesticks', 'Candlesticks', 'Outputs candlesticks in the provided range')
 let currencyInput = `
 <select>
 <option value="BTCUSDT">Bitcoin</option>
@@ -14,9 +16,9 @@ let currencyInput = `
 let startDateInput = `<input id="startDate" type="date">`
 let endDateInput = `<input id="endDate" type="date">`
 
-const componentCandlestick = new D3NE.Component('Get Candlesticks', {
+const componentCandlestick = new D3NE.Component('Candlesticks', {
   builder (node, editor) {
-    let candlesticksOutput = new D3NE.Output('Candlesticks', output)
+    let candlesticksOutput = new D3NE.Output('Candlesticks', candlesticks)
     let currencyControl = new D3NE.Control(currencyInput, (element, control) => {
       element.value = control.getData('currency') || 'BTCUSDT'
 
@@ -73,21 +75,18 @@ const componentCandlestick = new D3NE.Component('Get Candlesticks', {
       update()
     })
     return node
-            .addControl(currencyControl)
-            .addControl(startDateControl)
-            .addControl(endDateControl)
-            .addOutput(candlesticksOutput)
+      .addControl(currencyControl)
+      .addControl(startDateControl)
+      .addControl(endDateControl)
+      .addOutput(candlesticksOutput)
   },
 
-  worker (node, inputs, outputs) {
+  async worker (node, inputs, outputs) {
     // let [starttime, endtime, symbol] = [1499990400000, 1516460405000, node.data.currency]
     let [starttime, endtime, symbol] = [node.data.startDate, node.data.endDate, node.data.currency]
     if (!isNaN(starttime) && !isNaN(endtime)) {
-      api().get(`/binance/candles/${starttime}/${endtime}/${symbol}`)
-      .then((response) => {
-        outputs[0] = response.data
-        console.log(outputs[0])
-      })
+      let response = await api().get(`/binance/candles/${starttime}/${endtime}/${symbol}`)
+      outputs[0] = response.data
     }
   }
 })

@@ -12,12 +12,13 @@
 </template>
 
 <script>
-  // import { nodeEditor } from './Nodes/NodeEditor.js'
-  import { nodeEditors } from './NodeEditor_s/index.js'
+  import { nodeEditor } from './NodeEditor.js'
+  // import { nodeEditors } from './NodeEditor_s/index.js'
 
   export default {
     mounted () {
-      nodeEditors('nodeEditor')
+      nodeEditor('nodeEditor')
+      // nodeEditors('nodeEditor')
     },
 
     computed: { },
@@ -32,7 +33,7 @@
      height: 800px;
   }
 
-  .socket.number, .socket.output{
+  .socket.number, .socket.output, .socket.input{
       background: #96b38a
   }
 
