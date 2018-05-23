@@ -38,5 +38,10 @@ export default [
     name: 'Marketplace',
     icon: 'ti-money',
     path: '/market'
+  },
+  {
+    name: 'Portfolio Tracker',
+    icon: 'ti-money',
+    path: '/portfolio'
   }
 ]

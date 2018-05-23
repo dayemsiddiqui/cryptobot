@@ -30,6 +30,9 @@ import Market from 'src/components/Dashboard/Market/Market.vue'
 // Order Book
 import OrderForm from 'src/components/Dashboard/OrderBook/OrderForm.vue'
 
+// Portfolio Tracker
+import PortfolioTracker from 'src/components/Dashboard/Portfolio/PortfolioTracker.vue'
+
 // Register page
 import Register from 'src/components/Pages/RegisterPage.vue'
 
@@ -37,7 +40,7 @@ import Register from 'src/components/Pages/RegisterPage.vue'
 import Login from 'src/components/Pages/LoginPage.vue'
 
 // a switch that turns on/off the authentication
-let authSwitch = true
+let authSwitch = false
 
 let registerPage = {
   path: '/register',
@@ -114,6 +117,12 @@ let woxcut = {
       path: 'orderbook',
       name: 'Order Book',
       component: OrderForm,
+      meta: { requiresAuth: authSwitch }
+    },
+    {
+      path: 'portfolio',
+      name: 'Portfolio Tracker',
+      component: PortfolioTracker,
       meta: { requiresAuth: authSwitch }
     }
   ]
