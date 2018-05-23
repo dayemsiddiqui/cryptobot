@@ -1,6 +1,10 @@
 <template>
 
   <div class="row">
+    <button class="btn btn-sm" v-on:click="toggleRandom">Randomize</button>
+    <br><br>
+    <button class="btn btn-sm" v-on:click="sendSMS">Test SMS</button>
+    <br><br>
     <div class="row">
       <div class="col-sm-6">
           <div class="card">
@@ -64,114 +68,7 @@
      
     </div>
     
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Top Performing Bots</h4>
-            <!-- <p class="category">All products that were shipped</p> -->
-          </div>
-          <div class="card-content">
-            <div class="row">
-              <!-- <div class="col-md-7"> -->
-                <!-- <world-map></world-map> -->
-              <!-- </div> -->
-              <div class="col-md-12">
-                <div class="table-responsive">
-                  <table class="table">
-                    <tbody>
-                    <tr>
-                      <td>
-                        <!-- <div class="flag">
-                          <img src="static/img/flags/US.png">
-                        </div> -->
-                      </td>
-                      <td>Stipmunk68</td>
-                      <td class="text-right">
-                        <span class="green">+2.920</span>
-                      </td>
-                      <td class="text-right">
-                        <span class="red">-53.23%</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <!-- <div class="flag">
-                          <img src="static/img/flags/DE.png">
-                        </div> -->
-                      </td>
-                      <td>bot123-Hfscn7</td>
-                      <td class="text-right">
-                        <span class="green">+1.300</span>
-                      </td>
-                      <td class="text-right">
-                        <span class="green">20.43%</span>
-                      </td>
-                    </tr><tr>
-                      <td>
-                        <!-- <div class="flag">
-                          <img src="static/img/flags/DE.png">
-                        </div> -->
-                      </td>
-                      <td>Crupyds-Yqwn65</td>
-                      <td class="text-right">
-                        <span class="red">-0.9</span>
-                      </td>
-                      <td class="text-right">
-                        <span class="red">-22.98%</span>
-                      </td>
-                    </tr><tr>
-                      <td>
-                        <!-- <div class="flag">
-                          <img src="static/img/flags/DE.png">
-                        </div> -->
-                      </td>
-                      <td>RadioMonkey21</td>
-                      <td class="text-right">
-                        <span class="green">+1.300</span>
-                      </td>
-                      <td class="text-right">
-                        <span class="green">20.43%</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <!-- <div class="flag">
-                          <img src="static/img/flags/DE.png">
-                        </div> -->
-                      </td>
-                      <td>Uii2d20</td>
-                      <td class="text-right">
-                        <span class="green">+8.300</span>
-                      </td>
-                      <td class="text-right">
-                        <span class="green">+89.43%</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <!-- <div class="flag">
-                          <img src="static/img/flags/DE.png">
-                        </div> -->
-                      </td>
-                      <td>khBvWjaqcePiE6</td>
-                      <td class="text-right">
-                        <span class="green">+8.300</span>
-                      </td>
-                      <td class="text-right">
-                        <span class="green">+89.43%</span>
-                      </td>
-                    </tr>
-                    
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  
 
   </div>
 
@@ -213,6 +110,7 @@
         holdings: {},
         portfolioData: [],
         portfolioWorth: [],
+        isRandom: false,
         assetValue: 0,
         priceList: {
           BTC: 254.5,
@@ -261,10 +159,16 @@
           for (var i = 0; i < this.portfolioWorth.length; i++) {
             sum += this.portfolioWorth[i][1]
           }
-          this.assetValue = sum
+          this.assetValue = Math.round(sum * 100) / 100
         }
       },
       fetchPrice () {
+        if (this.isRandom) {
+          this.priceList['BTC'] = Math.random() * 1000
+          this.priceList['ETH'] = Math.random() * 100
+          this.priceList['REP'] = Math.random() * 10
+          this.priceList['LTC'] = Math.random() * 100
+        }
         console.log('Fetched Prices')
         var keys = Object.keys(this.holdings)
         var holdingsPrice = {}
@@ -309,6 +213,21 @@
         this.amount = ''
         this.selected = ''
         this.transform()
+      },
+      toggleRandom () {
+        this.isRandom = !this.isRandom
+      },
+      sendSMS () {
+        console.log('Sending SMS')
+        fetch('https://api.twilio.com/2010-04-01/Accounts/AC0b532ff6260ba1a10947bc733d541f9a/Messages.json?To=+923313548911&From=+12097530587&Body=Heelo test', {
+          headers: {
+            Authorization: 'Basic QUMwYjUzMmZmNjI2MGJhMWExMDk0N2JjNzMzZDU0MWY5YTphYTJjMmUzMGNlOTQxYTE1MDhmYmQyNmMyY2ZkODQ3MQ==',
+            'Access-Control-Allow-Origin': '*.twilio.com'
+          },
+          method: 'POST'
+        }).then(function (blob) {
+          console.log('In then of SMS', blob)
+        })
       }
 
     }
