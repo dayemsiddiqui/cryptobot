@@ -2,22 +2,6 @@ import * as D3NE from 'd3-node-editor'
 
 import { candlesticksSocket } from '../Sockets'
 
-/* let binanceWebsocketStreamBase = 'wss://stream.binance.com:9443/ws/'
-let candlesEndpoint = new WebSocket(binanceWebsocketStreamBase + 'btcusdt@kline_1m')
-candlesEndpoint.onopen = function () {
-  console.log('Open')
-}
-
-candlesEndpoint.onmessage = function (evt) {
-  // let receivedMsg = evt.data
-  // console.log(receivedMsg)
-}
-
-candlesEndpoint.onclose = function () {
-  console.log('Connection is closed')
-}
-candlesEndpoint.close() */
-
 // import sockets
 
 let currencyInput = `

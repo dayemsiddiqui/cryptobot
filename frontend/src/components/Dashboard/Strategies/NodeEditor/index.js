@@ -35,12 +35,15 @@ const nodeEditor = (selector) => {
   engine = new D3NE.Engine('Strategy@0.1.0', components)
 
   // events
-  editor.eventListener.on('change', async () => {
+  editor.eventListener.on('change', async (_, persistent) => {
     await engine.abort()
     await engine.process(editor.toJSON())
   })
 
   editor.eventListener.on('nodecreate', (node, persistent) => {
+  })
+
+  editor.eventListener.on('noderemove', (node, persistent) => {
   })
 
   // build nodes
@@ -50,13 +53,13 @@ const nodeEditor = (selector) => {
   let EMAIndicatorNode = componentEMAIndicator.builder(componentEMAIndicator.newNode(), editor)
 
   // set node position
-  candlesticksNode.position = [0, 0]
-  realtimeCandlesticksNode.position = [300, 240]
+  candlesticksNode.position = [300, 0]
+  realtimeCandlesticksNode.position = [0, 240]
   RSIIndicatorNode.position = [600, 240]
   EMAIndicatorNode.position = [0, 0]
 
   // add nodes to the editor
-  editor.addNode(realtimeCandlesticksNode)
+  editor.addNode(candlesticksNode)
   editor.addNode(RSIIndicatorNode)
 
   editor.view.zoomAt(editor.nodes)

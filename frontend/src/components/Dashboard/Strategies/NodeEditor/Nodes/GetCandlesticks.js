@@ -84,8 +84,22 @@ const componentCandlestick = new D3NE.Component('Candlesticks', {
     // let [starttime, endtime, symbol] = [1499990400000, 1516460405000, node.data.currency]
     let [starttime, endtime, symbol] = [node.data.startDate, node.data.endDate, node.data.currency]
     if (!isNaN(starttime) && !isNaN(endtime)) {
+      // sample candlestick
+      /* {
+        time: 1514746800000,
+        open: "225.92000000",
+        high: "226.45000000",
+        low: "224.04000000",
+        close: "225.50000000",
+        volume: "14.32368000",
+        closeTime: 1514747099999,
+        assetVolume: "3227.83371680",
+        trades: 34,
+        buyBaseVolume: "4.22766000",
+        buyAssetVolume: "953.92662000",
+        ignored "0"
+      } */
       let response = await api().get(`/binance/candles/${starttime}/${endtime}/${symbol}`)
-      // time, open, high, low, close, volume, closeTime, assetVolume, trades, buyBaseVolume, buyAssetVolume, ignored
       outputs[0] = response.data
     }
   }
