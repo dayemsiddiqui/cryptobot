@@ -34,6 +34,7 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.ProvidePlugin({
       'd3': 'd3',
       'alight': 'alight'
-    })
+    }),
+    // new webpack.IgnorePlugin(/vertx/)
   ]
 })

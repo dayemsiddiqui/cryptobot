@@ -12,13 +12,11 @@
 </template>
 
 <script>
-  import { nodeEditor } from './NodeEditor.js'
-  // import { nodeEditors } from './NodeEditor_s/index.js'
+  import { nodeEditor } from './NodeEditor'
 
   export default {
     mounted () {
       nodeEditor('nodeEditor')
-      // nodeEditors('nodeEditor')
     },
 
     computed: { },

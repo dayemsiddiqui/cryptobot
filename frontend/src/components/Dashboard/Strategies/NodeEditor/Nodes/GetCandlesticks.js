@@ -2,11 +2,10 @@ import * as D3NE from 'd3-node-editor'
 import moment from 'moment'
 
 // import sockets
-import { candlesticks } from '../Sockets'
+import { candlesticksSocket } from '../Sockets'
 
 import api from 'src/services/api'
 
-// socket name, description, hint
 let currencyInput = `
 <select>
 <option value="BTCUSDT">Bitcoin</option>
@@ -18,7 +17,7 @@ let endDateInput = `<input id="endDate" type="date">`
 
 const componentCandlestick = new D3NE.Component('Candlesticks', {
   builder (node, editor) {
-    let candlesticksOutput = new D3NE.Output('Candlesticks', candlesticks)
+    let candlesticksOutput = new D3NE.Output('Candlesticks', candlesticksSocket)
     let currencyControl = new D3NE.Control(currencyInput, (element, control) => {
       element.value = control.getData('currency') || 'BTCUSDT'
 
@@ -86,6 +85,7 @@ const componentCandlestick = new D3NE.Component('Candlesticks', {
     let [starttime, endtime, symbol] = [node.data.startDate, node.data.endDate, node.data.currency]
     if (!isNaN(starttime) && !isNaN(endtime)) {
       let response = await api().get(`/binance/candles/${starttime}/${endtime}/${symbol}`)
+      // time, open, high, low, close, volume, closeTime, assetVolume, trades, buyBaseVolume, buyAssetVolume, ignored
       outputs[0] = response.data
     }
   }
