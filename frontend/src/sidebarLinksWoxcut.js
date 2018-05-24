@@ -36,12 +36,12 @@ export default [
   },
   {
     name: 'Marketplace',
-    icon: 'ti-money',
+    icon: 'ti-shopping-cart',
     path: '/market'
   },
   {
     name: 'Portfolio Tracker',
-    icon: 'ti-money',
+    icon: 'ti-wallet',
     path: '/portfolio'
   }
 ]
