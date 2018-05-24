@@ -2,6 +2,7 @@ import { version } from '../../package.json'
 import { Router } from 'express'
 // import facets from './facets'
 import bots from './bots'
+import exchanges from './exchanges'
 import auth from './auth'
 import binance from './binance'
 
@@ -21,6 +22,9 @@ export default ({ config, db }) => {
 
   // binance routes
   api.use('/binance', binance)
+  
+   // api routes
+  api.use('/exchanges', exchanges)
 
   return api
 }

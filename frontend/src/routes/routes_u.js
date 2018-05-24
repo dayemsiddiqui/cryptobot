@@ -38,7 +38,7 @@ import Register from 'src/components/Pages/RegisterPage.vue'
 import Login from 'src/components/Pages/LoginPage.vue'
 
 // a switch that turns on/off the authentication
-let authSwitch = false
+let authSwitch = true
 
 let registerPage = {
   path: '/register',
@@ -55,6 +55,7 @@ let loginPage = {
 let woxcut = {
   path: '/',
   component: Layout,
+  redirect: 'overview',
   meta: { requiresAuth: authSwitch },
   children: [
     {

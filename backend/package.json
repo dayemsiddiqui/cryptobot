@@ -10,11 +10,13 @@
     "prestart": "npm run -s build",
     "lint": "eslint src --fix",
     "precommit": "lint-staged",
+    "seed": "babel-node src/exchange_seeder.js",
     "test": "set NODE_ENV=test&& mocha src --recursive --timeout 10000 --compilers js:babel-register --require babel-polyfill"
   },
   "license": "MIT",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "binance-api-node": "^0.7.3",
     "body-parser": "^1.13.3",
     "compression": "^1.5.2",
     "cors": "^2.7.1",
