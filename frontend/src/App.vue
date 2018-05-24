@@ -1,5 +1,7 @@
 <template>
   <div :class="{'nav-open': $sidebar.showSidebar}">
+    <!-- Magical css link -->
+    <link href="https://cdn.jsdelivr.net/npm/d3-node-editor@0.6.6/build/d3-node-editor.css" rel="stylesheet"></link>
     <notifications transition-name="notification-list" transition-mode="out-in">
 
     </notifications>

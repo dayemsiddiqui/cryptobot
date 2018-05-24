@@ -4,6 +4,7 @@ import { Router } from 'express'
 import bots from './bots'
 import exchanges from './exchanges'
 import auth from './auth'
+import binance from './binance'
 
 export default ({ config, db }) => {
   let api = Router()
@@ -19,6 +20,9 @@ export default ({ config, db }) => {
   // api routes
   api.use('/bots', bots)
 
+  // binance routes
+  api.use('/binance', binance)
+  
    // api routes
   api.use('/exchanges', exchanges)
 

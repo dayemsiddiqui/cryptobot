@@ -12,6 +12,8 @@ var webpackConfig = {
   entry: {
     app: './src/main.js'
   },
+  // this option tells webpack not to touch any built-in modules like fs or path
+  // target: 'node',
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -19,6 +21,10 @@ var webpackConfig = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
+/*  node: {
+    tls: 'empty',
+    fs: 'empty'
+  },*/
  /* plugins: [
     new webpack.ProvidePlugin({
       $: "jquery",
