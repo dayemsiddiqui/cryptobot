@@ -21,8 +21,9 @@ import Bot from 'src/components/Dashboard/Bots/Bot.vue'
 import BotDetail from 'src/components/Dashboard/Bots/BotDetail.vue'
 
 // Strategies
+import Parent from 'src/components/Dashboard/Strategies/Parent.vue'
 import Strategy from 'src/components/Dashboard/Strategies/Strategy.vue'
-// import StrategyCreate from 'src/components/Dashboard/Strategies/StrategyCreate.vue'
+import StrategyCreate from 'src/components/Dashboard/Strategies/StrategyCreate.vue'
 
 // Market
 import Market from 'src/components/Dashboard/Market/Market.vue'
@@ -95,15 +96,14 @@ let woxcut = {
     {
       path: 'strategies',
       name: 'Strategies',
-      component: Strategy,
+      component: Parent,
       meta: { requiresAuth: authSwitch },
       children: [
         {
-          path: 'create',
-          name: 'Create Strategy',
+          path: 'view',
+          name: 'View Strategies',
           component: Strategy,
           meta: { requiresAuth: authSwitch }
-          // component: StrategyCreate
         }
       ]
     },
@@ -134,6 +134,12 @@ const routes = [
     path: '/live',
     name: 'Live Charts',
     component: LiveCharts,
+    meta: { requiresAuth: authSwitch }
+  },
+  {
+    path: '/strategies/create',
+    name: 'Create Strategy',
+    component: StrategyCreate,
     meta: { requiresAuth: authSwitch }
   },
 

@@ -48,7 +48,9 @@
 
   export default {
     beforeCreate () {
-      this.$store.dispatch('resetUserStates')
+      // redirect user if already logged in
+      if (this.$store.getters.isUserLoggedIn === true) this.$router.push('/overview')
+      // this.$store.dispatch('resetUserStates')
     },
     computed: {
       ...mapFields(['username', 'password'])

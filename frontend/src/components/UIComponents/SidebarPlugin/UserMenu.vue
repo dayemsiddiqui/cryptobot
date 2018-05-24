@@ -35,8 +35,12 @@
             <li>
                 <router-link to="/login" class="sidebar-normal">
                   <span class="sidebar-mini">L</span>
-                  <span class="sidebar-normal">Logout</span>
+                  <span @click='logout' class="sidebar-normal">Logout</span>
                 </router-link>
+<!--                 <router-link to="/login" class="sidebar-normal">
+                  <span class="sidebar-mini">L</span>
+                  <span class="sidebar-normal">Logout</span>
+                </router-link> -->
             </li>
           </ul>
         </el-collapse-transition>
@@ -58,6 +62,10 @@
     methods: {
       toggleMenu () {
         this.isClosed = !this.isClosed
+      },
+      logout () {
+        this.$store.dispatch('resetUserStates')
+        // this.$router.push('/login')
       }
     }
   }

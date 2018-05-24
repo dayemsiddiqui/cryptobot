@@ -17,7 +17,8 @@
   "dependencies": {
     "axios": "^0.17.1",
     "chartist": "^0.10.1",
-    "d3-node-editor": "^0.6.8",
+    "d3": "^5.0.0",
+    "d3-node-editor": "^0.6.10",
     "easy-pie-chart": "^2.1.7",
     "element-ui": "^1.4.2",
     "es6-promise": "^4.1.1",
@@ -26,6 +27,8 @@
     "jquery": "^3.2.1",
     "js-cookie": "^2.2.0",
     "jvectormap": "^2.0.4",
+    "moment": "^2.22.1",
+    "node-binance-api": "^0.6.0",
     "perfect-scrollbar": "^0.7.1",
     "sweetalert2": "^6.6.5",
     "vee-validate": "^2.0.0-rc.14",

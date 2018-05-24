@@ -55,7 +55,7 @@ router.beforeEach((to, from, next) => {
       .then(function (response) {
         if (response) next()
       })
-      .catch(function (error) {
+      .catch(error => {
         next({name: 'Login'})
         console.log(error)
       })
