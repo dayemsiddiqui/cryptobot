@@ -5,6 +5,8 @@ import VeeValidate from 'vee-validate'
 import lang from 'element-ui/lib/locale/lang/en'
 import locale from 'element-ui/lib/locale'
 import App from './App.vue'
+import VueChartkick from 'vue-chartkick'
+import Chart from 'chart.js'
 
 // Vuex store
 import { store } from './store/store'
@@ -35,6 +37,7 @@ Vue.use(GlobalComponents)
 Vue.use(VueNotify)
 Vue.use(SideBar, {sidebarLinks: sidebarLinks})
 Vue.use(VeeValidate)
+Vue.use(VueChartkick, {adapter: Chart})
 locale.use(lang)
 
 // configure router
