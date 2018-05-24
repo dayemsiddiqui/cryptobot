@@ -3,6 +3,7 @@ import { Router } from 'express'
 // import facets from './facets'
 import bots from './bots'
 import exchanges from './exchanges'
+import dashboard from './dashboard'
 import auth from './auth'
 
 export default ({ config, db }) => {
@@ -18,9 +19,8 @@ export default ({ config, db }) => {
 
   // api routes
   api.use('/bots', bots)
-
-   // api routes
   api.use('/exchanges', exchanges)
+  api.use('/dashboard', dashboard)
 
   return api
 }

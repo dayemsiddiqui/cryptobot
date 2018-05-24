@@ -7,7 +7,7 @@
               </button>
       </router-link>
     </div>
-    <iframe src="https://www.cryptowat.ch" class="chart-iframe" frameborder="0"></iframe>
+    <iframe src="https://cryptowat.ch" class="chart-iframe" frameborder="0"></iframe>
   </div>
 </template>
 <script>

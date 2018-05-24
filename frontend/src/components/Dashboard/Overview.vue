@@ -1,7 +1,41 @@
 <template>
   <div>
     <!--Stats cards-->
+    <!--
+          {
+            type: 'warning',
+            icon: 'fa fa-btc',
+            title: 'Current Coins',
+            value: '105 BTC',
+            footerText: 'Updated now',
+            footerIcon: 'ti-reload'
+          },
+     -->
     <div class="row">
+      
+      <div class="col-lg-3 col-sm-6">
+        <stats-card>
+          <div class="icon-big text-center icon-warning" slot="header">
+            <i class="fa fa-btc"></i>
+          </div>
+          <div class="numbers" slot="content">
+            <p>Current Coins</p>
+            123 BTC
+          </div>
+          <div class="stats" slot="footer">
+            <span class="pull-left">
+              <i class="ti-reload"></i> Updated 2 mins ago
+            </span>
+            <span class="pull-right">
+              <select class="" name="" id="">
+                <option value="BTC">BTC</option>
+                <option value="ETH">ETH</option>
+              </select>
+            </span>
+          </div>
+        </stats-card>
+      </div>
+
       <div class="col-lg-3 col-sm-6" v-for="stats in statsCards">
         <stats-card>
           <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
@@ -21,15 +55,25 @@
      <!--Stats cards-->
     <div class="row">
       <div class="col-lg-6 col-sm-6">
-        <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">
-              Current Portfolio
-              </h4>
-              <!-- <p class="category">All products that were shipped</p> -->
+        <chart-card :chart-data="portfolioChart.data" :chart-options="portfolioChart.options" :chart-type="portfolioChart.type">
+            <span slot="title">Current Portfolio</span>
+            <span slot="title-label" class="label label-success">
+              +18%
+            </span>
+            <h6 slot="subtitle">
+              <i class="fa fa-circle text-info"></i> Open
+              <i class="fa fa-circle text-danger"></i> Bounce
+              <i class="fa fa-circle text-warning"></i> Unsubscribe
+              <!-- total earnings <span class="text-muted">in last</span> ten <span class="text-muted">quarters</span> -->
+            </h6>
+            <div slot="footer-title">
+              Financial Statistics
             </div>
-          <vue-chartist :data="data" :options="options" type="Pie"></vue-chartist>
-        </div>
+            <button slot="footer-right" class="btn btn-info btn-fill btn-icon btn-sm">
+              <i class="ti-plus"></i>
+            </button>
+          </chart-card>
+
       </div>
         
       <div class="col-lg-6 col-sm-6">
@@ -211,6 +255,8 @@
   import ChartCard from 'src/components/UIComponents/Cards/ChartCard.vue'
   import VueChartist from 'v-chartist'
 
+  import DashboardService from 'src/services/DashboardService'
+
   // import Loading from 'src/components/Dashboard/Layout/LoadingMainPanel.vue'
 
   /*
@@ -229,32 +275,36 @@
       'vue-chartist': VueChartist
       // WorldMap
     },
+
+    methods: {
+      async getPortfolioData () {
+        let response = await DashboardService.fetchPortfolioData()
+        this.portfolioChart.data = response.data
+      }
+    },
+
+    mounted () {
+      this.getPortfolioData()
+    },
+
     /**
      * Chart data used to render stats, charts. Should be replaced with server data
      */
     data () {
       return {
         data: {
-          labels: ['BTC', 'LTC', 'ETH', 'USDT'],
+          // labels: ['BTC', 'LTC', 'ETH', 'USDT'],
           series: [20, 10, 30, 40]
         },
         options: {
           // donut: true,
-          donutWidth: 40,
+          donutWidth: 120,
           donutSolid: true,
           startAngle: 360,
           showLabel: true,
           fullWidth: true
         },
         statsCards: [
-          {
-            type: 'warning',
-            icon: 'fa fa-btc',
-            title: 'Current Coins',
-            value: '105 BTC',
-            footerText: 'Updated now',
-            footerIcon: 'ti-reload'
-          },
           {
             type: 'success',
             icon: 'ti-wallet',
@@ -304,6 +354,20 @@
             classNames: {
               line: 'ct-line ct-green'
             }
+          }
+        },
+        portfolioChart: {
+          data: {
+            labels: ['ETH', 'BTC', 'XRP', 'BCH'],
+            series: [12, 36, 12, 40]
+          },
+          type: 'Pie',
+          options: {
+            height: '320px',
+            donut: true,
+            donutWidth: 90
+            // startAngle: 270
+            // total: 360
           }
         },
         balanceData: [{
