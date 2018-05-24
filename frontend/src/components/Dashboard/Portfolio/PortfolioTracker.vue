@@ -67,6 +67,10 @@
       </div>
      
     </div>
+
+    <div class="row">
+     <iframe src="https://public.tableau.com/views/BitcoinPriceandSentimentAnalysis/BitcoinPriceandSentimentAnalysis?:embed=y&:loadOrderID=0&:display_count=yes" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" width="100%" height="500px"></iframe>           
+    </div>
     
   
 
