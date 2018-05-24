@@ -2,30 +2,47 @@
   <div>
     <!--Stats cards-->
     <div class="row">
-      <el-table :data="tableData">
-        <el-table-column type="index">
+    
+      <div class="table-striped el-table--fit el-table--enable-row-hover el-table--enable-row-transition">
+        <el-table :data="tableData">
+          <el-table-column type="index">
 
-        </el-table-column>
-        <el-table-column prop="name"
-                         label="Exchange Name">
-        </el-table-column>
-        <el-table-column prop="type"
-                         label="Type">
-        </el-table-column>
-        <el-table-column prop="amount"
-                         label="Amount">
-        </el-table-column>
-        <el-table-column prop="status"
-                         label="Status">
-        </el-table-column>
-        <el-table-column
-          label="Actions">
-          <template slot-scope="props">
-            <a class="btn btn-simple btn-warning btn-xs btn-icon edit" @click="handleEdit(props.$index, props.row)"><i class="ti-pencil-alt"></i></a>
-            <a class="btn btn-simple btn-danger btn-xs btn-icon remove"  @click="handleDelete(props.$index, props.row)"><i class="ti-close"></i></a>
-          </template>
-        </el-table-column>
-      </el-table>
+          </el-table-column>
+          <el-table-column prop="name"
+                           label="Exchange Name">
+          </el-table-column>
+          <el-table-column prop="type"
+                           label="Type">
+          </el-table-column>
+
+          <el-table-column prop="b_currency"
+                           label="Currency">
+          </el-table-column>
+
+          <el-table-column prop="b_amount"
+                           label="Buy">
+          </el-table-column>
+
+          <el-table-column prop="s_currency"
+                           label="Currency">
+          </el-table-column>
+
+          <el-table-column prop="s_amount"
+                           label="Sell">
+          </el-table-column>
+
+          <el-table-column prop="date"
+                           label="Date">
+          </el-table-column>
+        <!--   <el-table-column
+            label="Actions">
+            <template slot-scope="props">
+              <a class="btn btn-simple btn-warning btn-xs btn-icon edit" @click="handleEdit(props.$index, props.row)"><i class="ti-pencil-alt"></i></a>
+              <a class="btn btn-simple btn-danger btn-xs btn-icon remove"  @click="handleDelete(props.$index, props.row)"><i class="ti-close"></i></a>
+            </template>
+          </el-table-column> -->
+        </el-table>
+      </div>
 
     </div>
 
@@ -43,11 +60,11 @@
     data () {
       return {
         tableData: [
-        {name: 'Polonix', type: 'Buy', amount: '$500', status: 'completed'},
-        {name: 'Kraken', type: 'Sell', amount: '$540', status: 'pending'},
-        {name: 'Coinbase', type: 'Buy', amount: '$56', status: 'cancelled'},
-        {name: 'Bitfinex', type: 'Sell', amount: '$78', status: 'completed'},
-        {name: 'Bittrex', type: 'Buy', amount: '$976', status: 'cancelled'}
+        {name: 'Polonix', type: 'Trade', b_currency: 'ETH', b_amount: '0.2', s_currency: 'BTC', s_amount: '0.02', date: '26/Dec/2017'},
+        {name: 'Kraken', type: 'Trade', b_currency: 'LTC', b_amount: '0.5', s_currency: 'BCH', s_amount: '0.3', date: '2/Jan/2018'},
+        {name: 'Coinbase', type: 'Deposit', b_currency: 'USD', b_amount: '300', s_currency: '', s_amount: '', date: '3/Jan/2018'},
+        {name: 'Bitfinex', type: 'Trade', b_currency: 'BTC', b_amount: '0.015', s_currency: 'ETH', s_amount: '21', date: '22/Feb/2018'},
+        {name: 'Bittrex', type: 'Withdraw', b_currency: '', b_amount: '', s_currency: 'BTC', s_amount: '0.5', date: '2/Mar/2018'}
         ]
       }
     },
