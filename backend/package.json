@@ -1,0 +1,78 @@
+{
+  "name": "woxcut_backend",
+  "version": "0.0.1",
+  "description": "Boilerplate for woxcut backend",
+  "main": "dist",
+  "scripts": {
+    "dev": "nodemon -w src --exec \"babel-node src\"",
+    "build": "babel src -s -D -d dist",
+    "start": "node dist",
+    "prestart": "npm run -s build",
+    "lint": "eslint src --fix",
+    "precommit": "lint-staged",
+    "seed": "babel-node src/exchange_seeder.js",
+    "test": "set NODE_ENV=test&& mocha src --recursive --timeout 10000 --compilers js:babel-register --require babel-polyfill"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "binance-api-node": "^0.7.3",
+    "body-parser": "^1.13.3",
+    "compression": "^1.5.2",
+    "cors": "^2.7.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.13.3",
+    "joi": "^13.1.2",
+    "jsonwebtoken": "^7.3.0",
+    "mongoose": "^5.x.x",
+    "morgan": "^1.8.0",
+    "node-binance-api": "^0.4.5",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "passport-local": "^1.0.0",
+    "resource-router-middleware": "^0.6.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.24.1",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-html": "^2.0.3",
+    "eslint-plugin-import": "^2.6.1",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "lint-staged": "^6.1.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.9.2"
+  },
+  "eslintConfig": {
+    "extends": "standard",
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true
+      }
+    },
+    "env": {
+      "node": true,
+      "mocha": true
+    }
+  },
+  "lint-staged": {
+    "src/**/*": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}

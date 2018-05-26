@@ -1,0 +1,6 @@
+TODO:
+
+1. decide transaction and bots schema
+2. decide on a realtime strategy
+3. decide whether to use rethinkDB
+4. decide on number and types of graphs
